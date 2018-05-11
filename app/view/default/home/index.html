@@ -1,0 +1,153 @@
+{php include wl_template('common/header');}
+<div class="page-group">
+    <div class="page page-current" id="page-index">
+		<div class="content infinite-scroll native-scroll" data-distance="10">
+		<div class="topbar"><h3 class="title">拼团</h3><div class="barfn"><i class="refresh"></i><i class="share"></i></div></div>
+	    <div class="address">
+	        <i class="pos"></i><span class="zone">全国发货</span><span class="zoneTip">（点击这里选择更多地区）</span><i class="arrow"></i>
+	    </div>
+	    <div class="banner" id="banner" style="visibility: visible;">
+	        <ul class="imgs">
+	        	{loop $advs $adv}
+	        	<li>
+	        		<img src="{$adv['thumb']}" alt="">
+	        	</li>
+	        	{/loop}
+	        </ul>
+	        <ul class="dotList">
+	        	{php $slideNum = 1;} {loop $advs $adv}
+					<li{if $slideNum==1 } class="cur" {/if}></li>
+				{php $slideNum++;} {/loop}
+	        </ul>
+	    </div>
+	    <div class="appCode" style="display: none;">
+	        <div class="codeBox imgShow">
+	            <img src="" alt="">
+	        </div>
+	        <div class="codeBox codeRight">
+	          <p><i></i><span class="des"></span></p>
+	          <div class="inputZone">
+	                <div style="display: inline-block;float: left;width:70%;">
+	                    <input type="text" placeholder="" id="codeInput">  
+	                </div>
+	                <div style="display: inline-block;width:30%">
+	                    <span class="codeBtn">确认</span>
+	                </div>
+	          </div>
+	        </div>
+	    </div>
+	    <div class="list">
+	        <div class="listCon">
+	        <ul class="ul_1">
+	        </ul>
+	        </div>
+	        <div class="loading_more" style="padding-top: 15px;display: none;"><span class="loading"><i class="icon_load"></i>加载中......</span></div>
+	        <div class="error">加载失败，点击重新加载</div>
+	        <div class="noData">全部数据加载完毕</div>
+	    </div>
+	    <div class="mask"></div>
+	    <div class="dialog">
+	        <h5>可配送地区</h5>
+	        <div class="zone">
+	            <i></i>
+	            <p>全国发货</p>
+	            <div>全国大部分区域</div>
+	        </div>
+	        <p class="advance" style="display: block;">华东区，华南区，华中区，<br>西北区，西南区，东北区，<br>更多地区玩命开通中</p>
+	    </div>
+		<div class="bg_layer" style="height: 6672px; opacity: 0; display: none;"></div>
+		<div class="dialog_box" style="top: 308px; opacity: 0; display: none;">
+			<div class="zoneList"><h4>选择地区</h4><div class="zoneOuter">
+				<ul>
+					<li class="noBorder " data-actid="3"><div><h5>华北地区</h5><p>北京 天津 河北 山东 山西</p></div></li>
+					<li class="noBorder selected" data-actid="15"><div><h5>全国发货</h5><p>全国大部分区域</p></div></li>
+				</ul>
+			</div></div>
+		</div>
+		</div>
+		<ul class="bottombar" data-curind="0">
+			<li class="home cur" data-login="0" data-url="/list/list.html?activity_id=15"><i></i><span>首页</span></li>
+			<li class="myGroup" data-login="1" data-url="/group/list.html?activity_id=15"><i></i><span>我的拼团</span></li>
+			<li class="myOrder" data-login="1"><i></i><span>我的订单</span></li>
+			<li class="myService" data-login="1"><i></i><span>联系客服</span></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+	  'use strict';
+		$(document).on("pageInit", "#page-index", function(e, id, page) {
+			new Swipe($('#banner')[0], {
+	            speed:500,
+	            auto:3000,
+	            callback: function(){
+	                var lis = $(this.element).next("ul").children();
+	                lis.removeClass("cur").eq(this.index).addClass("cur");
+	            }
+	        });
+	        
+		    var loading = false;
+		    var thispagesize = 10;
+		    var thispagesizemax = 100;
+		    var thispage = 1;
+		    function addItems(thispage, thispagesize) {
+		    	
+		    	var ajaxurl = "{php echo app_url('home/index/ajax')}"+"&page="+thispage+"&pagesize="+thispagesize;
+		    	$.ajax({
+						type: "POST",
+						url: ajaxurl,
+						dataType: 'json',
+						beforeSend: function(XMLHttpRequest) {
+							
+						},
+						success: function(data) {
+								thispagesizemax = data.total;
+ 								if (data.list.length > 0) {
+									for (var i in data.list) {
+										var goods = data.list[i];
+										var more = '';
+			   				 			more += '<li class="gli">'
+									        		+'<a href="'+goods.a+'">'
+									        		+'<div class="img">'
+									        			+'<img src="'+goods.gimg+'" alt="" style="opacity: 1;">'
+									        			+'<div class="icon_position"><div class="discount"><span>9折<br>'+goods.groupnum+'人团</span></div><div class="pricedown">美味共享</div></div>'
+									        			+'<ul class="desPos"><li class="firstLine " expos="0">酥脆美味</li><li class="" expos="0">颗颗饱满</li><li class="lastLine" expos="0">总重250g*2</li></ul>'
+									        		+'</div>'
+									        		+'<div class="txt">'
+									        			+'<h5>'+goods.gname+'</h5>'
+									        			+'<p>'+goods.gdesc+'</p>'
+									        		+'</div>'
+									        		+'<div class="fnWrap"><div class="fnZone"><i></i><span><b class="price">￥'+goods.gprice+'</b><b class="people">'+goods.groupnum+'人团</b></span><span class="btn">去开团 &gt;</span></div></div>'
+									        	+'</a>'
+									        	+'</li>';
+										$(".ul_1").append(more);
+										
+									}
+								} else {
+									$('.noData').show();
+								}
+						},
+						error:function(){
+						$('.error').show();
+					}
+					});
+		    }
+		    addItems(thispage,thispagesize);
+		     
+		    $(page).on('infinite', function() {
+		      	if (loading) return;
+		      	loading = true;
+		      	$(".loading_more").show();
+			   	setTimeout(function() {
+			        loading = false;
+			        thispage++;
+			        addItems(thispage,thispagesize);
+			        $(".loading_more").hide();
+			        $.refreshScroller();
+			    }, 1000);
+		    });
+		});
+	  $.init();
+	});
+</script>
+{php include wl_template('common/footer');}

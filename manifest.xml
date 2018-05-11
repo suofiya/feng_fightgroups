@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.com" versionCode="0.6">
+	<application setting="true">
+		<name><![CDATA[智慧拼团]]></name>
+		<identifie><![CDATA[feng_fightgroups]]></identifie>
+		<version><![CDATA[5.5.1]]></version>
+		<type><![CDATA[other]]></type>
+		<ability><![CDATA[新增优惠券，积分等功能，整个拼团功能，功能十分强大！是您不可或缺的营销利器！]]></ability>
+		<description><![CDATA[设计风格一如既往的简约而不简单，拼团即是拼凑起来团购。玩法新颖独特，由队长发起团购，分享给自己的小伙伴，拉来一定数目的小伙伴一起以优惠价格来购买所需产品。]]></description>
+		<author><![CDATA[不错吧源码]]></author>
+		<url><![CDATA[http://www.we7.com]]></url>
+
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<card embed="false" />
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="首页入口" do="index" state="" direct="false" />
+			<entry title="我的团" do="mygroup" state="" direct="false" />
+			<entry title="个人中心" do="person" state="" direct="false" />
+			<entry title="我的订单" do="myorder" state="" direct="false" />
+		</cover>
+		<menu>
+			<entry title="管理中心" do="import" state="" direct="false" />
+		</menu>
+	</bindings>
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[uninstall.php]]></uninstall>
+	<upgrade><![CDATA[upgrade.php]]></upgrade>
+</manifest>

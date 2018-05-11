@@ -1,0 +1,7 @@
+<ul class="bottombarr" data-curind="0">
+	<!--<a class="home external {if $_GPC['ac']=='index'}cur{/if}" href="{php echo app_url('home/index')}"><i></i><span>首页</span></a>-->
+	<a class="home external {if $_GPC['ac']=='list'}cur{/if}" href="{php echo app_url('goods/list')}"><i></i><span>首页</span></a>
+	<a class="myGroup external {if $_GPC['ac']=='mygroup'}cur{/if}" href="{php echo app_url('order/mygroup/0')}"><i></i><span>我的拼团</span></a>
+	<a class="myOrder external {if $_GPC['ac']=='order'}cur{/if}" href="{php echo app_url('order/order')}"><i></i><span>我的订单</span></a>
+	<a class="myService external {if $_GPC['ac']=='home'}cur{/if}" href="{php echo app_url('member/home')}"><i></i><span>个人中心</span></a>
+</ul>

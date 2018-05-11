@@ -1,0 +1,256 @@
+{php include wl_template('common/header');}
+<div class="page-group">
+    <div class="page page-current" id="page-order-confirm">
+		<div class="content" data-distance="10">
+			{php include wl_template('common/followed');}
+			<div id="ct">
+			    <div class="dt_order">
+			    	{if $goods['is_hexiao']==1}
+				    <div class="content-block" style="background-color: white;margin: 0;">
+			          <div class="buttons-row" style="margin-top: .9rem;padding-bottom: 0.5rem;">
+			            <a href="#tab1-1" class="tab-link button active" id="express" typeid="1">快递配送</a>
+			            <a href="#tab1-2" class="tab-link button" id="bdelete" typeid="2">到店核销</a>
+			          </div>
+			        </div>
+			        {elseif $goods['is_hexiao']==0}
+			          <div class="buttons-row" style="display: none;">
+			            <a href="#tab1-1" class="tab-link button active" id="express" typeid="3"></a>
+			          </div>
+			        {elseif $goods['is_hexiao']==2}
+			          <div class="buttons-row" style="display: none;">
+			            <a href="#tab1-1" class="tab-link button active" id="express" typeid="4"></a>
+			          </div>
+			        {/if}
+			        <div class="tabs">
+			            <div class="tab {if $goods['is_hexiao']!=2}active{/if}" id="tab1-1">
+			            	{if !empty($adress_fee)}
+						        <!--地址信息-->
+						        <div class="u_address">
+						            <div class="u_address_d">
+						                <i class="icon_pos"></i>
+						                <div class="address" id="dt_address" style="height: 56px;"><span class="name" style="margin-bottom: 5px;">{$adress_fee['cname']}</span><span class="tel">{$adress_fee['tel']}</span><span class="address_txt" style="margin-bottom: 5px;">{$adress_fee['province']}{$adress_fee['city']}{$adress_fee['county']}</span><span class="address_txt">{$adress_fee['detailed_address']}</span></div>
+						                <i class="address_flag">{if $adress_fee['type']==2}家庭{elseif $adress_fee['type']==1}公司{/if}</i>
+						                <i class="arrow arrow_show"></i>
+						            </div>
+						        </div>
+			                {else}
+			                	<div class="u_address">
+						            <div class="u_address_d">
+						                <i class="icon_pos"></i>
+						                <div class="address" id="dt_address"><span class="toaddress">您还没有收货地址哦，点击新增地址</span></div>
+						                <i class="arrow arrow_show"></i>
+						            </div>
+						        </div>
+			                {/if}
+			            </div>
+			            <div class="tab {if $goods['is_hexiao']==2}active{/if}" id="tab1-2">
+			            	<div class="orderconfirm-tip">您选择的是到店核销，商户不负责商品配送。请仔细填写提货信息，订单免运费。</div>
+			            	<div class="list-block" style="margin:0;padding-top: .5rem;background-color: white;">
+						      <ul>
+						        <li>
+						          <div class="item-content">
+						            <div class="item-inner">
+						              <div class="item-title label">收货人：</div>
+						              <div class="item-input">
+						                <input type="text" id="cnee" value="{$adress_fee['cname']}" placeholder="请输入您的姓名">
+						              </div>
+						            </div>
+						          </div>
+						        </li>
+						        <li>
+						          <div class="item-content">
+						            <div class="item-inner">
+						              <div class="item-title label">联系电话：</div>
+						              <div class="item-input">
+						                <input type="text" id="mobile" value="{$adress_fee['tel']}" placeholder="请输入您的联系电话">
+						              </div>
+						            </div>
+						          </div>
+						        </li>
+						        <!--<li>
+						          <div class="item-content">
+						            <div class="item-inner">
+						              <div class="item-title label">核销日期：</div>
+						              <div class="item-input">
+						                <input type="date" id="gettime" placeholder="取货或消费日期" value="{php echo date('Y-m-d',time());}">
+						              </div>
+						            </div>
+						          </div>
+						        </li>-->
+						      </ul>
+						    </div>
+			            </div>
+			        </div>
+			        <div class="dt_commodity_info">
+			            <dl class="commodity_info">
+			            	<dt><img src="{php echo tomedia($goods['gimg'])}" width="85" height="85" alt=""></dt>
+			            	<dd>
+			            		<h3>{$goods['gname']}</h3>
+			            		<div class="attr" id="ord_imes">
+			            			{if $goods['optionname']}<span>规格：{$goods['optionname']}</span>{/if}
+			            			<span>数量：{$num}</span>
+			            		</div>
+			            		<div class="price">¥{$price} x {$num}</div>
+			            	</dd>
+			            </dl>
+			            <div class="item"><span class="attname">运费：</span><span class="attval" id="freight">{if $freight}￥{$freight}{else}包邮{/if}</span></div>
+			            {if $firstdiscount && $tuan_first==1}
+			            <div class="item"><span class="attname">团长优惠：</span><span class="attval">{$firstdiscount}元</span></div>
+			           	{/if}
+			            <div>
+			                <input type="text" placeholder="给商家留言" value="" class="dt_ord_input" maxlength="200" name="remark">
+			            </div>
+			        </div>
+			        
+			        <div class="item_yhq" id="dt_ord_youhui">
+			            <div class="item_yhq_left" id="dt_ord_yhjmes">请选择或兑换优惠券{$coupon['name']}</div>
+			            <div class="item_yhq_right"></div>
+			        </div>
+			        
+			        <div class="stepGuild">
+			            <div class="step_tit"><i></i>拼团玩法<span><a href="{php echo app_url('home/rule');}">查看详情&gt;</a></span></div>
+			            <div class="step_flow">
+			                <div class="step_item"><span class="step_num">1</span><span>选择<br>心仪商品</span></div>
+			                <div class="step_item step_item_on"><span class="step_num">2</span><span>支付开团<br>或参团</span></div>
+			                <div class="step_item"><span class="step_num">3</span><span>邀请好友<br>参团支付</span></div>
+			                <div class="step_item"><span class="step_num">4</span><span>达到人数<br>团购成功</span></div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+   		</div>
+   		<div class="footerr">
+	        <div class="address_down">{$goods['endtime']}小时内参团好友达到成团人数才能买到哦！付款后请分享到微信邀请好友一起拼团~</div>
+	        <div class="order_mes">
+	        <span>实付款：</span>
+	        	<span class="order_price" id="dt_ord_t2">¥{$pay_price}</span>
+	        	<button class="btn_gopay" id="dt_goPay">提交订单</button>
+	        </div>
+	    </div>
+    </div>
+</div>
+<div class="popup popup-youhui">
+	<header class="bar bar-nav">
+    	<a class="button button-link button-nav pull-right close-popup">关闭</a>
+    	<h1 class="title">优惠券列表</h1>
+  	</header>
+  	<div class="content" id="youhuic">
+    	
+  	</div>
+</div>
+<script type="text/html" id="couponlist">
+{{# for(var i = 0, len = d.length; i < len; i++){ }}
+<div class="card" style="border-radius: .2rem;">
+  <div class="card-content" style="border-radius: .2rem .2rem 0 0;color: white;{{# if(i%3 == 0){ }}background-color: #4dd6b1;{{# }else if(i%3 == 1){ }}background-color: #6eb3e8;{{# }else{ }}background-color: #ffb600;{{# } }}">
+    <div class="list-block media-list">
+      <ul>
+        <li class="item-content">
+          <div class="item-media">
+            <img src="{php echo tomedia($config['tginfo']['slogo'])}" width="50" style="border-radius: 25px;">
+          </div>
+          <div class="item-inner">
+            <div class="item-title-row">
+              <div class="item-title">{{ d[i].name }}</div>
+            </div>
+            <div class="item-subtitle">￥ {{ d[i].cash }}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="card-footer">
+    <span>截止时间：{{ d[i].end_time }}</span>
+    <span style="display: flex;"><div class="weui_btn weui_btn_mini weui_btn_default external" onclick="usecoupon({{ d[i].id }},{{ d[i].cash }})">使用优惠券</div></span>
+  </div>
+</div>
+{{# } }}
+</script>
+<script type="text/javascript">
+	var num = "{php echo $goods['gnum']}";
+    var isshow = "{php echo $goods['isshow']}";
+    var addrid = "{php echo $addrid}";
+    var freight = "{php echo $freight}";
+    var pay_price = "{php echo $pay_price}";
+    var couponid = 0;
+    var typeid = $('.buttons-row .active').attr('typeid');
+    num = parseInt(num);
+	function usecoupon(id,cash){
+		$.closeModal();
+		$('#couponid').val(id);
+		couponid = id;
+		$('#dt_ord_yhjmes').html('使用优惠券： -￥'+cash);
+		if(typeid == 2 || typeid == 4){
+			$('#dt_ord_t2').html('￥' + (pay_price - freight - cash).toFixed(2));
+		}else{
+			$('#dt_ord_t2').html('￥' + (pay_price - cash).toFixed(2));
+		}
+	}
+	
+    $(function() {
+		'use strict';
+		$(document).on("pageInit", "#page-order-confirm", function(e, id, page) {
+			var gettpl = document.getElementById('couponlist').innerHTML;
+			var emphtml = '<div class="m-cart" id="s"><div class="empty" id="pro-view-6">暂无可用优惠券</div></div>';
+			laytpl(gettpl).render({php echo json_encode($coupon)}, function(html){
+				if(html.length < 10){
+					$("#youhuic").append(emphtml);
+				}else{
+					$("#youhuic").append(html);
+				}
+			});
+
+			$('#dt_goPay').on('click', function () {
+				var typeid = $('.buttons-row .active').attr('typeid');
+				var name = $('#cnee').val();
+		        var mobile = $('#mobile').val();
+		        var gettime = $('#gettime').val();
+		        var remark = $('.dt_ord_input').val();
+				if(num <= 0){$.toast('销量爆表，库存不足咯!');return false;}
+				if(isshow != 1){$.toast('商品已下架或售罄，无法购买!');return false;}
+				if(typeid == 2  || typeid == 4){
+					if(!name){
+						$.toast('请输入您的姓名');
+						return false;
+					}
+					if(!mobile){
+						$.toast('请输入您的手机号码');
+						return false;
+					}
+//					if(!gettime){
+//						$.toast('请选择您的核销时间');
+//						return false;
+//					}
+				}
+				$.post("{php echo app_url('order/orderconfirm')}",{typeid:typeid,name:name,mobile:mobile,gettime:gettime,remark:remark,addrid:addrid,couponid:couponid},function(d){
+					if(d.status == 1){
+					    location.href = "{php echo app_url('pay/paytype')}"+'orderno='+d.result.orderno;
+					}else{
+						$.toast(d.result);
+					}
+				},"json");
+			});  
+			
+			$('#dt_ord_youhui').on('click', function () {
+				$.popup('.popup-youhui');
+			});
+			
+			$('.u_address').on('click', function () {
+				location.href = "{php echo app_url('address/addmanage')}";
+			});
+			$('#express').on('click', function () {
+				couponid = 0;
+				$('#freight').html(freight);
+				$('#dt_ord_yhjmes').html('请选择或兑换优惠券');
+				$('#dt_ord_t2').html('￥'+pay_price);
+			});
+			$('#bdelete').on('click', function () {
+				couponid = 0;
+				$('#freight').html('0.00');
+				$('#dt_ord_yhjmes').html('请选择或兑换优惠券');
+				$('#dt_ord_t2').html('￥' + (pay_price - freight).toFixed(2));
+			});
+		});
+		$.init();
+	});
+</script>
+{php include wl_template('common/footer');}
