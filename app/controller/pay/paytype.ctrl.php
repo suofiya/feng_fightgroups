@@ -7,6 +7,7 @@
 
 session_start();
 defined('IN_IA') or exit('Access Denied');
+require IA_ROOT.'/payment/ebanx/autoload.php';
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 $pagetitle = '支付方式';
 wl_load()->model("order");
@@ -29,7 +30,6 @@ if(!empty($order['couponid']) && $order['is_usecard']==1){
 	}
 	
 }
-
 if($op =='display'){
 	$helppay = FALSE;
 	if($order['status']!=0 && $order['status']!=5){
@@ -55,9 +55,9 @@ if($op =='display'){
 	include wl_template('pay/paytype');
 }
 if ($_W['isajax'] && $op =='ajax') {
-	if($_W['fans']['follow'] !=1 &&  $config['base']['guanzhu_buy']==1){
+/*	if($_W['fans']['follow'] !=1 &&  $config['base']['guanzhu_buy']==1){
 		die(json_encode(array('errno'=>4,'message'=>"您还未关注,不能购买.")));
-	}
+	}*/
 	$res = coupon_handle($order['openid'],$order['couponid'],$order['pay_price']);
 	wl_load()->model('group');
 	$checkpay = $_GPC['checkpay'];
@@ -74,9 +74,9 @@ if ($_W['isajax'] && $op =='ajax') {
 	if(!empty($order['status'])){
 		die(json_encode(array('errno'=>2,'message'=>"此订单已被代付.","group"=>$nowtuan)));
 	}
-	if($order['checkpay']=="9"){
+/*	if($order['checkpay']=="9"){
 		die(json_encode(array('errno'=>3,'message'=>"此订单正在支付,请稍等.","group"=>$nowtuan)));
-	}
+	}*/
 	order_update_by_params(array('message'=>$_GPC['remark'],'othername'=>$_GPC['othername'],'checkpay'=>$checkpay), array('orderno'=>$orderno));
 	die(json_encode(array('errno'=>0,'message'=>"支付成功.")));
 }

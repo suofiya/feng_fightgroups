@@ -1,0 +1,80 @@
+{php include wl_template('common/header');}
+<div class="page-group">
+    <div class="page page-current" id="page-createadd">
+    	<header class="bar bar-nav">
+			<a class="button button-link button-nav pull-left back" href="{php echo app_url('order/order')}"><span class="icon icon-left"></span>返回</a>
+			<h1 class="title">Pagar com boleto bancário</h1>
+		</header>
+		<div class="content native-scroll">
+			<div class="list-block">
+		      <ul>
+		        <!-- Text inputs -->
+		        <li>
+		          <div class="item-content">
+		            <div class="item-inner">
+		              <div class="item-title label" style="width: 48%">CPF<span class="red">*</span></div>
+		              <div class="item-input">
+		                <input type="text" id="ebanx_document" name="ebanx_document" value="">
+		              </div>
+		            </div>
+		          </div>
+		        </li>
+                  <li>
+                      <div class="item-content">
+                          <div class="item-inner">
+                              <div class="item-title label" style="width: 48%">Data de nascimento <span class="red">*</span></div>
+                              <div class="item-input">
+                                  <input type="text" id="ebanx_birth_date" name="ebanx_birth_date" value="">
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+		      </ul>
+		    </div>
+		    <div class="content-block">
+		      <div class="row">
+		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary">Finalizar compra</a></div>
+		      </div>
+		    </div>
+		</div>
+	</div>
+</div>
+<script>
+	$(function() {
+		'use strict';
+		//编辑地址页
+		$(document).on("pageInit", "#page-createadd", function(e, id, page) {
+            var orderno = "{$orderno}";
+			var $content = $(page).find('.content');
+			$("#city-picker").cityPicker({
+			    toolbarTemplate: '<header class="bar bar-nav">\
+			    <button class="button button-link pull-right close-picker">确定</button>\
+			    <h1 class="title">选择收货地址</h1>\
+			    </header>'
+			});
+			$content.on('click','#addrsub',function () {
+		    	var ebanx_document = $('#ebanx_document').val();
+				var ebanx_birth_date = $('#ebanx_birth_date').val();
+				if(!ebanx_document){
+				 	$.toast("CPF");
+				 	return false;
+				}
+				if(!ebanx_birth_date){
+				 	$.toast("nascimento");
+				 	return false;
+				}
+				$.post("{php echo app_url('pay/ebanx')}&orderno="+orderno,{ebanx_document:ebanx_document,ebanx_birth_date:ebanx_birth_date},function(d){
+					if(d.errno == 0){
+						$.alert('已经支付成功', function () {
+                            location.href = d.data.payment.boleto_url;
+					    });
+					}else{
+						$.toast(d.data.status_message);
+					}
+				},"json");
+		    });
+		});
+		$.init();
+	});
+</script>
+{php include wl_template('common/footer');}

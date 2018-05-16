@@ -248,10 +248,10 @@ if ($op == 'display') {
 			$data['createtime'] = TIMESTAMP;
 			$ret = pdo_insert('tg_goods', $data);
 			$oplogdata = serialize($data);
+            if (!empty($ret)) {
+                $id = pdo_insertid();
+            }
 			oplog('admin', "添加商品", web_url('goods/goods/post'), $oplogdata);
-			if (!empty($ret)) {
-				$id = pdo_insertid();
-			}
 			if ($images) {
 				foreach ($images as $key => $value) {
 					$data1 = array('thumb' => $images[$key], 'g_id' => $id);

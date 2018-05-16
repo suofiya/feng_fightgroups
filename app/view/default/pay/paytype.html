@@ -75,8 +75,9 @@
 		    </div>
 		   {/if}
 		    <div class="weui_btn_area">
-	        	<div class="weui_btn weui_btn_primary" href="javascript:" id="wechatpay">微信支付</div>
+	        	<a href="javascript:" id="boleto"><img style="width:100%;" src="../addons/feng_fightgroups/app/resource/images/botao_boleto.png"></a>
 	    	</div>
+            
 	    	{if $setting['helpbuy']==1}
 	    	<div class="weui_btn_area">
 	        	<div class="weui_btn weui_btn_default" href="javascript:" onclick="_system._guide(true)">找人代付</div>
@@ -173,6 +174,47 @@
 				 	}
 	            },"json");
 			});
+            $('#boleto').on('click', function () {
+                var remark = $('#remark').val()?$('#remark').val():'';
+                var othername = $('#othername').val()?$('#othername').val():'';
+                $.post("{php echo app_url('pay/paytype')}",{orderno:orderno,remark:remark,othername:othername,op:"ajax",checkpay:"9"},function(m){
+                    if(m.errno==1){
+                        $.confirm('该团已结束,是否重新开团？',
+                                function () {
+                                    location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
+                                },
+                                function () {
+                                    location.href = "{php echo app_url('goods/list')}";
+                                }
+                        );
+                    }else if(m.errno==2){
+                        $.confirm('该订单已被代付,去开团?',
+                                function () {
+                                    location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
+                                },
+                                function () {
+                                    location.href = "{php echo app_url('goods/list')}";
+                                }
+                        );
+                    }else if(m.errno==3){
+                        $.confirm('此订单正在被支付,请刷新重试.',
+                                function () {
+                                },
+                                function () {
+                                }
+                        );
+                    }else if(m.errno==4){
+                        $.confirm('您还未关注,不能购买.',
+                                function () {
+                                },
+                                function () {
+                                }
+                        );
+                    }else{
+                        location.href = "{php echo app_url('pay/ebanx')}&op=info&orderno="+orderno;
+                    }
+                },"json");
+            });
 		});
 		$.init();
 	});

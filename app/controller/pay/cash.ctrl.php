@@ -4,6 +4,7 @@
  * 手机端支付控制器
  */
 	defined('IN_IA') or exit('Access Denied');
+    error_reporting(E_ALL);
 	$moduels = uni_modules();
 	wl_load()->model('goods');
 	wl_load()->model('order');
@@ -66,9 +67,9 @@
 	}
 if ($_W['isajax']) {
 	//生成paylog记录
-	$sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `uniacid`=:uniacid AND `module`=:module AND `tid`=:tid';
+	$sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `openid`=:openid AND `module`=:module AND `tid`=:tid';
 	$pars = array();
-	$pars[':uniacid'] = $_W['uniacid'];
+	$pars[':openid'] = $_W['openid'];
 	$pars[':module'] = $params['module'];
 	$pars[':tid'] = $params['tid'];
 	$log = pdo_fetch($sql, $pars);
@@ -121,9 +122,9 @@ if ($_W['isajax']) {
 		die(json_encode(array('errno'=>1,'message'=>$message)));
 	}
 	if(!empty($type)) {
-		$sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `uniacid`=:uniacid AND `module`=:module AND `tid`=:tid';
+		$sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `openid`=:openid AND `module`=:module AND `tid`=:tid';
 		$pars  = array();
-		$pars[':uniacid'] = $_W['uniacid'];
+		$pars[':openid'] = $_W['openid'];
 		$pars[':module'] = $params['module'];
 		$pars[':tid'] = $params['tid'];
 		$log = pdo_fetch($sql, $pars);
@@ -137,7 +138,7 @@ if ($_W['isajax']) {
 		$record['type'] = $type;
 		$record['uniontid'] = date('YmdHis').$moduleid.random(8,1);
 		pdo_update('core_paylog', $record, array('plid' => $log['plid']));
-		$sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `uniacid`=:uniacid AND `module`=:module AND `tid`=:tid';
+		$sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `openid`=:openid AND `module`=:module AND `tid`=:tid';
 		$log = pdo_fetch($sql, $pars);
 		//微信支付
 		if($type == 'wechat') {
