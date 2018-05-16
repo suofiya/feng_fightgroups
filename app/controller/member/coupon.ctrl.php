@@ -6,6 +6,12 @@
  */
 defined('IN_IA') or exit('Access Denied');
 wl_load()->model('activity');
+
+// 判断用户是否已注册
+if (pdd_isLoginedStatus() == false) {
+	header("Location: ".app_url('member/login'));exit;	
+}
+
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 
 if($op =='display'){

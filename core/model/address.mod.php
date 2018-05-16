@@ -1,5 +1,11 @@
 <?php
-	
+/*
+alter table ims_tg_address add column `zipcode` varchar(64) NOT NULL DEFAULT '' COMMENT '登录密码' after type;
+alter table ims_tg_address change column `cname` `cname` varchar(64) NOT NULL COMMENT '收货人名称';
+alter table ims_tg_address change column `province` `province` varchar(32) NOT NULL COMMENT '省';
+alter table ims_tg_address change column `city` `city` varchar(64) NOT NULL COMMENT '市';
+alter table ims_tg_address change column `county` `county` varchar(64) NOT NULL COMMENT '县';
+*/
 /**
  * [weliam] Copyright (c) 2016/3/23 
  * 地址model

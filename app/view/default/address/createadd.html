@@ -1,4 +1,13 @@
 {php include wl_template('common/header');}
+<!-- adapt brazil -->
+<style type="text/css">
+	.city-picker .col-city {
+    	width: 11rem;
+	}
+	.city-picker .col-district {
+    	width: 0;
+	}
+</style>
 <div class="page-group">
     <div class="page page-current" id="page-createadd">
     	<header class="bar bar-nav">
@@ -34,7 +43,31 @@
 		            <div class="item-inner">
 		              <div class="item-title label">选择地区</div>
 		              <div class="item-input">
-		                <input type="text" id='city-picker' value="{$addres['province']} {$addres['city']} {$addres['county']}" readonly>
+		              	{if $addres['city']}
+		                <input type="text" id='city-picker' value="{$addres['province']}, {$addres['city']}, {$addres['county']}" readonly>
+		                {else}
+		                <input type="text" id='city-picker' value="" placeholder="请选择地区" readonly>
+		                {/if}
+		              </div>
+		            </div>
+		          </div>
+		        </li>
+		        <li>
+		          <div class="item-content">
+		            <div class="item-inner">
+		              <div class="item-title label">城市</div>
+		              <div class="item-input">
+		                <input type="text" placeholder="请输入城市" id="county" value="{$addres['county']}">
+		              </div>
+		            </div>
+		          </div>
+		        </li>
+		        <li>
+		          <div class="item-content">
+		            <div class="item-inner">
+		              <div class="item-title label">邮编</div>
+		              <div class="item-input">
+		                <input type="text" placeholder="请输入邮编" id="zipcode" value="{$addres['zipcode']}">
 		              </div>
 		            </div>
 		          </div>
@@ -79,8 +112,8 @@
 		    </div>
 		    <div class="content-block">
 		      <div class="row">
-		        <div class="col-50"><a href="{php echo app_url('address/createadd/addwechat');}" class="weui_btn weui_btn_warn external">使用微信地址</a></div>
-		        <div class="col-50"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary">保存地址</a></div>
+		        <!-- <div class="col-50"><a href="{php echo app_url('address/createadd/addwechat');}" class="weui_btn weui_btn_warn external">使用微信地址</a></div> -->
+		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary">保存地址</a></div>
 		      </div>
 		    </div>
 		</div>
@@ -101,7 +134,9 @@
 			$content.on('click','#addrsub',function () {
 		    	var myname = $('#myname').val();
 				var myphone = $('#myphone').val();
-				var citys= $('#city-picker').val();
+				var citys = $('#city-picker').val();
+				var county = $('#county').val();
+				var zipcode = $('#zipcode').val();
 				var detailed = $('#detailed_address').val();
 				var type = $('#type').val();
 				var status = $('#status').val();
@@ -117,11 +152,19 @@
 				 	$.toast("请选择您的地区");
 				 	return false;
 				}
+				if(!county){
+				 	$.toast("请输入城市");
+				 	return false;
+				}
+				if(!zipcode){
+				 	$.toast("请输入邮编");
+				 	return false;
+				}
 				if(!detailed){
 				 	$.toast("请输入详细地址");
 				 	return false;
 				}
-				$.post("{php echo app_url('address/createadd/post',array('id'=>$addres['id']))}",{myname:myname,myphone:myphone,citys:citys,detailed:detailed,type:type,status:status},function(d){
+				$.post("{php echo app_url('address/createadd/post',array('id'=>$addres['id']))}",{myname:myname,myphone:myphone,citys:citys,county:county,zipcode:zipcode,detailed:detailed,type:type,status:status},function(d){
 					if(d.status == 1){
 						$.alert('地址编辑成功', function () {
 					        location.href = "{$bakurl}";

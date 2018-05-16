@@ -1,0 +1,107 @@
+{php include wl_template('common/header');}
+<div class="page-group">
+    <div class="page page-current" id="page-register">
+
+        <div class="content native-scroll">
+
+            <div class="buttons-tab" style="z-index: 100;">
+              <a onclick="pddAppRedirect('member','login');" class="tab-link button">Entrar</a>
+              <a href="#" class="tab-link button active">Registar</a>
+            </div>
+
+            <div class="list-block">
+              <ul>
+                <!-- Text inputs -->
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">E-mail</div>
+                      <div class="item-input">
+                        <input type="text" placeholder="Por favor insira o seu endereço de email" id="email" value="">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Palavra-Passe</div>
+                      <div class="item-input">
+                        <input type="password" placeholder="Por favor insira a sua palavra-pass" id="password" value="">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-inner">
+                      <div class="item-title label">Confirmar a Senha</div>
+                      <div class="item-input">
+                        <input type="password" placeholder="Por favor, re-digite a nova password" id="confirm_password" value="">
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="content-block">
+              <div class="row">
+                <div class="col-100"><a href="javascript:;" id="registerBtn" class="weui_btn weui_btn_yellow">Criar a Minha Conta</a></div>
+              </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script>
+    function pddAppRedirect(ctrl, ac) {
+      location.href = "{php echo app_url('"+ctrl+"/"+ac+"')}";
+    }
+    $(function() {
+        'use strict';
+        //编辑地址页
+        $(document).on("pageInit", "#page-register", function(e, id, page) {
+            var $content = $(page).find('.content');
+            $content.on('click','#registerBtn',function () {
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var confirm_password = $('#confirm_password').val();
+                var emailRule = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+                if(!email){
+                    $.toast("Por favor insira o seu endereço de email");
+                    return false;
+                } else if(!emailRule.test(email)) {
+                    $.toast("Este email que inseriu é inválido. Por favor confira o seu email e tente de novo");
+                    return false;
+                }
+                if(!password){
+                    $.toast("Por favor insira a sua palavra-pass");
+                    return false;
+                } else if(password.length < 7) {
+                    $.toast("Dica: Sua senha deve ter pelo menos 7 caracteres. Por favor, inclua letras e números.");
+                    return false;
+                }
+                if(!confirm_password){
+                    $.toast("Por favor, re-digite a nova password");
+                    return false;
+                }
+                if(password != confirm_password){
+                    $.toast("As suas palavras-pass não coincidem, por favor tente de novo");
+                    return false;
+                }
+                $.post("{php echo app_url('member/register/post')}",{email:email,password:password,confirm_password:confirm_password},function(d){
+                    if(d.status == 1){
+                        $.alert('Register Success!', function(){
+                            location.href = "{$bakurl}";
+                        });
+                    }else{
+                        $.toast(d.result);
+                    }
+                },"json");
+            });
+        });
+        $.init();
+    });
+</script>
+{php include wl_template('common/footer');}

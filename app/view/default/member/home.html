@@ -5,10 +5,18 @@
 			<div class="my">
                 <div class="my_head">
                     <div class="my_head_pic">
+                    	{if $member['avatar']}
                         <img id="uinLogo" class="my_head_img" width="130" height="130" alt="" src="{$member['avatar']}">
+                    	{else}
+                    	<img id="uinLogo" class="my_head_img" width="130" height="130" alt="" src="{TG_URL_ARES}images/avatar.png">
+                    	{/if}
                     </div>
                     <div class="my_head_info">
+                    	{if $member['nickname']}
                         <h4 id="nickname" class="my_head_name ">{$member['nickname']}</h4>
+                        {else}
+                        <h4 id="nickname" class="my_head_name ">nickname</h4>
+                        {/if}
                     </div>
                 </div>
                 <ul class="my_transaction my_transaction3">

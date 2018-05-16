@@ -12,9 +12,15 @@ wl_load()->model('account');
 wl_load()->model('activity');
 load()->func('communication');
 
+// 判断用户是否已注册
+if (pdd_isLoginedStatus() == false) {
+	header("Location: ".app_url('member/login'));exit;	
+}
+
 $ops = array('display', 'post');
 $op = in_array($op, $ops) ? $op : 'display';
 
+//
 $pagetitle = !empty($config['tginfo']['sname']) ? '订单提交 - '.$config['tginfo']['sname'] : '订单提交';
 session_start();
 $id = $_SESSION['goodsid'] =  isset($_GPC['id']) ? intval($_GPC['id']) : $_SESSION['goodsid'];

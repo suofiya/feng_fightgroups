@@ -9,6 +9,11 @@ wl_load()->model('goods');
 wl_load()->model('merchant');
 wl_load()->model('order');
 
+// 判断用户是否已注册
+if (pdd_isLoginedStatus() == false) {
+	header("Location: ".app_url('member/login'));exit;	
+}
+
 $_SESSION['goodsid']='';
 $_SESSION['tuan_id']='';
 $_SESSION['groupnum']='';

@@ -5,8 +5,13 @@
  * 个人中心控制器
  */
 defined('IN_IA') or exit('Access Denied');
-$op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 
+// 判断用户是否已注册
+if (pdd_isLoginedStatus() == false) {
+    header("Location: ".app_url('member/login'));exit;  
+}
+
+$op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 $pagetitle = !empty($config['tginfo']['sname']) ? '个人中心 - '.$config['tginfo']['sname'] : '个人中心';
 
 if($op =='display'){
@@ -20,4 +25,3 @@ if($op =='display'){
 	$tatal = pdo_select_count('tg_coupon',array('openid' => $openid, 'uniacid' => $_W['uniacid']));
 	include wl_template('member/home');
 }
-

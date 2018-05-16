@@ -10,7 +10,7 @@ defined('IN_IA') or exit('Access Denied');
  * $params : 类型：array
  * 
  */
-	function group_get_list($args = array()) {
+function group_get_list($args = array()) {
 		global $_W;
 		
 		$usepage = !empty($args['usepage'])? $args['usepage'] : false;
@@ -45,7 +45,6 @@ defined('IN_IA') or exit('Access Denied');
  * $params : 类型：字符串
  * 
  */
-
 function group_get_by_params($params = '') {
 		global $_W;
 		if(!empty($params)){
@@ -90,8 +89,11 @@ function group_delete($id) {
 		$flag = pdo_delete('tg_group',$id);
 		return $flag;
 	}
-
-	function updategourp() {
+/**
+ * 更新团
+ * @return [type] [description]
+ */
+function updategourp() {
 		global $_W;
 		$now = time();
 		$allgroups = pdo_fetchall("select *from" . tablename('tg_group') . "where groupstatus=3 and uniacid='{$_W['uniacid']}'");

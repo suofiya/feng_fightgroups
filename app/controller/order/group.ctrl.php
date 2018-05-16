@@ -9,6 +9,11 @@ wl_load()->model('goods');
 wl_load()->model('merchant');
 wl_load()->model('order');
 
+// 判断用户是否已注册
+if (pdd_isLoginedStatus() == false) {
+    header("Location: ".app_url('member/login'));exit;  
+}
+
 $tuan_id = intval($_GPC['tuan_id']);
 if(!empty($tuan_id)){
     //取得该团所有订单

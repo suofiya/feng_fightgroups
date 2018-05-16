@@ -5,17 +5,28 @@ global $_W,$_GPC;
 wl_load()->model('setting');
 wl_load()->model('member');
 wl_load()->model('group');
-checkMember();
-updategourp();
-$openid = getOpenid();
+// 非微信端用户使用登录注册制
+if ($_W['container'] != 'wechat') {
+	pdd_initMemberState($_SESSION['openid']);
+	updategourp(); //更新团
+	$openid = pdd_getSessionOpenID();
+} else {
+	checkMember(); //检查用户信息
+	updategourp(); //更新团
+	$openid = getOpenid();
+}
 $config = tgsetting_load();
 puvindex($openid);
 if($config['refund']['auto_refund']==1){
 	check_refund();
 }
+
+// wl_debug($_SESSION);
+// var_dump('----');
+// wl_debug($_W);
+
 $controller = $_GPC['do'];
 $action = $_GPC['ac'];
-
 if (empty($controller) || empty($action)) {
 	$_GPC['do'] = $controller = 'goods';
 	$_GPC['ac'] = $action = 'list';

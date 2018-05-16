@@ -1,4 +1,22 @@
 {php include wl_template('common/header');}
+
+  <!-- twitter share-->
+  <meta name="title" content="组团抢购：{$pagetitle}">
+  <meta name="twitter:site" content="lecuntao.com">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" class="share_url" content="{php app_url('order/group', array('tuan_id'=>$tuan_id))}">
+  <meta name="twitter:title" class="share_title" content="组团抢购：{$pagetitle}">
+  <meta name="twitter:description" content="好货不容留，快来跟我一起抢; {$pagetitle}">
+  <meta name="twitter:image" content="{$goods['gimg']}"> 
+  <!-- FaceBook  share-->
+  <!-- google+ share -->
+  <meta property="og:url" class="share_url" content="{php app_url('order/group', array('tuan_id'=>$tuan_id))}" />
+  <meta property="og:type"  content="article" />
+  <meta property="og:title" class="share_title"  content="组团抢购：{$pagetitle}" />
+  <meta property="og:description" content="好货不容留，快来跟我一起抢；{$pagetitle}" />
+  <meta property="og:image"  content="https://www.lecuntao.com/homenew/templates/default/images/tsg_fp.png?v=42829aea6b" />
+  <meta property="fb:app_id" content="206082400173820" />
+
 <div class="page-group">
     <div class="page page-current" id="page-order-list">
     <div class="content" style="padding-bottom: 60px;">
@@ -113,10 +131,18 @@
 	        </div>
 	    </section>
     </div>
+    <div style="width: 100%; position: fixed; bottom: 70px; padding: 10px 0;">
+      <div class="xq-loginshare">
+          <a href="javascript:fbShare('{$tuan_id}');" class="xq-facebook">facebook</a>
+          <a href="javascript:googleShare('{$tuan_id}');" class="xq-google">google</a>
+          <a href="javascript:twitterShare('{$tuan_id}');" class="xq-twtter">twtter</a> 
+          <a href="javascript:whatsApp('{$tuan_id}');" class="xq-whatsapp">whatsApp</a> 
+        </div>
+    </div>
     <div class="H5_con fixopt" id="fixopt" style="display: block;">
         <div class="address_new">
             {if !empty($myorder)}
-                {if $tuaninfo['groupstatus']==3} 
+                {if $tuaninfo['groupstatus']==3}
                 <span style="display:block;float:left;width: 80%;margin-left: 5px;">
                 <button style="fllow:left;width: 100%;" onclick="_system._guide(true)">快邀请好友参团吧</button> 
                 </span>
@@ -210,38 +236,81 @@ $(document).ready(function(){
 </script>
 {/if}
 <script type="text/javascript">
-    var _system={
-        $:function(id){return document.getElementById(id);},
-   _client:function(){
+var _system={
+    $:function(id){return document.getElementById(id);},
+    _client:function(){
       return {w:document.documentElement.scrollWidth,h:document.documentElement.scrollHeight,bw:document.documentElement.clientWidth,bh:document.documentElement.clientHeight};
-   },
-   _scroll:function(){
+    },
+    _scroll:function(){
       return {x:document.documentElement.scrollLeft?document.documentElement.scrollLeft:document.body.scrollLeft,y:document.documentElement.scrollTop?document.documentElement.scrollTop:document.body.scrollTop};
-   },
-   _cover:function(show){
+    },
+    _cover:function(show){
       if(show){
-     this.$("cover").style.display="block";
-     this.$("cover").style.width=(this._client().bw>this._client().w?this._client().bw:this._client().w)+"px";
-     this.$("cover").style.height=(this._client().bh>this._client().h?this._client().bh:this._client().h)+"px";
-  }else{
-     this.$("cover").style.display="none";
-  }
-   },
-   _guide:function(click){
+        this.$("cover").style.display="block";
+        this.$("cover").style.width=(this._client().bw>this._client().w?this._client().bw:this._client().w)+"px";
+        this.$("cover").style.height=(this._client().bh>this._client().h?this._client().bh:this._client().h)+"px";
+      }else{
+         this.$("cover").style.display="none";
+      }
+    },
+    _guide:function(click){
       this._cover(true);
       this.$("guide").style.display="block";
       this.$("guide").style.top=(_system._scroll().y+5)+"px";
       window.onresize=function(){_system._cover(true);_system.$("guide").style.top=(_system._scroll().y+5)+"px";};
-  if(click){_system.$("cover").onclick=function(){
-         _system._cover();
-         _system.$("guide").style.display="none";
- _system.$("cover").onclick=null;
- window.onresize=null;
-  };}
-   },
-   _zero:function(n){
+      if(click){
+        _system.$("cover").onclick=function(){
+          _system._cover();
+          _system.$("guide").style.display="none";
+          _system.$("cover").onclick=null;
+          window.onresize=null;
+        };
+      }
+    },
+    _zero:function(n){
       return n<0?0:n;
    }
+}
+//1 facebook 2 pinterest  3  email 4 twitter 5 tumblr
+//6 relop 7 reddit 8 stumbleupon 9 google 10 linkedin 11 gettile 复制网址',12 whatsapp
+function fbShare(a){
+    u=document.getElementsByClassName("share_url")[0].content;
+    t=document.getElementsByClassName("share_title")[0].content;
+    if(a=="-1"){
+      a=$("#sharedContendId").html();
+    }
+    shareRecord(a,1);
+    window.open("http://www.facebook.com/sharer.php?u="+encodeURIComponent(u)+"&t="+encodeURIComponent(t),"sharer","toolbar=0,status=0,width=626,height=436");
+}
+function googleShare(a){
+    u=document.getElementsByClassName("share_url")[0].content;
+    t=document.getElementsByClassName("share_title")[0].content;
+    if(a=="-1"){
+      a=$("#sharedContendId").html();
+    }
+    shareRecord(a,9);
+    window.open("https://plus.google.com/share?url="+encodeURIComponent(u),"sharer","toolbar=0,status=0");
+}
+function twitterShare(a){
+  u=document.getElementsByClassName("share_url")[0].content;
+  t=document.getElementsByClassName("share_title")[0].content;
+  if(a=="-1"){
+    a=$("#sharedContendId").html();
+  }
+  shareRecord(a,4);
+  window.open("http://twitter.com/home?status="+encodeURIComponent(u)+" "+encodeURIComponent(t),"sharer","toolbar=0,status=0,width=626,height=436");
+}
+function whatsAppShare(contentId){
+  u = document.getElementsByClassName("share_url")[0].content;
+  t = document.getElementsByClassName("share_title")[0].content;
+  if (contentId == "-1") {
+    contentId = $("#sharedContendId").html();
+  }
+  shareRecord(a,12);
+  window.location.href="whatsapp://send?text="+ encodeURIComponent(t) + encodeURIComponent("\n\n"+u)+"&via=brpdd.com";
+}
+function shareRecord(b,a){
+  //$.post("/content/share",{content_id:b,share_type:a});
 }
 </script>
 {php include wl_template('common/footer');}

@@ -9,6 +9,11 @@ wl_load()->model('order');
 wl_load()->model('goods');
 wl_load()->model('merchant');
 
+// 判断用户是否已注册
+if (pdd_isLoginedStatus() == false) {
+	header("Location: ".app_url('member/login'));exit;	
+}
+
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'list';
 $pagetitle = !empty($config['tginfo']['sname']) ? '我的订单 - '.$config['tginfo']['sname'] : '我的订单';
 

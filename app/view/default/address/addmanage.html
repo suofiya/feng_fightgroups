@@ -19,7 +19,9 @@
 		                <div class="item-title">{$addres['cname']} - {$addres['tel']}</div>
 		                <div class="item-after"><a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_default">{if $addres['type'] == 2}家庭{else}公司{/if}</a></div>
 		              </div>
-		              <div class="item-subtitle" style="padding: 0.4rem 0;">{$addres['province']}{$addres['city']}{$addres['county']}{$addres['detailed_address']}</div>
+		              <div class="item-subtitle" style="padding: 0.1rem 0;">{$addres['detailed_address']}</div>
+		              <div class="item-subtitle" style="padding: 0.1rem 0;">{$addres['county']}, {$addres['city']}, {$addres['province']}</div>
+		              <div class="item-subtitle" style="padding: 0.1rem 0;">{$addres['zipcode']}</div>
 		              {if empty($goodsid)}
 		              <div class="item-title-row">
 		                <div class="item-title addset" id="{$addres['id']}">{if $addres['status'] == 1}默认地址{else}<a href="{php echo app_url('address/addmanage/select',array('id'=>$addres['id']));}" class="external">设为默认</a>{/if}</div>
