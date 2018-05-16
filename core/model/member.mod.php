@@ -329,10 +329,12 @@ alter table ims_tg_member add column `password` varchar(255) NOT NULL DEFAULT ''
 	    // 设置头信息
     	//curl_setopt($ch, CURLOPT_HTTPHEADER, 0);
 
+	    /* 代理认证
     	curl_setopt($ch, CURLOPT_PROXYAUTH, CURLAUTH_BASIC);             //代理认证模式  
 		curl_setopt($ch, CURLOPT_PROXY, '172.31.14.26');               //代理服务器地址 
 		curl_setopt($ch, CURLOPT_PROXYPORT, '80');                      //代理服务器端口  
 		curl_setopt($ch, CURLOPT_PROXYTYPE, CURLPROXY_HTTP);             //使用http代理模式 
+		*/
 
         // 发送数据
 	    $response = curl_exec($ch);

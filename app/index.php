@@ -6,6 +6,7 @@ wl_load()->model('setting');
 wl_load()->model('member');
 wl_load()->model('group');
 // 非微信端用户使用登录注册制
+/*
 if ($_W['container'] != 'wechat') {
 	pdd_initMemberState($_SESSION['openid']);
 	updategourp(); //更新团
@@ -15,12 +16,17 @@ if ($_W['container'] != 'wechat') {
 	updategourp(); //更新团
 	$openid = getOpenid();
 }
+*/
+pdd_initMemberState($_SESSION['openid']);
+updategourp(); //更新团
+$openid = pdd_getSessionOpenID();
+
+//
 $config = tgsetting_load();
 puvindex($openid);
 if($config['refund']['auto_refund']==1){
 	check_refund();
 }
-
 // wl_debug($_SESSION);
 // var_dump('----');
 // wl_debug($_W);

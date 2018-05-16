@@ -55,8 +55,8 @@ if(!empty($tuan_id)){
 	    $lasttime = $goods['endtime'];
   	}
 	
-	$config['share']['share_title'] = "我参加了".$goods['gname']."拼团，快来加入吧！";
-	$config['share']['share_desc'] = "【差".$tuaninfo['lacknum']."人】".$config['share']['share_desc'];
+	$config['share']['share_title'] = "我参加了【".$goods['gname']."】拼团，快来加入吧！";
+	$config['share']['share_desc'] = "【差".$tuaninfo['lacknum']."人】好货不容留，快来跟我一起抢【".$goods['gname']."】".$config['share']['share_desc'];
 	$config['share']['share_url'] = app_url('order/group', array('tuan_id'=>$tuan_id));
 	$config['share']['share_image'] = $goods['gimg'];
 	$pagetitle = $goods['gname'];

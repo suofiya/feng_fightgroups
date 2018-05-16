@@ -33,7 +33,7 @@ if($op =='display'){
     if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=='on' || $_SERVER['HTTPS']==1) || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']=='https') {
         $facebook_oauth_callback = urlencode('https://'.$_SERVER['HTTP_HOST'].'/fboauthcallback.php');
     } else {
-        $facebook_oauth_callback = urlencode('https://'.$_SERVER['HTTP_HOST'].'/fboauthcallback.php');   
+        $facebook_oauth_callback = urlencode('http://'.$_SERVER['HTTP_HOST'].'/fboauthcallback.php');   
     }
     // 模板
     include wl_template('member/login');

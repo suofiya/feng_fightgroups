@@ -21,6 +21,7 @@ if (!empty($_GPC['code'])) {
     
     // 去Facebook换取access_token
 //    $arrFacebookResponse = pdd_doRestCurl($token_url);
+
 $arrFacebookResponse['access_token'] = 'EAAC7bkxBvvwBAFECcybsGmmKYvVEgXvmXotTqH31MEbdLSpoAcmfBzHb7noZCG3bhKZABKQlZBJncdnJiCW8KcjpARfXnteZC3jrdLz5OjH8XqczyVnrJau3qfBlSGZB5ZCzF8tdJNKgEZBo3hd0PjmJ4ZB9bZA2WhiZAffkbJYVSmtQZDZD';
     
     // 换取access_token成功

@@ -1,20 +1,20 @@
 {php include wl_template('common/header');}
 
   <!-- twitter share-->
-  <meta name="title" content="组团抢购：{$pagetitle}">
+  <meta name="title" content="{$config['share']['share_title']}">
   <meta name="twitter:site" content="lecuntao.com">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" class="share_url" content="{php app_url('order/group', array('tuan_id'=>$tuan_id))}">
-  <meta name="twitter:title" class="share_title" content="组团抢购：{$pagetitle}">
-  <meta name="twitter:description" content="好货不容留，快来跟我一起抢; {$pagetitle}">
-  <meta name="twitter:image" content="{$goods['gimg']}"> 
+  <meta name="twitter:url" class="share_url" content="{$config['share']['share_url']}">
+  <meta name="twitter:title" class="share_title" content="{$config['share']['share_title']}">
+  <meta name="twitter:description" content="{$config['share']['share_desc']}">
+  <meta name="twitter:image" content="{$config['share']['share_image']}"> 
   <!-- FaceBook  share-->
   <!-- google+ share -->
-  <meta property="og:url" class="share_url" content="{php app_url('order/group', array('tuan_id'=>$tuan_id))}" />
+  <meta property="og:url" class="share_url" content="{$config['share']['share_url']}" />
   <meta property="og:type"  content="article" />
-  <meta property="og:title" class="share_title"  content="组团抢购：{$pagetitle}" />
-  <meta property="og:description" content="好货不容留，快来跟我一起抢；{$pagetitle}" />
-  <meta property="og:image"  content="https://www.lecuntao.com/homenew/templates/default/images/tsg_fp.png?v=42829aea6b" />
+  <meta property="og:title" class="share_title"  content="{$config['share']['share_title']}" />
+  <meta property="og:description" content="{$config['share']['share_desc']}" />
+  <meta property="og:image"  content="{$config['share']['share_image']}" />
   <meta property="fb:app_id" content="206082400173820" />
 
 <div class="page-group">
