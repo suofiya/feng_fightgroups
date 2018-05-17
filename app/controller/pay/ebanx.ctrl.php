@@ -120,6 +120,9 @@ if ($_W['isajax']) {
 		pdo_update('core_paylog', $record, array('plid' => $log['plid']));
 		$sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `openid`=:openid AND `module`=:module AND `tid`=:tid';
 		$log = pdo_fetch($sql, $pars);
+        $sql = 'SELECT * FROM ' . tablename('tg_member') . ' WHERE `openid`=:openid';
+        $member_pars[':openid'] = $_W['openid'];
+        $member_info = pdo_fetch($sql, $member_pars);
         if($type == 'ebanx') {
             $params = array(
             'mode'      => 'full'
@@ -139,7 +142,7 @@ if ($_W['isajax']) {
                 , 'name'          => $order['addname']
                 , 'birth_date'    => $ebanx_birth_date
                 , 'document'      => $ebanx_document
-                , 'email'         => '524194877@qq.com'
+                , 'email'         => $member_info['email']
                 , 'address'       => $order['address']
                 , 'street_number' => 'test'
                 , 'state'         => 'AM'
@@ -176,8 +179,12 @@ if ($_W['isajax']) {
             }else{
                 Ebanx\Ebanx::saveOrderData($order['id'],$json_decode_str['payment']['hash'],$pay_method,$json_decode_str['payment']['boleto_url']);
                 pdo_update('core_paylog', array('status' => 1), array('plid' => $log['plid']));
+                if($pay_method == 'creditcard'){
+                    pdo_update('tg_order', array('status' => 1), array('id' => $order['id']));
+                    $json_decode_str['payment']['boleto_url'] = app_url('order/order');
+                }
             }
-            die(json_encode(array('errno'=>0,'message'=>$message,'data'=>$response)));
+            die(json_encode(array('errno'=>0,'message'=>$message,'data'=>$json_decode_str)));
         }
 	}
 	$message = "支付成功!";

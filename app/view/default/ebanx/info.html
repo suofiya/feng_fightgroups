@@ -6,26 +6,26 @@
 			<h1 class="title">Pagar com boleto bancário</h1>
 		</header>
 		<div class="content native-scroll">
-			<div class="list-block">
+			<div class="list-block" style="margin:0;">
                 <input type="hidden" name="method" value="{$pay_method}">
 		      <ul>
 		        <!-- Text inputs -->
-		        <li>
-		          <div class="item-content">
-		            <div class="item-inner">
-		              <div class="item-title label" style="width: 48%">CPF<span class="red">*</span></div>
-		              <div class="item-input">
-		                <input type="text" id="ebanx_document" name="ebanx_document" value="">
-		              </div>
-		            </div>
-		          </div>
-		        </li>
                   <li>
                       <div class="item-content">
-                          <div class="item-inner">
-                              <div class="item-title label" style="width: 48%">Data de nascimento <span class="red">*</span></div>
-                              <div class="item-input">
-                                  <input type="text" id="ebanx_birth_date" name="ebanx_birth_date" value="">
+                          <div class="item-inner" style="display:block;">
+                              <div class="item-title label" style="width: 100%">CPF <span style="color: red;">*</span></div>
+                              <div class="item-input" style="padding-top: 10px;">
+                                  <input style="border: thin solid #3d4145;width: 100%;" type="text" id="ebanx_document" name="ebanx_document" value="">
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="item-content">
+                          <div class="item-inner" style="display:block;">
+                              <div class="item-title label" style="width: 100%">Data de nascimento <span style="color: red;">*</span></div>
+                              <div class="item-input" style="padding-top: 10px;">
+                                  <input style="border: thin solid #3d4145;width: 100%;" type="text" id="ebanx_birth_date" name="ebanx_birth_date" value="">
                               </div>
                           </div>
                       </div>
@@ -33,50 +33,50 @@
                   {if $pay_method=='creditcard'}
                   <li>
                       <div class="item-content">
-                          <div class="item-inner">
-                              <div class="item-title label" style="width: 48%">Nome no cartão <span class="red">*</span></div>
-                              <div class="item-input">
-                                  <input type="text" id="ebanx_cc_name" name="ebanx_cc_name" value="">
+                          <div class="item-inner" style="display:block;">
+                              <div class="item-title label" style="width: 100%">Nome no cartão <span style="color: red;">*</span></div>
+                              <div class="item-input" style="padding-top: 10px;">
+                                  <input style="border: thin solid #3d4145;width: 100%;" type="text" id="ebanx_cc_name" name="ebanx_cc_name" value="">
                               </div>
                           </div>
                       </div>
                   </li>
                   <li>
                       <div class="item-content">
-                          <div class="item-inner">
-                              <div class="item-title label" style="width: 48%">Número do cartão <span class="red">*</span></div>
-                              <div class="item-input">
-                                  <input type="text" id="ebanx_cc_number" name="ebanx_cc_number" value="">
+                          <div class="item-inner" style="display:block;">
+                              <div class="item-title label" style="width: 100%">Número do cartão <span style="color: red;">*</span></div>
+                              <div class="item-input" style="padding-top: 10px;">
+                                  <input style="border: thin solid #3d4145;width: 100%;" type="text" id="ebanx_cc_number" name="ebanx_cc_number" value="">
                               </div>
                           </div>
                       </div>
                   </li>
                   <li>
                       <div class="item-content">
-                          <div class="item-inner">
-                              <div class="item-title label" style="width: 48%">CVV <span class="red">*</span></div>
-                              <div class="item-input">
-                                  <input type="text" id="ebanx_cc_cvv" name="ebanx_cc_cvv" value="">
+                          <div class="item-inner" style="display:block;">
+                              <div class="item-title label" style="width: 100%">CVV <span style="color: red;">*</span></div>
+                              <div class="item-input" style="padding-top: 10px;">
+                                  <input style="border: thin solid #3d4145;width: 100%;" type="text" id="ebanx_cc_cvv" name="ebanx_cc_cvv" value="">
                               </div>
                           </div>
                       </div>
                   </li>
                   <li>
                       <div class="item-content">
-                          <div class="item-inner">
-                              <div class="item-title label" style="width: 48%">Data de validade (mm/aaaa) <span class="red">*</span></div>
-                              <div class="item-input">
-                                  <input type="text" id="ebanx_cc_exp" name="ebanx_cc_exp" value="">
+                          <div class="item-inner" style="display:block;">
+                              <div class="item-title label" style="width: 100%">Data de validade (mm/aaaa) <span style="color: red;">*</span></div>
+                              <div class="item-input" style="padding-top: 10px;">
+                                  <input style="border: thin solid #3d4145;width: 100%;" type="text" id="ebanx_cc_exp" name="ebanx_cc_exp" value="">
                               </div>
                           </div>
                       </div>
                   </li>
                   <li>
                       <div class="item-content">
-                          <div class="item-inner">
-                              <div class="item-title label" style="width: 48%">Bandeira <span class="red">*</span></div>
-                              <div class="item-input">
-                                  <select class="form-control" id="ebanx_payment_type_code" name="ebanx_payment_type_code" required="">
+                          <div class="item-inner" style="display:block;">
+                              <div class="item-title label" style="width: 100%">Bandeira <span style="color: red;">*</span></div>
+                              <div class="item-input" style="padding-top: 10px;">
+                                  <select style="border: thin solid #3d4145;width: 100%;" class="form-control" id="ebanx_payment_type_code" name="ebanx_payment_type_code" required="">
                                       <option></option>
                                       <option value="amex">American Express</option>
                                       <option value="aura">Aura</option>
@@ -96,7 +96,7 @@
 		    </div>
 		    <div class="content-block">
 		      <div class="row">
-		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary">Finalizar compra</a></div>
+		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary ">Finalizar compra</a></div>
 		      </div>
 		    </div>
             <div class="weui_extra_area">
@@ -121,15 +121,25 @@
 			    <h1 class="title">选择收货地址</h1>\
 			    </header>'
 			});
+            var has_pos = false;
 			$content.on('click','#addrsub',function () {
+                if(has_pos){
+                    return;
+                }
+                has_pos = true;
+                $.showPreloader();
 		    	var ebanx_document = $('#ebanx_document').val();
 				var ebanx_birth_date = $('#ebanx_birth_date').val();
 				if(!ebanx_document){
 				 	$.toast("CPF");
+                    $.hidePreloader();
+                    has_pos = false;
 				 	return false;
 				}
 				if(!ebanx_birth_date){
 				 	$.toast("nascimento");
+                    $.hidePreloader();
+                    has_pos = false;
 				 	return false;
 				}
                 if(pay_method == 'creditcard'){
@@ -145,9 +155,12 @@
 				$.post("{php echo app_url('pay/ebanx')}&orderno="+orderno,data,function(d){
 					if(d.errno == 0){
 						$.alert('已经支付成功', function () {
+                            has_pos = false;
                             location.href = d.data.payment.boleto_url;
 					    });
 					}else{
+                        $.hidePreloader();
+                        has_pos = false;
 						$.toast(d.data.status_message);
 					}
 				},"json");
