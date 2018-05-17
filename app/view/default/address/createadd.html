@@ -12,7 +12,7 @@
     <div class="page page-current" id="page-createadd">
     	<header class="bar bar-nav">
 			<a class="button button-link button-nav pull-left back" href="{php echo app_url('address/addmanage')}"><span class="icon icon-left"></span>返回</a>
-			<h1 class="title">编辑地址</h1>
+			<h1 class="title">Atualizar endereço</h1>
 		</header>
 		<div class="content native-scroll">
 			<div class="list-block">
@@ -21,9 +21,9 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">姓名</div>
+		              <div class="item-title label">Nome *</div>
 		              <div class="item-input">
-		                <input type="text" placeholder="请输入您的姓名" id="myname" value="{$addres['cname']}">
+		                <input type="text" placeholder="Nome" id="myname" value="{$addres['cname']}">
 		              </div>
 		            </div>
 		          </div>
@@ -31,9 +31,9 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">电话</div>
+		              <div class="item-title label">Telefone celular * </div>
 		              <div class="item-input">
-		                <input type="tel" placeholder="请输入您的电话号码" id="myphone" value="{$addres['tel']}">
+		                <input type="tel" placeholder="" id="myphone" value="{$addres['tel']}">
 		              </div>
 		            </div>
 		          </div>
@@ -41,12 +41,12 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">选择地区</div>
+		              <div class="item-title label">Estado *</div>
 		              <div class="item-input">
 		              	{if $addres['city']}
 		                <input type="text" id='city-picker' value="{$addres['province']}, {$addres['city']}, {$addres['county']}" readonly>
 		                {else}
-		                <input type="text" id='city-picker' value="" placeholder="请选择地区" readonly>
+		                <input type="text" id='city-picker' value="" placeholder="Estado" readonly>
 		                {/if}
 		              </div>
 		            </div>
@@ -55,9 +55,9 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">城市</div>
+		              <div class="item-title label">Cidade *</div>
 		              <div class="item-input">
-		                <input type="text" placeholder="请输入城市" id="county" value="{$addres['county']}">
+		                <input type="text" placeholder="" id="county" value="{$addres['county']}">
 		              </div>
 		            </div>
 		          </div>
@@ -65,9 +65,9 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">邮编</div>
+		              <div class="item-title label">CEP / Código Postal *</div>
 		              <div class="item-input">
-		                <input type="text" placeholder="请输入邮编" id="zipcode" value="{$addres['zipcode']}">
+		                <input type="text" placeholder="" id="zipcode" value="{$addres['zipcode']}">
 		              </div>
 		            </div>
 		          </div>
@@ -75,9 +75,9 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">详细地址</div>
+		              <div class="item-title label">Endereço *</div>
 		              <div class="item-input">
-		                <input type="text" placeholder="请输入详细地址" id="detailed_address" value="{$addres['detailed_address']}">
+		                <input type="text" placeholder="" id="detailed_address" value="{$addres['detailed_address']}">
 		              </div>
 		            </div>
 		          </div>
@@ -85,11 +85,11 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">地址类型</div>
+		              <div class="item-title label">Identifique este endereço para futura referência</div>
 		              <div class="item-input">
 		                <select id="type">
-		                  <option value="2" {if $addres['type']==2}selected="selected"{/if}>家庭</option>
-		                  <option value="1" {if $addres['type']==1}selected="selected"{/if}>公司</option>
+		                  <option value="2" {if $addres['type']==2}selected="selected"{/if}>Família</option>
+		                  <option value="1" {if $addres['type']==1}selected="selected"{/if}>Company</option>
 		                </select>
 		              </div>
 		            </div>
@@ -113,7 +113,7 @@
 		    <div class="content-block">
 		      <div class="row">
 		        <!-- <div class="col-50"><a href="{php echo app_url('address/createadd/addwechat');}" class="weui_btn weui_btn_warn external">使用微信地址</a></div> -->
-		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary">保存地址</a></div>
+		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary">Salvar</a></div>
 		      </div>
 		    </div>
 		</div>
@@ -141,7 +141,7 @@
 				var type = $('#type').val();
 				var status = $('#status').val();
 				if(!myname){
-				 	$.toast("请输入你的姓名");
+				 	$.toast("Nome É necessário");
 				 	return false;
 				}
 				if(!myphone){
@@ -161,7 +161,7 @@
 				 	return false;
 				}
 				if(!detailed){
-				 	$.toast("请输入详细地址");
+				 	$.toast("Endereço É necessário");
 				 	return false;
 				}
 				$.post("{php echo app_url('address/createadd/post',array('id'=>$addres['id']))}",{myname:myname,myphone:myphone,citys:citys,county:county,zipcode:zipcode,detailed:detailed,type:type,status:status},function(d){
