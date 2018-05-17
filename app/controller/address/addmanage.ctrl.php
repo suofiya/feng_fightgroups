@@ -17,7 +17,7 @@ $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 session_start();
 $goodsid = $_SESSION['goodsid'];
 $openid = $_W['openid'];
-$pagetitle = !empty($config['tginfo']['sname']) ? '我的收货地址 - '.$config['tginfo']['sname'] : '我的收货地址';
+$pagetitle = !empty($config['tginfo']['sname']) ? '我的收货地址endereço - '.$config['tginfo']['sname'] : '我的收货地址endereço';
 
 if($goodsid){
 	$bakurl = app_url('order/orderconfirm');
