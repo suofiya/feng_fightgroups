@@ -75,7 +75,8 @@
 		    </div>
 		   {/if}
 		    <div class="weui_btn_area">
-	        	<a href="javascript:" id="boleto"><img style="width:100%;" src="../addons/feng_fightgroups/app/resource/images/botao_boleto.png"></a>
+	        	<a href="javascript:" id="boleto" method="boleto"><img style="width:100%;" src="../addons/feng_fightgroups/app/resource/images/botao_boleto.png"></a>
+                <a href="javascript:" id="creditcard" method="creditcard"><img style="width:100%;padding-top: 10px;" src="../addons/feng_fightgroups/app/resource/images/botao_card.png"></a>
 	    	</div>
             
 	    	{if $setting['helpbuy']==1}
@@ -174,7 +175,8 @@
 				 	}
 	            },"json");
 			});
-            $('#boleto').on('click', function () {
+            $('.weui_btn_area>a').on('click', function () {
+                var method = $(this).attr('method');
                 var remark = $('#remark').val()?$('#remark').val():'';
                 var othername = $('#othername').val()?$('#othername').val():'';
                 $.post("{php echo app_url('pay/paytype')}",{orderno:orderno,remark:remark,othername:othername,op:"ajax",checkpay:"9"},function(m){
@@ -211,7 +213,7 @@
                                 }
                         );
                     }else{
-                        location.href = "{php echo app_url('pay/ebanx')}&op=info&orderno="+orderno;
+                        location.href = "{php echo app_url('pay/ebanx')}&op=info&orderno="+orderno+"&method="+method;
                     }
                 },"json");
             });

@@ -30,8 +30,17 @@
 	$params['title'] = $goods['gname'];
 	$params['ordersn'] = $_GPC['orderno'];
 	$params['module'] = "feng_fightgroups";
-
+    $pay_method = $_GPC['method'];
 if($op =='info'){
+    $sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE status=1 AND `openid`=:openid AND `module`=:module AND `tid`=:tid';
+    $pars = array();
+    $pars[':openid'] = $_W['openid'];
+    $pars[':module'] = $params['module'];
+    $pars[':tid'] = $params['tid'];
+    $pay_log_info = pdo_fetch($sql, $pars);
+    if(!empty($pay_log_info)){
+        header("Location: ".app_url('order/order'));exit;
+    }
     $helppay = FALSE;
     if($order['status']!=0 && $order['status']!=5){
         message("该订单已支付了.");
@@ -88,7 +97,7 @@ if ($_W['isajax']) {
 	if (!empty($setting['payment']['credit']['switch'])) {
 		$credtis = mc_credit_fetch($_W['member']['uid']);
 	}
-    $type = 'boleto';
+    $type = 'ebanx';
 	if(!empty($type)) {
         $sql = 'SELECT * FROM ' . tablename('tg_address') . ' WHERE `id`=:id';
         $pars  = array();
@@ -111,7 +120,7 @@ if ($_W['isajax']) {
 		pdo_update('core_paylog', $record, array('plid' => $log['plid']));
 		$sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `openid`=:openid AND `module`=:module AND `tid`=:tid';
 		$log = pdo_fetch($sql, $pars);
-        if($type == 'boleto') {
+        if($type == 'ebanx') {
             $params = array(
             'mode'      => 'full'
             , 'operation' => 'request'
@@ -119,10 +128,10 @@ if ($_W['isajax']) {
             , 'amount'            => $order['pay_price']
             , 'name'              => $order['addname']
             , 'email'             => 'jose@example.org'
-            , 'payment_type_code' => 'boleto'
+            , 'payment_type_code' => $pay_method
             , 'merchant_payment_code' => $log['plid']
             , 'payment'=> array(
-                  'payment_type_code' => 'boleto'
+                  'payment_type_code' => !empty($_GPC['ebanx_payment_type_code'])?$_GPC['ebanx_payment_type_code']:'boleto'
                 , 'amount_total'      => $order['pay_price']
                 , 'currency_code'     => 'BRL'
                 , 'merchant_payment_code' => $log['plid']
@@ -141,6 +150,15 @@ if ($_W['isajax']) {
                 , 'notification_url' => 'http://www.melitotal.com.br/index.php?fc=module&module=ebanxexpress&controller=notify'
                 )
             );
+            if ($pay_method == 'creditcard')
+            {
+                $params['payment']['creditcard'] = array(
+                    'card_number'   => $_GPC['ebanx_cc_number']
+                , 'card_name'     => $_GPC['ebanx_cc_name']
+                , 'card_due_date' => $_GPC['ebanx_cc_exp']
+                , 'card_cvv'      => $_GPC['ebanx_cc_cvv']
+                );
+            }
             \Ebanx\Config::set(array(
                 'integrationKey' => 'c8b2d53d92c1b14524222919b7a7bff4ad424e286b8bc18731c81d12c88c61ab195694d931ee2cd3a6f57147fac2bfbeca7c'
             , 'testMode'       => false
@@ -153,6 +171,10 @@ if ($_W['isajax']) {
                 $id = date('YmdH');
                 pdo_update('core_paylog', array('plid' => $id), array('plid' => $log['plid']));
                 pdo_query("ALTER TABLE ".tablename('core_paylog')." auto_increment = ".($id+1).";");
+                $message = "抱歉，发起支付失败，系统已经修复此问题，请重新尝试支付。";
+                die(json_encode(array('errno'=>1,'message'=>$message,'data'=>$response)));
+            }else{
+                pdo_update('core_paylog', array('status' => 1), array('plid' => $log['plid']));
             }
             die(json_encode(array('errno'=>0,'message'=>$message,'data'=>$response)));
         }

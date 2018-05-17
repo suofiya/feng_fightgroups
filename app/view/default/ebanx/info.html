@@ -7,6 +7,7 @@
 		</header>
 		<div class="content native-scroll">
 			<div class="list-block">
+                <input type="hidden" name="method" value="{$pay_method}">
 		      <ul>
 		        <!-- Text inputs -->
 		        <li>
@@ -29,6 +30,68 @@
                           </div>
                       </div>
                   </li>
+                  {if $pay_method=='creditcard'}
+                  <li>
+                      <div class="item-content">
+                          <div class="item-inner">
+                              <div class="item-title label" style="width: 48%">Nome no cartão <span class="red">*</span></div>
+                              <div class="item-input">
+                                  <input type="text" id="ebanx_cc_name" name="ebanx_cc_name" value="">
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="item-content">
+                          <div class="item-inner">
+                              <div class="item-title label" style="width: 48%">Número do cartão <span class="red">*</span></div>
+                              <div class="item-input">
+                                  <input type="text" id="ebanx_cc_number" name="ebanx_cc_number" value="">
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="item-content">
+                          <div class="item-inner">
+                              <div class="item-title label" style="width: 48%">CVV <span class="red">*</span></div>
+                              <div class="item-input">
+                                  <input type="text" id="ebanx_cc_cvv" name="ebanx_cc_cvv" value="">
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="item-content">
+                          <div class="item-inner">
+                              <div class="item-title label" style="width: 48%">Data de validade (mm/aaaa) <span class="red">*</span></div>
+                              <div class="item-input">
+                                  <input type="text" id="ebanx_cc_exp" name="ebanx_cc_exp" value="">
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+                  <li>
+                      <div class="item-content">
+                          <div class="item-inner">
+                              <div class="item-title label" style="width: 48%">Bandeira <span class="red">*</span></div>
+                              <div class="item-input">
+                                  <select class="form-control" id="ebanx_payment_type_code" name="ebanx_payment_type_code" required="">
+                                      <option></option>
+                                      <option value="amex">American Express</option>
+                                      <option value="aura">Aura</option>
+                                      <option value="diners">Diners</option>
+                                      <option value="discover">Discover</option>
+                                      <option value="elo">Elo</option>
+                                      <option value="hipercard">Hipercard</option>
+                                      <option value="mastercard">Mastercard</option>
+                                      <option value="visa">Visa</option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                  </li>
+                  {/if}
 		      </ul>
 		    </div>
 		    <div class="content-block">
@@ -36,6 +99,11 @@
 		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary">Finalizar compra</a></div>
 		      </div>
 		    </div>
+            <div class="weui_extra_area">
+                <a href="{php echo app_url('goods/list')}">返回首页</a>
+                <a href="javascript:">&nbsp;&nbsp; ▏ </a>
+                <a href="{php echo app_url('order/order')}">订单列表</a>
+            </div>
 		</div>
 	</div>
 </div>
@@ -45,6 +113,7 @@
 		//编辑地址页
 		$(document).on("pageInit", "#page-createadd", function(e, id, page) {
             var orderno = "{$orderno}";
+            var pay_method = "{$pay_method}";
 			var $content = $(page).find('.content');
 			$("#city-picker").cityPicker({
 			    toolbarTemplate: '<header class="bar bar-nav">\
@@ -63,7 +132,17 @@
 				 	$.toast("nascimento");
 				 	return false;
 				}
-				$.post("{php echo app_url('pay/ebanx')}&orderno="+orderno,{ebanx_document:ebanx_document,ebanx_birth_date:ebanx_birth_date},function(d){
+                if(pay_method == 'creditcard'){
+                    var ebanx_cc_name = $('#ebanx_cc_name').val();
+                    var ebanx_cc_number = $('#ebanx_cc_number').val();
+                    var ebanx_cc_cvv = $('#ebanx_cc_cvv').val();
+                    var ebanx_cc_exp = $('#ebanx_cc_exp').val();
+                    var ebanx_payment_type_code = $('#ebanx_payment_type_code').val();
+                    var data = {method:pay_method,ebanx_document:ebanx_document,ebanx_birth_date:ebanx_birth_date,ebanx_cc_name:ebanx_cc_name,ebanx_cc_number:ebanx_cc_number,ebanx_cc_cvv:ebanx_cc_cvv,ebanx_cc_exp:ebanx_cc_exp,ebanx_payment_type_code:ebanx_payment_type_code};
+                }else{
+                    var data = {method:pay_method,ebanx_document:ebanx_document,ebanx_birth_date:ebanx_birth_date};
+                }
+				$.post("{php echo app_url('pay/ebanx')}&orderno="+orderno,data,function(d){
 					if(d.errno == 0){
 						$.alert('已经支付成功', function () {
                             location.href = d.data.payment.boleto_url;
