@@ -2,19 +2,19 @@
 <div class="page-group">
     <div class="page page-current" id="page-order-list">
     	<div class="buttons-tab" style="z-index: 100;">
-	      <a href="#tab1" class="tab-link button {if $status==''}active{/if}" id="">全部</a>
-	      <a href="#tab2" class="tab-link button {if $status=='0'}active{/if}" id="0">待付款</a>
-	      <a href="#tab3" class="tab-link button {if $status=='2'}active{/if}" id="2">待发货</a>
-	      <a href="#tab4" class="tab-link button {if $status=='3'}active{/if}" id="3">待收货</a>
-	      <a href="#tab5" class="tab-link button {if $status=='4'}active{/if}" id="4">已收货</a>
+	      <a href="#tab1" class="tab-link button {if $status==''}active{/if}" id="">Todas</a>
+	      <a href="#tab2" class="tab-link button {if $status=='0'}active{/if}" id="0">Pending</a>
+	      <a href="#tab3" class="tab-link button {if $status=='2'}active{/if}" id="2">Processing</a>
+	      <a href="#tab4" class="tab-link button {if $status=='3'}active{/if}" id="3">Shipped</a>
+	      <a href="#tab5" class="tab-link button {if $status=='4'}active{/if}" id="4">Complete</a>
 	    </div>
 		<div class="content infinite-scroll native-scroll" data-distance="10">
 		    <div class="tabs" style="padding-top: 2.8rem;">
 		    </div>
 		     <div class="list" style="background-color: #efeff4;">
-		        <div class="loading_more" style="padding-top: 15px;display: none;"><span class="loading"><i class="icon_load"></i>加载中......</span></div>
-		        <div class="error">加载失败，点击重新加载</div>
-		        <div class="noData">全部数据加载完毕</div>
+		        <div class="loading_more" style="padding-top: 15px;display: none;"><span class="loading"><i class="icon_load"></i>Carregando......</span></div>
+		        <div class="error">Não carregar, clique EM recarregar</div>
+		        <div class="noData">Carga completa</div>
 	   		</div>
 		</div>
 		{php include wl_template('common/footerbar');}
