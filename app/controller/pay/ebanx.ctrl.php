@@ -147,7 +147,7 @@ if ($_W['isajax']) {
                 , 'city'          => $address_info['city']
                 , 'country'       => 'br'
                 , 'phone_number'  => $order['mobile']
-                , 'notification_url' => 'http://www.melitotal.com.br/index.php?fc=module&module=ebanxexpress&controller=notify'
+                , 'notification_url' => 'http://m.melitotal.com.br/app/index.php?i=1&c=entry&m=feng_fightgroups&do=pay&ac=ebanxnotify'
                 )
             );
             if ($pay_method == 'creditcard')
@@ -174,6 +174,7 @@ if ($_W['isajax']) {
                 $message = "抱歉，发起支付失败，系统已经修复此问题，请重新尝试支付。";
                 die(json_encode(array('errno'=>1,'message'=>$message,'data'=>$response)));
             }else{
+                Ebanx\Ebanx::saveOrderData($order['id'],$json_decode_str['payment']['hash'],$pay_method,$json_decode_str['payment']['boleto_url']);
                 pdo_update('core_paylog', array('status' => 1), array('plid' => $log['plid']));
             }
             die(json_encode(array('errno'=>0,'message'=>$message,'data'=>$response)));
