@@ -15,22 +15,22 @@
 			<div class="m-list">
 				<div class="g-wrap g-body-hd m-list-nav" style="">
 					<div class="m-list-nav-catlog">
-						<a href="javascript:void(0)" class="open"><span id="categoryName">商品分类</span><i class="ico ico-arrow ico-arrow-s-gray ico-arrow-down"></i></a>
+						<a href="javascript:void(0)" class="open"><span id="categoryName">categorias</span><i class="ico ico-arrow ico-arrow-s-gray ico-arrow-down"></i></a>
 					</div>
 					<div class="m-list-types">
 						<ul class="m-list-types-list">
 							<input type="hidden" name="parent" id="parent" value="allgoods" />
-							<li onclick="chooseChild('人气',this);">
-								<a href="#">人气</a>
+							<li onclick="chooseChild('Popularidade',this);">
+								<a href="#">Popularidade</a>
 							</li>
-							<li class="" onclick="chooseChild('最新',this);">
-								<a href="#">最新</a>
+							<li class="" onclick="chooseChild('novidade',this);">
+								<a href="#">novidade</a>
 							</li>
 							<li class="" onclick="chooseUpDown(this);">
-								<a href="#">销量</a>
+								<a href="#">mais vendido</a>
 							</li>
 							<li class="" onclick="chooseAllUpDown(this);">
-								<a href="#">好评<i class="ico ico-sort2Arrow"></i></a>
+								<a href="#">melhor reputação<i class="ico ico-sort2Arrow"></i></a>
 							</li>
 						</ul>
 					</div>
@@ -49,9 +49,9 @@
 	
     <div class="page page-current" id="page-goods-list">
 		<div class="content infinite-scroll native-scroll" data-distance="10">
-		<div class="topbar"><h3 class="title">拼团</h3><div class="barfn"><i class="refresh"></i><i class="share"></i></div></div>
+		<div class="topbar"><h3 class="title">comprar com grupo</h3><div class="barfn"><i class="refresh"></i><i class="share"></i></div></div>
 	    <!--<div class="address">
-	        <i class="pos"></i><span class="zone">全国发货</span><span class="zoneTip">（点击这里选择更多地区）</span><i class="arrow"></i>
+	        <i class="pos"></i><span class="zone">envia país todo</span><span class="zoneTip">（selecione outro local）</span><i class="arrow"></i>
 	    </div>-->
 	    {php include wl_template('common/followed');}
 	    <div class="banner" id="banner" style="visibility: visible;">
@@ -101,7 +101,7 @@
 	                    <input type="text" placeholder="" id="codeInput">  
 	                </div>
 	                <div style="display: inline-block;width:30%">
-	                    <span class="codeBtn">确认</span>
+	                    <span class="codeBtn">confimar</span>
 	                </div>
 	          </div>
 	        </div>
@@ -111,8 +111,8 @@
 	        <ul class="ul_1">
 	        </ul>
 	        </div>
-	        <div class="loading_more" style="padding-top: 15px;display: none;"><span class="loading"><i class="icon_load"></i>加载中......</span></div>
-	        <div class="error">加载失败，点击重新加载</div>
+	        <div class="loading_more" style="padding-top: 15px;display: none;"><span class="loading"><i class="icon_load"></i>carregando......</span></div>
+	        <div class="error">erro，tentar novamente</div>
 	        <div class="noData">全部数据加载完毕</div>
 	    </div>
 	    <div class="mask"></div>
