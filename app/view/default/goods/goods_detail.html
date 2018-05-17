@@ -64,7 +64,7 @@
 	                <img src="{php echo tomedia($merchant['thumb'])}">
 	                <div class="mall_sub">
 	                    <span>{$merchant['name']}</span>
-	                    <div class="sales">销量：{$goods['salenum']}</div>
+	                    <div class="sales">{$goods['salenum']} vendidos</div>
 	                </div>
 	                <div class="enter_button">
 	                    <img src="http://pinduoduo.b0.upaiyun.com/mall/mall_icon_small.png">
@@ -193,13 +193,13 @@
 	                {if $goods['isshow']==1}
 					{if $goods['group_level_status']==2}
 						<li class="alone"><a href="{php echo app_url('order/orderconfirm',array('groupnum'=>1));}" class="nav-controller external"><i >￥{$goods['oprice']}</i>单独购买</a></li>
-	                	<li class="group"><a onclick='choose()' class="nav-controller"><i >￥{$goods['gprice']}</i>拼团购买</a></li>
+	                	<li class="group"><a onclick='choose()' class="nav-controller"><i >R$ {$goods['gprice']}</i>拼团购买</a></li>
 					{elseif $goods['hasoption']==1}
-						<li class="alone"><a onclick='choose(1)' class="nav-controller"><i >￥{$goods['oprice']}</i>单独购买</a></li>
-	                	<li class="group"><a onclick='choose(2)' class="nav-controller"><i >￥{$goods['gprice']}</i>拼团购买</a></li>
+						<li class="alone"><a onclick='choose(1)' class="nav-controller"><i >R$ {$goods['oprice']}</i>单独购买</a></li>
+	                	<li class="group"><a onclick='choose(2)' class="nav-controller"><i >R$ {$goods['gprice']}</i>拼团购买</a></li>
 					{else}
-						<li class="alone"><a onclick='bb(1)'  class="nav-controller"><i >￥{$goods['oprice']}</i>单独购买</a></li>
-	                	<li class="group"><a onclick='bb(2)'  class="nav-controller"><i >￥{$goods['gprice']}</i>拼团购买</a></li>
+						<li class="alone"><a onclick='bb(1)'  class="nav-controller"><i >R ${$goods['oprice']}</i>单独购买</a></li>
+	                	<li class="group"><a onclick='bb(2)'  class="nav-controller"><i >R$ {$goods['gprice']}</i>拼团购买</a></li>
 					{/if}
 					{else}
 					<li class="group" style="width: 80%;"><a href="{php echo app_url('goods/list')}" style="line-height: 40px;font-size: 16px;" class="nav-controller external">查看更多拼团商品</a></li>
