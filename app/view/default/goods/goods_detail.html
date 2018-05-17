@@ -24,10 +24,10 @@
 			    		<h2 style="padding-top: 10px;">{$goods['gname']}</h2>
 			    		<div class="editor">{$goods['gdesc']}</div>
 			    	</div>
-			    	<div class="salesVolume" style="display: block;"><span style="float: left;">市场价：￥{$goods['mprice']}</span>已售：{$goods['salenum']}{$goods['unit']}</div>
-			    	<div class="progressOuter noShow"><span class="suc_tuan">已成团</span>
-			    	<div class="progress"><div class="percent"></div></div><span class="total_tuan">共团</span></div>
-			    	<div class="playTips">支付开团并邀请好友参加，人数不足自动退款，详见下方团购玩法</div>
+			    	<div class="salesVolume" style="display: block;"><span style="float: left;">preço de mercado：￥{$goods['mprice']}</span>ja foi vendido：{$goods['salenum']}{$goods['unit']}</div>
+			    	<div class="progressOuter noShow"><span class="suc_tuan">agrupada</span>
+			    	<div class="progress"><div class="percent"></div></div><span class="total_tuan">共团junto com grupo</span></div>
+			    	<div class="playTips">pague e participe do grupo e compartilhe com os amigos，devoluçao automáticamente caso participantes insuficiente，segue abaixo a forma de compras do grupo</div>
 			    	<script>
 					    $(function() {
 					        new Swipe($('#sliderImg')[0], {
@@ -43,16 +43,16 @@
 			    </section>
 			    <section class="goBuy" data-people="3" data-times="10" data_acttype="0" data_coupon="0" data_dealtype="" style="display: block;">
 			        <div class="btns" style="display: none;">
-			            <div class="group_btn" id="buyGroup"><span class="price"><em>8.9元</em>/{$goods['unit']}</span><span class="colline"></span><span class="count">3人团&gt;</span></div>
-			           <div class="single_btn" id="buySingle"><span class="price"><em>10.9元</em>/{$goods['unit']}</span><span class="colline"></span><span class="count">单独购买&gt;</span></div>
+			            <div class="group_btn" id="buyGroup"><span class="price"><em>8.9R$</em>/{$goods['unit']}</span><span class="colline"></span><span class="count">grupo de 3 participante&gt;</span></div>
+			           <div class="single_btn" id="buySingle"><span class="price"><em>10.9R$</em>/{$goods['unit']}</span><span class="colline"></span><span class="count">compra individual&gt;</span></div>
 			        </div>
 			        {if $goods['isshow']==3}
 			        <div class="ico_end"></div>
 			        {elseif $goods['isshow']==2}
 			        <div class="ico_countdown"></div>
 			        {/if}
-			        <div class="tuan_btn" id="buyNow"><span>立即参团</span><span><i class="rowline"></i><em>8.9元</em>/{$goods['unit']}</span></div>
-			        <div class="goIndexBtn">去首页逛逛吧</div>
+			        <div class="tuan_btn" id="buyNow"><span>participe agora</span><span><i class="rowline"></i><em>8.9R$</em>/{$goods['unit']}</span></div>
+			        <div class="goIndexBtn">volte para menu</div>
 			        <p class="activityTip"></p>
 			    </section>
 			    <div class="space" style="display: none;"></div>
@@ -68,7 +68,7 @@
 	                </div>
 	                <div class="enter_button">
 	                    <img src="http://pinduoduo.b0.upaiyun.com/mall/mall_icon_small.png">
-	                    <span>进店逛逛</span>
+	                    <span>acesse á loja</span>
 	                </div>
 	            </div>
 	            </a>
@@ -76,7 +76,7 @@
 	            
 	            <!--门店-->
 	            {if $goods['is_hexiao'] != 0}
-				<div class="good_speci" onclick="showStores(this)" show="1">适用的商家信息<i class="fa fa-angle-down" style="float:right; line-height:44px; font-size:26px;"></i></div>
+				<div class="good_speci" onclick="showStores(this)" show="1">适用的商家信息Informações comerciais<i class="fa fa-angle-down" style="float:right; line-height:44px; font-size:26px;"></i></div>
 	  			<div>
 		  			{loop $stores $stores}
 			        <div class="store">
@@ -85,8 +85,8 @@
 			            <div class="info1">
 			                <div class="inner">
 			                     <div class="user">{$stores['storename']}</div>
-			                     <div class="addresss">地址: {$stores['address']}</div>
-			                     <div class="tel">电话: {$stores['tel']}</div>
+			                     <div class="addresss">endereço: {$stores['address']}</div>
+			                     <div class="tel">telefone: {$stores['tel']}</div>
 			                 </div>
 			             </div>
 			             <a href="http://api.map.baidu.com/marker?location={$stores['lat']},{$stores['lng']}&amp;title={$stores['storename']}&amp;name={$stores['storename']}&amp;content={$stores['address']}&amp;output=html" class="external"><div class="ico2"><i class="fa fa-map-marker"></i></div></a>
@@ -102,13 +102,13 @@
 				{if ($share_data['share_type']==1 || $share_data['share_type']=='')}
 					<div id="more_tuan" style="margin-top: 10px;">
 					<div class="ht">
-						<div class="ht_tit">附近的小伙伴正在发起团购，您可以直接参与</div>
+						<div class="ht_tit">附近的小伙伴正在发起团购，您可以直接参与o grupo aberto proximo de voce, participar </div>
 						<div class="ht_list">
 						{loop $thistuan $tuan}
 						<div class="ht_item">
-							<div class="ht_avatar"><img src="{$tuan['avatar']}" alt="团长头像"></div>
-							<div class="ht_info"><div class="ht_name">{$tuan['nickname']}</div><div class="ht_time">发起时间：{php echo date('Y-m-d H:i:s', $tuan['starttime']);}</div></div>
-							<a href="{php echo app_url('order/group',array('tuan_id'=>$tuan['groupnumber']));}" class="ht_btn" ptag="20400.7.1"><span class="ht_price"><i>￥</i>{if !empty($tuan['price'])}{$tuan['price']}{else}{$goods['gprice']}{/if} / {$goods['unit']}</span><span class="ht_btn_go">差{$tuan['lacknum']}人成团，火速参团 》</span></a>
+							<div class="ht_avatar"><img src="{$tuan['avatar']}" alt="imagem do criador"></div>
+							<div class="ht_info"><div class="ht_name">{$tuan['nickname']}</div><div class="ht_time">horario de criaçao：{php echo date('Y-m-d H:i:s', $tuan['starttime']);}</div></div>
+							<a href="{php echo app_url('order/group',array('tuan_id'=>$tuan['groupnumber']));}" class="ht_btn" ptag="20400.7.1"><span class="ht_price"><i>￥</i>{if !empty($tuan['price'])}{$tuan['price']}{else}{$goods['gprice']}{/if} / {$goods['unit']}</span><span class="ht_btn_go">差falta{$tuan['lacknum']pessoa conclui o grupo，火速参团participar agora 》</span></a>
 						</div>
 						{/loop}
 						</div>
@@ -119,7 +119,7 @@
 						<div class="ht">
 							<div style="text-align: center;">
 							<a href="{php echo $this->createMobileUrl('goodsdetails',array('share_type'=>'share_type','id'=>$id));}" style="background-color: #FF5252;border-radius: 3px;width: 90%;height: 50px;text-align: center;color: rgb(255, 255, 255);margin-left: 5%;margin-top:5px;float: left;-webkit-border-radius: 3px;">
-							<b><font size="5"><div class="ico2" style="margin-top: 10px;;"><i class="fa fa-map-marker"></i> 附近的团</div></font></b>
+							<b><font size="5"><div class="ico2" style="margin-top: 10px;;"><i class="fa fa-map-marker"></i> grupos próximos</div></font></b>
 							</a>
 							</div>
 						</div>
@@ -128,12 +128,12 @@
 		        {/if}
 		        
 			    <section class="stepGuild">
-			        <div class="step_tit"><i></i>拼团玩法<span><a href="{php echo app_url('home/rule');}">查看详情&gt;</a></span></div>
+			        <div class="step_tit"><i></i>forma de compra do grupo<span><a href="{php echo app_url('home/rule');}">ver detalhes&gt;</a></span></div>
 			        <div class="step_flow">
-			            <div class="step_item step_item_on"><span class="step_num">1</span><span>选择<br>心仪商品</span></div>
-			            <div class="step_item"><span class="step_num">2</span><span class="steps">支付开团<br>或参团</span></div>
-			            <div class="step_item"><span class="step_num">3</span><span class="steps">邀请好友<br>参团支付</span></div>
-			            <div class="step_item"><span class="step_num">4</span><span class="steps">达到人数<br>团购成功</span></div>
+			            <div class="step_item step_item_on"><span class="step_num">1</span><span>adicionar<br>produto favorecido</span></div>
+			            <div class="step_item"><span class="step_num">2</span><span class="steps">pegue e monte grupo<br>ou participe grupo de outro participante</span></div>
+			            <div class="step_item"><span class="step_num">3</span><span class="steps">convite os amigos<br>pague no grupo参团支付</span></div>
+			            <div class="step_item"><span class="step_num">4</span><span class="steps">numero de participante concluído<br>compras do grupo com sucesso</span></div>
 			        </div>
 			    </section>
 			</div>
@@ -144,10 +144,10 @@
 	                <div id="div_nav" class="div_nav">
 	                    <ul class="boxx" style="padding-left: 0px;">
 	                    	<li>
-	                            <a onclick="exchange(1);" data-idx="1" class="sp on" id="shangpin1">图文详情</a>
+	                            <a onclick="exchange(1);" data-idx="1" class="sp on" id="shangpin1">图文详情detalhes de imagem</a>
 	                        </li>
 	                        <li>
-	                            <a onclick="exchange(0);" data-idx="0" class="sp" id="shangpin0">商品属性</a>
+	                            <a onclick="exchange(0);" data-idx="0" class="sp" id="shangpin0">商品属性Caracteristicas</a>
 	                        </li>
 	                    </ul>
 	                </div>
@@ -189,20 +189,20 @@
 		<footer class="footer" style="z-index: 1!important;height: 50px;">
 	        <nav>
 	            <ul>
-	                <li style="width: 20%;"><a href="{php echo app_url('goods/list')}" class="nav-controller external"><i class="fa fa-home"></i>首页</a></li>
+	                <li style="width: 20%;"><a href="{php echo app_url('goods/list')}" class="nav-controller external"><i class="fa fa-home"></i>首页menu</a></li>
 	                {if $goods['isshow']==1}
 					{if $goods['group_level_status']==2}
-						<li class="alone"><a href="{php echo app_url('order/orderconfirm',array('groupnum'=>1));}" class="nav-controller external"><i >￥{$goods['oprice']}</i>单独购买</a></li>
-	                	<li class="group"><a onclick='choose()' class="nav-controller"><i >R$ {$goods['gprice']}</i>拼团购买</a></li>
+						<li class="alone"><a href="{php echo app_url('order/orderconfirm',array('groupnum'=>1));}" class="nav-controller external"><i >￥{$goods['oprice']}</i>单独购买compra individual</a></li>
+	                	<li class="group"><a onclick='choose()' class="nav-controller"><i >R$ {$goods['gprice']}</i>拼团购买compra com grupo</a></li>
 					{elseif $goods['hasoption']==1}
-						<li class="alone"><a onclick='choose(1)' class="nav-controller"><i >R$ {$goods['oprice']}</i>单独购买</a></li>
-	                	<li class="group"><a onclick='choose(2)' class="nav-controller"><i >R$ {$goods['gprice']}</i>拼团购买</a></li>
+						<li class="alone"><a onclick='choose(1)' class="nav-controller"><i >R$ {$goods['oprice']}</i>单独购买compra individual</a></li>
+	                	<li class="group"><a onclick='choose(2)' class="nav-controller"><i >R$ {$goods['gprice']}</i>拼团购买compra com grupo</a></li>
 					{else}
-						<li class="alone"><a onclick='bb(1)'  class="nav-controller"><i >R ${$goods['oprice']}</i>单独购买</a></li>
-	                	<li class="group"><a onclick='bb(2)'  class="nav-controller"><i >R$ {$goods['gprice']}</i>拼团购买</a></li>
+						<li class="alone"><a onclick='bb(1)'  class="nav-controller"><i >R ${$goods['oprice']}</i>单独购买compra individual</a></li>
+	                	<li class="group"><a onclick='bb(2)'  class="nav-controller"><i >R$ {$goods['gprice']}</i>拼团购买compra com grupo</a></li>
 					{/if}
 					{else}
-					<li class="group" style="width: 80%;"><a href="{php echo app_url('goods/list')}" style="line-height: 40px;font-size: 16px;" class="nav-controller external">查看更多拼团商品</a></li>
+					<li class="group" style="width: 80%;"><a href="{php echo app_url('goods/list')}" style="line-height: 40px;font-size: 16px;" class="nav-controller external">查看更多拼团商品ver mais produto anúnciado do preço de grupo </a></li>
 					{/if}
 	            </ul>
 	        </nav>
