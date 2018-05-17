@@ -15,7 +15,7 @@
         </span>
         <span style="float:left;margin-left:8px;" class='spec_items options' id="inn">
         	<input type="hidden" name="gn" id="gn" value="" />
-            <span ><font color="#000000" size="2">选择数量</font></span>
+            <span ><font color="#000000" size="2">selecione a quantidade</font></span>
 			<div class="w-number" id="pro-view-7" style="float: right;">
 				<input class="w-number-input" type="tel" id="num" name="num" value="1">
 				<a class="w-number-btn w-number-btn-plus" id="up">
@@ -28,7 +28,7 @@
         </span>
     </div>
     <div class="close" onclick="closechoose()"><i class="fa fa-times-circle-o"></i></div>
-    <div class="sub " onclick="buy()" id="nowbuy">确认</div>
+    <div class="sub " onclick="buy()" id="nowbuy">confirmar</div>
 </div>
 <script type="text/javascript">
 	function bb(b){
@@ -97,26 +97,26 @@
         times = parseInt(times);
 	    {if $goods['one_limit']>1}
 	        if(isNaN(inputnum)){
-	        	$.toast('数量错误!');
+	        	$.toast('erro quantidade!');
 				return false;
 	        }else{
 	        	if(inputnum<0){
-	        		$.toast('数量错误!');
+	        		$.toast('erro quantidade!');
 					return false;
 	        	}
 	        	if(inputnum > num){
-	        		$.toast('库存不足!');
+	        		$.toast('estoque indisponivel!');
 					return false;
 	        	}
 	        	if(one_limit>=1){
 	        		if(inputnum > one_limit){
-		        		$.toast('单次购买上限：'+one_limit);
+		        		$.toast('quantidade maxima por compra：'+one_limit);
 						return false;
 		        	}
 	        	}
 	        	if(many_limit>=1){
 	        		if(inputnum+times > many_limit){
-		        		$.toast('单人购买上限：'+many_limit);
+		        		$.toast('quantidade maxima por pessoa：'+many_limit);
 						return false;
 		        	}
 	        	}
