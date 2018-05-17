@@ -15,7 +15,7 @@
   <meta property="og:title" class="share_title"  content="{$config['share']['share_title']}" />
   <meta property="og:description" content="{$config['share']['share_desc']}" />
   <meta property="og:image"  content="{$config['share']['share_image']}" />
-  <meta property="fb:app_id" content="206082400173820" />
+  <meta property="fb:app_id" content="2112900268947111" />
 
 <div class="page-group">
     <div class="page page-current" id="page-order-list">
@@ -280,7 +280,7 @@ function fbShare(a){
       a=$("#sharedContendId").html();
     }
     shareRecord(a,1);
-    window.open("http://www.facebook.com/sharer.php?u="+encodeURIComponent(u)+"&t="+encodeURIComponent(t),"sharer","toolbar=0,status=0,width=626,height=436");
+    window.open("https://www.facebook.com/sharer.php?u="+encodeURIComponent(u)+"&t="+encodeURIComponent(t),"sharer","toolbar=0,status=0,width=626,height=436");
 }
 function googleShare(a){
     u=document.getElementsByClassName("share_url")[0].content;
@@ -298,7 +298,7 @@ function twitterShare(a){
     a=$("#sharedContendId").html();
   }
   shareRecord(a,4);
-  window.open("http://twitter.com/home?status="+encodeURIComponent(u)+" "+encodeURIComponent(t),"sharer","toolbar=0,status=0,width=626,height=436");
+  window.open("https://twitter.com/home?status="+encodeURIComponent(u)+" "+encodeURIComponent(t),"sharer","toolbar=0,status=0,width=626,height=436");
 }
 function whatsAppShare(contentId){
   u = document.getElementsByClassName("share_url")[0].content;

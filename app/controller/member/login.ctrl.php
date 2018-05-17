@@ -27,13 +27,13 @@ $pagetitle = !empty($config['tginfo']['sname']) ? '登录页 - '.$config['tginfo
 
 if($op =='display'){
     // Facebook登录
-    $facebook_client_id = '206082400173820';
+    $facebook_client_id = '2112900268947111';
     $facebook_state_code = md5(pdd_generateOpenID());
     // 授权回到地址
     if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']=='on' || $_SERVER['HTTPS']==1) || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO']=='https') {
         $facebook_oauth_callback = urlencode('https://'.$_SERVER['HTTP_HOST'].'/fboauthcallback.php');
     } else {
-        $facebook_oauth_callback = urlencode('http://'.$_SERVER['HTTP_HOST'].'/fboauthcallback.php');   
+        $facebook_oauth_callback = urlencode('https://'.$_SERVER['HTTP_HOST'].'/fboauthcallback.php');   
     }
     // 模板
     include wl_template('member/login');

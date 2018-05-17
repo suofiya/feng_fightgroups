@@ -17,12 +17,13 @@ if (!empty($_GPC['code'])) {
     $facebook_oauth_callback = 'https://'.$_SERVER['HTTP_HOST'].'/fboauthcallback.php';
     
     // STEP_1: 换accesstoken地址
-    $token_url = "https://graph.facebook.com/oauth/access_token?client_id=206082400173820&redirect_uri=". urlencode($facebook_oauth_callback) ."&client_secret=fda9b4c5ec5386a916307e9db7b4e4e2&code=" . $_GPC['code'];
+    $token_url = "https://graph.facebook.com/oauth/access_token?client_id=2112900268947111&redirect_uri=". urlencode($facebook_oauth_callback) ."&client_secret=aee0160a624bad41d1b759bfa741e719&code=" . $_GPC['code'];
     
     // 去Facebook换取access_token
-//    $arrFacebookResponse = pdd_doRestCurl($token_url);
+   $arrFacebookResponse = pdd_doRestCurl($token_url);
 
-$arrFacebookResponse['access_token'] = 'EAAC7bkxBvvwBAFECcybsGmmKYvVEgXvmXotTqH31MEbdLSpoAcmfBzHb7noZCG3bhKZABKQlZBJncdnJiCW8KcjpARfXnteZC3jrdLz5OjH8XqczyVnrJau3qfBlSGZB5ZCzF8tdJNKgEZBo3hd0PjmJ4ZB9bZA2WhiZAffkbJYVSmtQZDZD';
+// DEBUG
+//$arrFacebookResponse['access_token'] = 'EAAC7bkxBvvwBAFECcybsGmmKYvVEgXvmXotTqH31MEbdLSpoAcmfBzHb7noZCG3bhKZABKQlZBJncdnJiCW8KcjpARfXnteZC3jrdLz5OjH8XqczyVnrJau3qfBlSGZB5ZCzF8tdJNKgEZBo3hd0PjmJ4ZB9bZA2WhiZAffkbJYVSmtQZDZD';
     
     // 换取access_token成功
     if (!empty($arrFacebookResponse['access_token'])) {
@@ -32,8 +33,10 @@ $arrFacebookResponse['access_token'] = 'EAAC7bkxBvvwBAFECcybsGmmKYvVEgXvmXotTqH3
         $profile_url .= '&access_token='.$arrFacebookResponse['access_token'];
         
         // 获取个人信息
-//        $arrFacebookProfile = pdd_doRestCurl($profile_url);
+        $arrFacebookProfile = pdd_doRestCurl($profile_url);
 
+// DEBUG
+/*
 $arrFacebookProfile = array(
    "id" => "1779741945425320",
    "email" => "tyliu1123@163.com",
@@ -41,6 +44,7 @@ $arrFacebookProfile = array(
    "last_name" => "Liu",
    "name" => "Tao Liu"
 );
+*/
 
         // 绑定或查询fb用户
         if (!empty($arrFacebookProfile['id'])) {
