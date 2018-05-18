@@ -49,18 +49,18 @@ if($_GPC['done'] == '1') {
 $sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `plid`=:plid';
 $log = pdo_fetch($sql, array(':plid' => $params['tid']));
 if(!empty($log) && $log['status'] != '0') {
-	exit('这个订单已经支付成功, 不需要重复支付.');
+	exit('Esse pedido ja foi pago.');
 }
 $auth = sha1($sl . $log['uniacid'] . $_W['config']['setting']['authkey']);
 if($auth != $_GPC['auth']) {
-	exit('参数传输错误.');
+	exit('erro dos dados.');
 }
 load()->model('payment');
 $_W['uniacid'] = intval($log['uniacid']);
 $_W['openid'] = intval($log['openid']);
 $setting = uni_setting($_W['uniacid'], array('payment'));
 if(!is_array($setting['payment'])) {
-	exit('没有设定支付参数.');
+	exit('erro dos dados.');
 }
 $wechat = $setting['payment']['wechat'];
 $sql = 'SELECT `key`,`secret` FROM ' . tablename('account_wechats') . ' WHERE `acid`=:acid';
@@ -80,9 +80,9 @@ if (is_error($wOpt)) {
 		$id = date('YmdH');
 		pdo_update('core_paylog', array('plid' => $id), array('plid' => $log['plid']));
 		pdo_query("ALTER TABLE ".tablename('core_paylog')." auto_increment = ".($id+1).";");
-		message("抱歉，发起支付失败，系统已经修复此问题，请重新尝试支付。");
+		message("desculpa，pagamento nao aprovado，foi erro do sistema，tente novamente。");
 	}
-	message("抱歉，发起支付失败，具体原因为：“{$wOpt['errno']}:{$wOpt['message']}”。请及时联系站点管理员。");
+	message("desculpa，pagamento nao aprovado，motivo：“{$wOpt['errno']}:{$wOpt['message']}”。contate-nos。");
 	exit;
 }
 ?>
