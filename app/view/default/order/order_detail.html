@@ -3,14 +3,14 @@
     <div class="page page-current" id="page-order-detail">
 	    <header class="bar bar-nav">
 	    	<a class="button button-link button-nav pull-left back" href="{php echo app_url('order/order/list')}"><span class="icon icon-left"></span>返回</a>
-	    	<h1 class="title">订单详情</h1>
+	    	<h1 class="title">detalhes do pedido</h1>
 	  	</header>
     	
 		<div class="content" style="overflow-x: hidden;">
 			<div id="nav" class="nav">
 			    <p class="nav-wrap">
-			        <span class="j-nav-item j-nav-status nav-item nav-choose">订单状态</span>
-			        <span class="j-nav-item j-nav-detail nav-item ">订单详情</span>
+			        <span class="j-nav-item j-nav-status nav-item nav-choose">statu do pedido</span>
+			        <span class="j-nav-item j-nav-detail nav-item ">detalhes do pedido</span>
 			        <label class="j-nav-bottomline nav-bottomline"></label>
 			    </p>
 			</div>
@@ -20,8 +20,8 @@
 		                <img class="timeline-logo" src="http://p1.meituan.net/xianfu/8adf62cf3cb75f1a4b21380be10af9fa2048.png">
 		                <div class="timeline-block">
 		                    <i class="timline-block-arrow"></i>
-		                    <p class="timeline-title">订单已提交<span class="timeline-time">{php echo date('m-d H:i', $order['createtime']);}</span></p>
-		                    <p class="timeline-sub">等待用户支付订单</p>
+		                    <p class="timeline-title">pedido foi enviado<span class="timeline-time">{php echo date('m-d H:i', $order['createtime']);}</span></p>
+		                    <p class="timeline-sub">aguardando pagamento do confirmaçao</p>
 		                </div>
 		            </div>
 		            {if $order['ptime']}
@@ -30,7 +30,7 @@
 		                <img class="timeline-logo" src="http://p0.meituan.net/xianfu/794ec85889844239f32764861c56660a2048.png">
 		                <div class="timeline-block">
 		                    <i class="timline-block-arrow"></i>
-		                    <p class="timeline-title">支付成功<span class="timeline-time">{php echo date('m-d H:i', $order['ptime']);}</span></p>
+		                    <p class="timeline-title">pagamento realizado com sucesso<span class="timeline-time">{php echo date('m-d H:i', $order['ptime']);}</span></p>
 		                    <p class="timeline-sub"></p>
 		                </div>
 		            </div>
@@ -41,8 +41,8 @@
 		                <img class="timeline-logo" src="http://p0.meituan.net/xianfu/a34001a981214d535bd8466da34490502048.png">
 		                <div class="timeline-block">
 		                    <i class="timline-block-arrow"></i>
-		                    <p class="timeline-title">商家发货<span class="timeline-time">{php echo date('m-d H:i', $order['sendtime']);}</span></p>
-		                    <p class="timeline-sub">商品已发货，请耐心等待哦</p>
+		                    <p class="timeline-title">postar<span class="timeline-time">{php echo date('m-d H:i', $order['sendtime']);}</span></p>
+		                    <p class="timeline-sub">aguarde o produto foi postado</p>
 		                </div>
 		            </div>
 		            {/if}
@@ -52,8 +52,8 @@
 		                <span class="icon icon-check timeline-logo" style="background-color: #FFD705;text-align: center;border-radius:11px;color: #7C5609;"></span>
 		                <div class="timeline-block">
 		                    <i class="timline-block-arrow"></i>
-		                    <p class="timeline-title">订单已完成<span class="timeline-time">{php echo date('m-d H:i', $order['gettime']);}</span></p>
-		                    <p class="timeline-sub">感谢您的信任，祝您生活愉快</p>
+		                    <p class="timeline-title">pedido concluído<span class="timeline-time">{php echo date('m-d H:i', $order['gettime']);}</span></p>
+		                    <p class="timeline-sub">Agradecemos a sua compra e a preferência!</p>
 		                </div>
 		            </div>
 		            {/if}
@@ -67,15 +67,15 @@
 			        	<div class="bottombar-main">
 						    <div class="bottombar-buttonwrap bottombar-buttonwrap-3">
 						    	{if $order['status'] == 3}
-						        <button id="btn-received" class="combtn bottombar-btn-red" oid="{$order['id']}">确认收货</button>
-						        <button id="btn-hasten" class="combtn bottombar-btn-dark">查看物流</button>
+						        <button id="btn-received" class="combtn bottombar-btn-red" oid="{$order['id']}">cofirmar o recebimento </button>
+						        <button id="btn-hasten" class="combtn bottombar-btn-dark">detalhe de envio</button>
 						        {elseif $order['status'] == 2 && $order['is_hexiao']==1}
-						        <button class="combtn bottombar-btn-red open-popup" id="qrcode" data-popup=".popup-qrcode"><i class="fa fa-qrcode"></i>&nbsp确认使用</button>
+						        <button class="combtn bottombar-btn-red open-popup" id="qrcode" data-popup=".popup-qrcode"><i class="fa fa-qrcode"></i>&nbspconfirmar para uso</button>
 						        {else}
-						        <button class="combtn bottombar-btn-red" style="width: 50%;" onclick="location.href='{php echo app_url('goods/list');}'">查看更多拼团商品</button>
+						        <button class="combtn bottombar-btn-red" style="width: 50%;" onclick="location.href='{php echo app_url('goods/list');}'">ver mais os produtos com desconto do grupo</button>
 						        {/if}
 								{if $order['is_tuan']==1 && $order['status']!=5}
-		                        <button class="combtn bottombar-btn-dark" onclick="location.href='{php echo app_url('order/group', array('tuan_id'=>$order['tuan_id']));}'" style="margin-right: 10px;">查看团详情</button>
+		                        <button class="combtn bottombar-btn-dark" onclick="location.href='{php echo app_url('order/group', array('tuan_id'=>$order['tuan_id']));}'" style="margin-right: 10px;">ver detalhes</button>
 		                        {/if}
 						    </div>
 			            </div>
@@ -105,11 +105,11 @@
 			    <div class="orderregion">
 			        <ul class="orderregion-entries">
 			            <li class="orderregion-entry order-other-price">
-			                <span class="name text-overflow-ellipsis-2">运费</span>
+			                <span class="name text-overflow-ellipsis-2">frete</span>
 			                <span class="price">￥&nbsp;{$order['freight']}</span>
 			            </li>
 			            <li class="orderregion-entry order-total-price">
-			                <span class="name text-overflow-ellipsis-2">合计</span>
+			                <span class="name text-overflow-ellipsis-2">total</span>
 			                <span class="price">￥&nbsp;{$order['pay_price']}</span>
 			            </li>
 			        </ul>
@@ -124,14 +124,14 @@
 			        </h1>
 			        <ul class="orderregion-entries-compact">
 			            <li class="orderregion-entry-compact">
-			                <span class="label">收货人：</span>{$order['addname']}&nbsp; {$order['mobile']}
+			                <span class="label">destinatário：</span>{$order['addname']}&nbsp; {$order['mobile']}
 			            </li>
 			            <!--<li class="orderregion-entry-compact">
 			                <span class="label">核销时间：</span>{php echo date('Y-m-d H:i:s', $order['bdeltime']);}
 			            </li>-->
 			        </ul>
 			    </div>
-				<div class="good_speci" onclick="showStores(this)" show="1">适用的商家信息<i class="fa fa-angle-down" style="float:right; line-height:44px; font-size:26px;"></i></div>
+				<div class="good_speci" onclick="showStores(this)" show="1">Informações comerciais aplicáveis<i class="fa fa-angle-down" style="float:right; line-height:44px; font-size:26px;"></i></div>
 	  			<div>
 		  			{loop $stores $stores}
 			        <div class="store">
@@ -140,8 +140,8 @@
 			            <div class="info1">
 			                <div class="inner">
 			                     <div class="user">{$stores['storename']}</div>
-			                     <div class="addresss">地址: {$stores['address']}</div>
-			                     <div class="tel">电话: {$stores['tel']}</div>
+			                     <div class="addresss">endereço: {$stores['address']}</div>
+			                     <div class="tel">telefone: {$stores['tel']}</div>
 			                 </div>
 			             </div>
 			             <a href="http://api.map.baidu.com/marker?location={$stores['lat']},{$stores['lng']}&amp;title={$stores['storename']}&amp;name={$stores['storename']}&amp;content={$stores['address']}&amp;output=html" class="external"><div class="ico2"><i class="fa fa-map-marker"></i></div></a>
@@ -154,14 +154,14 @@
 		       	<div class="orderregion">
 			        <h1 class="orderregion-title">
 			            <i class="icon1-detail status-detail-icon"></i>
-			            <label class="status-name">配送信息</label>
+			            <label class="status-name">detalhe de entregue</label>
 			        </h1>
 			        <ul class="orderregion-entries-compact">
 			            <li class="orderregion-entry-compact">
-			                <span class="label">收货人：</span>{$order['addname']}&nbsp; {$order['mobile']}
+			                <span class="label">destinatário：</span>{$order['addname']}&nbsp; {$order['mobile']}
 			            </li>
 			            <li class="orderregion-entry-compact">
-			                <span class="label">收货地址：</span>{$order['address']}
+			                <span class="label">endereço：</span>{$order['address']}
 			            </li>
 			        </ul>
 			    </div>
@@ -170,21 +170,21 @@
 			    <div class="orderregion">
 			        <h1 class="orderregion-title">
 			            <i class="icon1-detail status-detail-icon"></i>
-			            <label class="status-name">订单详情</label>
+			            <label class="status-name">detalhe do pedido</label>
 			        </h1>
 			        <ul class="orderregion-entries-compact">
 			            <li class="orderregion-entry-compact">
-			                <span class="label">订单号码：</span>{$order['orderno']}
+			                <span class="label">numero do pedido：</span>{$order['orderno']}
 			            </li>
 			            <li class="orderregion-entry-compact">
-			                <span class="label">下单时间：</span>{php echo date('Y-m-d H:i:s', $order['createtime']);}
+			                <span class="label">data da compra：</span>{php echo date('Y-m-d H:i:s', $order['createtime']);}
 			            </li>
 			            <li class="orderregion-entry-compact">
-			                <span class="label">支付方式：</span>微信支付
+			                <span class="label">forma de pagamento：</span>微信支付
 			            </li>
 			            {if $order['remark']}
 			            <li class="orderregion-entry-compact">
-			                <span class="label">备注：</span>{$order['remark']}
+			                <span class="label">obs：</span>{$order['remark']}
 			            </li>
 			            {/if}
 			        </ul>
@@ -224,18 +224,18 @@
 	      </ul>
 	    </div>
 	    <div class="weui_btn_area">
-        	<a class="weui_btn weui_btn_warn close-popup">关闭</a>
+        	<a class="weui_btn weui_btn_warn close-popup">fechar</a>
     	</div>
   	</div>
 </div>
 <script>
 	$(document).on('click','#btn-received',function(){
 		var orderno = $(this).attr('oid');
-		$.confirm('是否确认收货？',
+		$.confirm('ja recebeu o produto？',
 	        function () {
 	          	$.post("{php echo app_url('order/order/receipt')}",{orderno:orderno},function(d){
 					if(d.status == 1){
-					    $.toast('确认收货成功！');
+					    $.toast('confirmaçao de recebimento！');
 					    setTimeout(function () {
 							location.href = "{php echo app_url('order/order/detail')}"+'id='+orderno;
 						}, 1000);
