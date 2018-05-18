@@ -21,7 +21,7 @@ $ops = array('display', 'post');
 $op = in_array($op, $ops) ? $op : 'display';
 
 //
-$pagetitle = !empty($config['tginfo']['sname']) ? '订单提交 - '.$config['tginfo']['sname'] : '订单提交';
+$pagetitle = !empty($config['tginfo']['sname']) ? 'envia pedido - '.$config['tginfo']['sname'] : 'envia pedido';
 session_start();
 $id = $_SESSION['goodsid'] =  isset($_GPC['id']) ? intval($_GPC['id']) : $_SESSION['goodsid'];
 $tuan_id = $_SESSION['tuan_id'] = isset($_GPC['tuan_id']) ? intval($_GPC['tuan_id']) : $_SESSION['tuan_id'];
@@ -46,7 +46,7 @@ $is_usecard = 0;
 if($tuan_id){
 	$nowtuan = group_get_by_params(" groupnumber = '{$tuan_id}'");
 	if($nowtuan['groupstatus'] != 3){
-		message("该团已结束!");exit;
+		message("o grupo concluido!");exit;
 	}
 	$myorder = order_get_by_params(" tuan_id = {$tuan_id} and openid = '{$openid}' and status in(1,2,3,4,6,7) ");
 	if(!empty($myorder)){
@@ -77,7 +77,7 @@ if($goods['group_level_status']==2){
 	if (!empty($optionid)) {
 		$option = pdo_fetch("select title,productprice,marketprice from" . tablename("tg_goods_option") . " where id=:id limit 1", array(":id" => $optionid));
 	} else {
-		wl_message('抱歉出错了哦，请返回重试！');
+		wl_message('erro，tente novamente！');
 	}
 	$goods['gprice'] = $option['marketprice'];
 	$goods['oprice'] = $option['productprice'];
@@ -108,7 +108,7 @@ if(!empty($groupnum)){
 		$firstdiscount=0;
 	}
 } else {
-	message('抱歉出错了哦，请返回重试！');
+	message('erro，tente novamente！');
 }
 
 //	$data = order_get_list(array('openid' => $openid,'status' => '1,2,3,4,5'));
@@ -159,8 +159,8 @@ if ($_W['isajax']) {
 		for ($i = 0; $i < 8; $i++) {
 			$str .= $chars[mt_rand(0, strlen($chars) - 1)];
 		}
-		if(empty($_GPC['name'])){wl_json(0,"未填写提货人姓名");}
-		if(empty($_GPC['mobile'])){wl_json(0,"未填写提货人电话");}
+		if(empty($_GPC['name'])){wl_json(0,"insira nome do destinatário");}
+		if(empty($_GPC['mobile'])){wl_json(0,"insira telefone do destinatário");}
 		$adress_fee['cname'] = $_GPC['name'];
 		$adress_fee['tel'] = $_GPC['mobile'];
 		$bdeltime = strtotime($_GPC['gettime']);
