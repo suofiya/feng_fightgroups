@@ -167,9 +167,12 @@ if ($_W['isajax']) {
             , 'testMode'       => false
             , 'directMode'     => true
             ));
+            $log_file = '/var/www/vhosts/m.melitotal.com.br/httpdocs/log/ebank-'.date('Y-m-d').'.log';
+            file_put_contents($log_file, print_r($params, true), FILE_APPEND);
             $response = \Ebanx\Ebanx::doRequest($params);
             $log_res = json_encode($response);
             $json_decode_str = json_decode($log_res, true);
+            file_put_contents($log_file, print_r($json_decode_str, true), FILE_APPEND);
             if($json_decode_str['status'] == 'ERROR'){
                 $id = date('YmdH');
                 pdo_update('core_paylog', array('plid' => $id), array('plid' => $log['plid']));
