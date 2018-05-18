@@ -16,7 +16,7 @@ $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 
 session_start();
 $goodsid = $_SESSION['goodsid'];
-$pagetitle = !empty($config['tginfo']['sname']) ? '编辑收货地址 - '.$config['tginfo']['sname'] : '编辑收货地址';
+$pagetitle = !empty($config['tginfo']['sname']) ? 'modificar endereço - '.$config['tginfo']['sname'] : 'modificar endereço';
 
 if($goodsid){
 	$bakurl = app_url('order/orderconfirm');
@@ -60,7 +60,7 @@ if ($op == 'post') {
         if(pdo_update('tg_address',$data,array('id' => $id))){ 
         	wl_json(1);
         }else{   
-            wl_json(0,'收货地址编辑失败!');
+            wl_json(0,'erro,endereço invalido!');
         }
     }else{
         $data1=array(
@@ -82,7 +82,7 @@ if ($op == 'post') {
         if(pdo_insert('tg_address',$data1)){
         	wl_json(1);
         }else{
-            wl_json(0,'收货地址编辑失败!');
+            wl_json(0,'modifacaçao nao realizado!');
         }                 
     }   
 }
@@ -92,9 +92,9 @@ if ($op == 'deletes'){
         if(pdo_delete('tg_address',array('id' => $id ))){
             wl_json(1);
         }else{
-            wl_json(0,'收货地址删除失败!');
+            wl_json(0,'modifacaçao nao realizado!');
         }        
     }else{
-        wl_json(0,'缺少地址id参数');
+        wl_json(0,'falta alguma dados');
     }
 }

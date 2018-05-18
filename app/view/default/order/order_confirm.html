@@ -9,16 +9,11 @@
 				    <div class="content-block" style="background-color: white;margin: 0;">
 			          <div class="buttons-row" style="margin-top: .9rem;padding-bottom: 0.5rem;">
 			            <a href="#tab1-1" class="tab-link button active" id="express" typeid="1">快递配送</a>
-			            <a href="#tab1-2" class="tab-link button" id="bdelete" typeid="2">到店核销</a>
 			          </div>
 			        </div>
 			        {elseif $goods['is_hexiao']==0}
 			          <div class="buttons-row" style="display: none;">
 			            <a href="#tab1-1" class="tab-link button active" id="express" typeid="3"></a>
-			          </div>
-			        {elseif $goods['is_hexiao']==2}
-			          <div class="buttons-row" style="display: none;">
-			            <a href="#tab1-1" class="tab-link button active" id="express" typeid="4"></a>
 			          </div>
 			        {/if}
 			        <div class="tabs">
@@ -43,43 +38,6 @@
 						        </div>
 			                {/if}
 			            </div>
-			            <div class="tab {if $goods['is_hexiao']==2}active{/if}" id="tab1-2">
-			            	<div class="orderconfirm-tip">您选择的是到店核销，商户不负责商品配送。请仔细填写提货信息，订单免运费。</div>
-			            	<div class="list-block" style="margin:0;padding-top: .5rem;background-color: white;">
-						      <ul>
-						        <li>
-						          <div class="item-content">
-						            <div class="item-inner">
-						              <div class="item-title label">收货人：</div>
-						              <div class="item-input">
-						                <input type="text" id="cnee" value="{$adress_fee['cname']}" placeholder="请输入您的姓名">
-						              </div>
-						            </div>
-						          </div>
-						        </li>
-						        <li>
-						          <div class="item-content">
-						            <div class="item-inner">
-						              <div class="item-title label">联系电话：</div>
-						              <div class="item-input">
-						                <input type="text" id="mobile" value="{$adress_fee['tel']}" placeholder="请输入您的联系电话">
-						              </div>
-						            </div>
-						          </div>
-						        </li>
-						        <!--<li>
-						          <div class="item-content">
-						            <div class="item-inner">
-						              <div class="item-title label">核销日期：</div>
-						              <div class="item-input">
-						                <input type="date" id="gettime" placeholder="取货或消费日期" value="{php echo date('Y-m-d',time());}">
-						              </div>
-						            </div>
-						          </div>
-						        </li>-->
-						      </ul>
-						    </div>
-			            </div>
 			        </div>
 			        <div class="dt_commodity_info">
 			            <dl class="commodity_info">
@@ -93,7 +51,7 @@
 			            		<div class="price">¥{$price} x {$num}</div>
 			            	</dd>
 			            </dl>
-			            <div class="item"><span class="attname">运费：</span><span class="attval" id="freight">{if $freight}￥{$freight}{else}包邮{/if}</span></div>
+			            <div class="item"><span class="attname">运费：</span><span class="attval" id="freight">{if $freight}R$ {$freight}{else}包邮{/if}</span></div>
 			            {if $firstdiscount && $tuan_first==1}
 			            <div class="item"><span class="attname">团长优惠：</span><span class="attval">{$firstdiscount}元</span></div>
 			           	{/if}
@@ -213,7 +171,7 @@
 						return false;
 					}
 					if(!mobile){
-						$.toast('请输入您的手机号码');
+						$.toast('insira seu numero do telefone');
 						return false;
 					}
 //					if(!gettime){
