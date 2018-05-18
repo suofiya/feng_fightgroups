@@ -24,7 +24,7 @@
 			    		<h2 style="padding-top: 10px;">{$goods['gname']}</h2>
 			    		<div class="editor">{$goods['gdesc']}</div>
 			    	</div>
-			    	<div class="salesVolume" style="display: block;"><span style="float: left;">preço de mercado：￥{$goods['mprice']}</span>ja foi vendido：{$goods['salenum']}{$goods['unit']}</div>
+			    	<div class="salesVolume" style="display: block;"><span style="float: left;">preço de mercado：R$ {$goods['mprice']}</span>{$goods['salenum']} vendidos</div>
 			    	<div class="progressOuter noShow"><span class="suc_tuan">agrupada</span>
 			    	<div class="progress"><div class="percent"></div></div><span class="total_tuan">junto com grupo</span></div>
 			    	<div class="playTips">pague e participe do grupo e compartilhe com os amigos，devoluçao automáticamente caso participantes insuficiente，segue abaixo a forma de compras do grupo</div>
@@ -67,35 +67,13 @@
 	                    <div class="sales">{$goods['salenum']} vendidos</div>
 	                </div>
 	                <div class="enter_button">
-	                    <img src="http://pinduoduo.b0.upaiyun.com/mall/mall_icon_small.png">
+	                    <img src="/addons/feng_fightgroups/app/resource/images/mall_icon_small.png">
 	                    <span>acesse á loja</span>
 	                </div>
 	            </div>
 	            </a>
 	            {/if}
 	            
-	            <!--门店-->
-	            {if $goods['is_hexiao'] != 0}
-				<div class="good_speci" onclick="showStores(this)" show="1">Informações comerciais<i class="fa fa-angle-down" style="float:right; line-height:44px; font-size:26px;"></i></div>
-	  			<div>
-		  			{loop $stores $stores}
-			        <div class="store">
-			            <div class="info">
-			            <div class="ico"><i class="fa fa-university"></i></div>
-			            <div class="info1">
-			                <div class="inner">
-			                     <div class="user">{$stores['storename']}</div>
-			                     <div class="addresss">endereço: {$stores['address']}</div>
-			                     <div class="tel">telefone: {$stores['tel']}</div>
-			                 </div>
-			             </div>
-			             <a href="http://api.map.baidu.com/marker?location={$stores['lat']},{$stores['lng']}&amp;title={$stores['storename']}&amp;name={$stores['storename']}&amp;content={$stores['address']}&amp;output=html" class="external"><div class="ico2"><i class="fa fa-map-marker"></i></div></a>
-			             <a href="tel:{$stores['tel']}" class="disable-router"><div class="ico3"><i class="fa fa-phone"></i></div></a>
-			        	</div>
-			        </div>
-					{/loop}
-		       	</div>
-		       	{/if}
 		       	
 		       	<!--分享团-->
 		       	{if !empty($thistuan)}
@@ -108,7 +86,7 @@
 						<div class="ht_item">
 							<div class="ht_avatar"><img src="{$tuan['avatar']}" alt="imagem do criador"></div>
 							<div class="ht_info"><div class="ht_name">{$tuan['nickname']}</div><div class="ht_time">horario de criaçao：{php echo date('Y-m-d H:i:s', $tuan['starttime']);}</div></div>
-							<a href="{php echo app_url('order/group',array('tuan_id'=>$tuan['groupnumber']));}" class="ht_btn" ptag="20400.7.1"><span class="ht_price"><i>￥</i>{if !empty($tuan['price'])}{$tuan['price']}{else}{$goods['gprice']}{/if} / {$goods['unit']}</span><span class="ht_btn_go">falta{$tuan['lacknum']pessoa conclui o grupo，participar agora 》</span></a>
+							<a href="{php echo app_url('order/group',array('tuan_id'=>$tuan['groupnumber']));}" class="ht_btn" ptag="20400.7.1"><span class="ht_price"><i>R$</i>{if !empty($tuan['price'])}{$tuan['price']}{else}{$goods['gprice']}{/if} / {$goods['unit']}</span><span class="ht_btn_go">falta{$tuan['lacknum']pessoa conclui o grupo，participar agora 》</span></a>
 						</div>
 						{/loop}
 						</div>
@@ -164,7 +142,7 @@
 	                </section>
 	                <section class="section_detail on" data-role="widget" data-widget="img_prev_view">
 	                    <div id="description" class="J_DetailSection tshop-psm tshop-psm-bdetaildes" style="margin:0px;padding:0px;">
-	                        <div class="ke-post" style="margin:10px 0px 0px;padding:0px;font-size:14px;font-family:tahoma, arial, 宋体, sans-serif;">
+	                        <div class="ke-post" style="margin:10px 0px 0px;padding:0px;font-size:14px;font-family:tahoma, arial,sans-serif;">
 	                            {$goods['gdetaile']}
 	                        </div>
 	                    </div>
