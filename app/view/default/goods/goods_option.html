@@ -5,8 +5,8 @@
              <img id="chooser_img" src="{php echo tomedia($goods['gimg']);}">
          </div>
          <div class="right">
-               	<div class="price" id="option_opricee">￥<span id="option_oprice">escolher especificações</span></div>
-               	<div class="price" id="option_gpricee">￥<span id="option_gprice">escolher especificações</span></div>
+               	<div class="price" id="option_opricee">R$ <span id="option_oprice">escolher especificações</span></div>
+               	<div class="price" id="option_gpricee">R$ <span id="option_gprice">escolher especificações</span></div>
         		<span id='stockcontainer' class="stock" style="float:left;margin-left:5px;"></span>
          </div>
         <div class="close" onclick="closechoose()"><i class="fa fa-remove-o"></i></div>
@@ -14,7 +14,7 @@
     <div class="other">
     	{loop $specs $spec}
    	 	<input type='hidden' name="optionid[]" class='optionid optionid_{$spec['id']}' value="" title="{$spec['title']}">
-        <div class="spec" style='float:left;display:block;height:30px;line-height:30px;overflow:hidden;text-overflow:ellipsis;margin-left:10px;padding:0'>{$spec['title']}</div>
+        <div class="spec" style='float:left;display:block;height:30px;line-height:30px;overflow:hidden;text-overflow:ellipsis;margin-left:10px;'>{$spec['title']}</div>
             <span style="float:left;margin-left:8px;" class='spec_items options options_{$spec['id']}' specid='{$spec['id']}'>
             {loop $spec['items'] $o}
             <span class="property option option_{$spec['id']}" specid='{$spec['id']}' oid="{$o['id']}" sel='false'>{$o['title']}</span>
