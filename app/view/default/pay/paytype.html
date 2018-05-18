@@ -27,7 +27,7 @@
 		              	<div class="item-subtitle" style="color: #ccc;font-size: 12px;">{$order['addname']},{$order['mobile']}<br>{$order['address']}</div>
 		              	<div class="item-title-row">
 		                	<div class="item-title c-orange">R$ {$order['pay_price']}</div>
-		                	<div class="item-after"><a href="{$goods['a']}" class="weui_btn weui_btn_mini weui_btn_default">查看商品</a></div>
+		                	<div class="item-after"><a href="{$goods['a']}" class="weui_btn weui_btn_mini weui_btn_default">detalhe do produto</a></div>
 		              	</div>
 		            </div>
 		        </li>
@@ -39,9 +39,9 @@
 	    	</div>
 			
 	    	<div class="weui_extra_area">
-		        <a href="{php echo app_url('goods/list')}">返回首页</a>
+		        <a href="{php echo app_url('goods/list')}">volta para menu</a>
 		        <a href="javascript:">&nbsp;&nbsp; ▏ </a>
-		        <a href="{php echo app_url('order/order')}">订单列表</a>
+		        <a href="{php echo app_url('order/order')}">lista de pedido</a>
 		    </div>
 		</div>
 	</div>
@@ -53,7 +53,7 @@
 		'use strict';
 		$(document).on("pageInit", "#page-pay", function(e, id, page) {
 			{if $activity_used}
-			$.confirm('该订单优惠券已无法使用,已为您恢复原价.',
+			$.confirm('desconto indisponivel,preço normal.',
 		        function () {
 		        },
 		        function () {
@@ -67,7 +67,7 @@
 				var othername = $('#othername').val()?$('#othername').val():'';
 				$.post("{php echo app_url('pay/paytype')}",{orderno:orderno,remark:remark,othername:othername,op:"ajax",checkpay:"9"},function(m){
 				 	if(m.errno==1){
-				 		$.confirm('该团已结束,是否重新开团？',
+				 		$.confirm('o grupo concluído,quer monte novo grupo？',
 					        function () {
 					        	location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
 					        },
@@ -92,7 +92,7 @@
 					        }
 					    );
 				 	}else if(m.errno==4){
-				 		$.confirm('您还未关注,不能购买.',
+				 		$.confirm('voce ainda nao curti,nao pode comprar.',
 					        function () {
 					        },
 					        function () {
@@ -116,7 +116,7 @@
 										location.href = "{php echo app_url('pay/cash')}&orderno="+orderno+"&paytype="+paytype+"&done=1";
 									} else {
 										$.post("{php echo app_url('pay/paytype')}",{orderno:orderno,remark:remark,othername:othername,op:"ajax",checkpay:"8"},function(m){
-										 	$.toast("已取消支付");
+										 	$.toast("pagamento cancelado");
 										},"json");
 									}
 								});
@@ -135,7 +135,7 @@
                 var othername = $('#othername').val()?$('#othername').val():'';
                 $.post("{php echo app_url('pay/paytype')}",{orderno:orderno,remark:remark,othername:othername,op:"ajax",checkpay:"9"},function(m){
                     if(m.errno==1){
-                        $.confirm('该团已结束,是否重新开团？',
+                        $.confirm('o grupo concluído,clique monte novo grupo？',
                                 function () {
                                     location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
                                 },
@@ -160,7 +160,7 @@
                                 }
                         );
                     }else if(m.errno==4){
-                        $.confirm('您还未关注,不能购买.',
+                        $.confirm('voce ainda nao curti,nao pode comprar.',
                                 function () {
                                 },
                                 function () {
