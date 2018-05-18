@@ -13,24 +13,24 @@
 					</div>
 					<div class="text-center promote-limit js-is-at-least">
 						{if !empty($coupon['at_least']) && $coupon['at_least'] != 0.00}
-						订单满 <span class="js-at-least">  {$coupon['at_least']} </span>元 (不含运费)
+						compra a cima de<span class="js-at-least">  {$coupon['at_least']} </span>R$(não incluir valor de frete)
 						{else}
-							不限制
+							permanente
 						{/if}
 					</div>
 					<div class="text-center promote-time">
-						有效日期：<span class="js-start-time"> {php echo date('Y-m-d H:i:s', $coupon['start_time']);} </span> - <span class="js-end-time"> {php echo date('Y-m-d H:i:s', $coupon['end_time']);} </span>
+						data de vencimento：<span class="js-start-time"> {php echo date('Y-m-d H:i:s', $coupon['start_time']);} </span> - <span class="js-end-time"> {php echo date('Y-m-d H:i:s', $coupon['end_time']);} </span>
 					</div>
 					<div class="dot"></div>
 				</div>
 				<div class="promote-desc">
-					<div class="promote-desc-title">使用说明</div>
+					<div class="promote-desc-title">manual/instruções de uso</div>
 					<div class="desc-detail js-description">
 						{$coupon['description']} 										
 					</div>
 				</div>
 				<div class="weui_btn_area">
-		        	<div class="weui_btn weui_btn_primary" href="javascript:" id="getcoupon">领取优惠券</div>
+		        	<div class="weui_btn weui_btn_primary" href="javascript:" id="getcoupon">receber cupom</div>
 		    	</div>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 			$content.on('click','#getcoupon',function () {				
 				$.post("{php echo app_url('member/coupon/post',array('id'=>$id))}",{},function(d){
 					if(d.status == 1){
-						$.alert('优惠券领取成功', function () {
+						$.alert('´receber cupom com sucesso', function () {
 					        location.href = "{php echo app_url('member/coupon')}";
 					    });
 					}else{
