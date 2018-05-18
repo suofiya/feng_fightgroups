@@ -25,24 +25,24 @@
         <div class="H5_con" id="H5_con1">
 	    <div class="tips topStateWrap tips_succ tips_succ2" id="originTopWrap">
 			<div class="tips_ico"></div>
-			<div class="tips_tit">组团进行中</div>
-			<div class="tips_txt">赶快召唤小伙伴加入吧！</div>
+			<div class="tips_tit">esta em aberto</div>
+			<div class="tips_txt">convite mais participante！</div>
 		</div>
    		</div>
    		{elseif $tuaninfo['groupstatus']==2}
    		<div class="H5_con" id="H5_con1">
         <div class="tips topStateWrap tips_succ tips_succ2" id="originTopWrap">
             <div class="tips_ico"></div>
-            <div class="tips_tit">团购成功</div>
-            <div class="tips_txt">我们会尽快为您发货，请耐心等待</div>
+            <div class="tips_tit">grupo concluido</div>
+            <div class="tips_txt">aguarde seu produto será postado mais rápido possível</div>
         </div>
         </div>
         {else}
         <div class="H5_con" id="H5_con1">
         <div class="tips topStateWrap tips_err tips_succ2" id="originTopWrap">
             <div class="tips_ico"></div>
-            <div class="tips_tit">团购失败</div>
-            <div class="tips_txt">组团失败，不要气馁重新再来！</div>
+            <div class="tips_tit">grupo cancelado</div>
+            <div class="tips_txt">grupo cancelado，tente novamente！</div>
         </div>
         </div>
         {/if}
@@ -54,8 +54,8 @@
                     </div>
                     <div class="td_info">
                         <p class="td_name">{$goods['gname']}</p>
-                        <p class="td_mprice"><span class="tuanTotal">{$tuaninfo['neednum']}</span>人团：<i>￥</i><b>{if !empty($tuaninfo['price'])}{$tuaninfo['price']}{else}{$goods['gprice']}{/if}</b><i> /件</i></p>
-                        <p class="td_attr" style="display: none;">属性：<span></span></p>
+                        <p class="td_mprice"><span class="tuanTotal">{$tuaninfo['neednum']}</span>pessoa por grupo：<i>￥</i><b>{if !empty($tuaninfo['price'])}{$tuaninfo['price']}{else}{$goods['gprice']}{/if}</b><i> /件</i></p>
+                        <p class="td_attr" style="display: none;">Caracteristicas：<span></span></p>
                         <p><a class="goItemPage td_lk external" href="{php echo app_url('goods/detail', array('id' => $goods['id'],'tuan_id'=>$tuan_id))}">查看详情</a></p>
                         <p class="td_num"></p>
                     </div>
@@ -71,18 +71,18 @@
                 <a href="#" class="pp_users_item pp_users_normal"><img src="{TG_URL_ARES}images/avatar.png"></a>
                 {/loop}
             	{if $tuaninfo['groupstatus']!=2}
-            	<div class="pp_tips" id="flag_0_a">还差<b>{$tuaninfo['lacknum']}</b>人，盼你如南方人盼暖气</div>
+            	<div class="pp_tips" id="flag_0_a">falta<b>{$tuaninfo['lacknum']}</b>pessoa，convite!!</div>
             	{/if}
             </div>
-            {if $tuaninfo['groupstatus']==2}<div class="pp_tips">对于诸位大侠的相助，团长感激涕零</div>{/if}
+            {if $tuaninfo['groupstatus']==2}<div class="pp_tips">agradecemos todos participantes!</div>{/if}
             
             <div class="pp_state">
             	{if $tuaninfo['groupstatus']==3}
                 <div class="pp_time"></div>
                 {elseif $tuaninfo['groupstatus']==2}
-                <div class="pp_state_txt">团购成功，我们将尽快发货</div>
+                <div class="pp_state_txt">grupo concluido，nos enivaremos os produto mais rapido posivel我们将尽快发货</div>
                 {else}
-                <div class="pp_state_txt">团购失败，召唤小伙伴失败</div>
+                <div class="pp_state_txt">grupo cancelado，Que pena，tente novamente</div>
                 {/if}
             </div>
             <div class="pp_list">
@@ -100,10 +100,10 @@
             	</div>
         	</div>
         	<div class="pp_state">
-                <div class="pp_state_txt" onclick="$('.m-detail-record').toggle();" style="background-color: white;">查看更多</div>
+                <div class="pp_state_txt" onclick="$('.m-detail-record').toggle();" style="background-color: white;">mer mais</div>
             </div>
         <div class="m-detail-record" style="display: none;">
-            <div class="w-bar">参团记录 <span class="w-bar-hint">(自{php echo date('m-d H:i', $tuaninfo['starttime'])}开团)</span></div>
+            <div class="w-bar">historico de particapaçao em grupos<span class="w-bar-hint">(自{php echo date('m-d H:i', $tuaninfo['starttime'])}开团)</span></div>
                 <div class="m-detail-record-wrap">
 	                <div id="pro-view-4">
 	                <ul class="m-detail-record-list" data-pro="entry" id="morelist">
@@ -122,12 +122,12 @@
    		</div>
         
         <section class="stepGuild">
-	        <div class="step_tit"><i></i>拼团玩法<span><a href="{php echo app_url('home/rule');}">查看详情&gt;</a></span></div>
+	        <div class="step_tit"><i></i>forma de compra com grupo<span><a href="{php echo app_url('home/rule');}">ver detalhes&gt;</a></span></div>
 	        <div class="step_flow">
-	            <div class="step_item step_item_on"><span class="step_num">1</span><span>选择<br>心仪商品</span></div>
-	            <div class="step_item"><span class="step_num">2</span><span class="steps">支付开团<br>或参团</span></div>
-	            <div class="step_item"><span class="step_num">3</span><span class="steps">邀请好友<br>参团支付</span></div>
-	            <div class="step_item"><span class="step_num">4</span><span class="steps">达到人数<br>团购成功</span></div>
+	            <div class="step_item step_item_on"><span class="step_num">1</span><span>selecione<br>produto favorecido</span></div>
+	            <div class="step_item"><span class="step_num">2</span><span class="steps">pague e monte grupo<br>ou participa grupo de outro participante</span></div>
+	            <div class="step_item"><span class="step_num">3</span><span class="steps">convite os amigos<br>para participa</span></div>
+	            <div class="step_item"><span class="step_num">4</span><span class="steps">numero de participante concluído<br>compras do grupo com sucesso</span></div>
 	        </div>
 	    </section>
     </div>
@@ -144,7 +144,7 @@
             {if !empty($myorder)}
                 {if $tuaninfo['groupstatus']==3}
                 <span style="display:block;float:left;width: 80%;margin-left: 5px;">
-                <button style="fllow:left;width: 100%;" onclick="_system._guide(true)">快邀请好友参团吧</button> 
+                <button style="fllow:left;width: 100%;" onclick="_system._guide(true)">convite os amigos</button> 
                 </span>
                 <span style="display:block;float:right;width: 15%;">
                  <button style="width: 90%;"><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home" style="color: white;"></i>
@@ -154,11 +154,11 @@
                 <span style="display:block;float:left;width: 80%;margin-left: 5px;">
 	            	{if $goods['hasoption']!=1}
 	             <a href="{php echo app_url('order/orderconfirm',array('groupnum'=>$tuaninfo['neednum'],'id'=>$goods['id'],'newtuan'=>'newtuan'));}" class="external">
-	            <button style="fllow:left;width: 100%;">团购已结束,点击新开一团</button> 
+	            <button style="fllow:left;width: 100%;">grupo concluído,clique monte novo grupo</button> 
 	           	</a>
 	           	{else}
 	           	<a href="">
-	            <button style="fllow:left;width: 100%;">团购已结束</button> 
+	            <button style="fllow:left;width: 100%;">grupo concluído</button> 
 	           	</a>
 	           	{/if}
 	            </span>
@@ -175,7 +175,7 @@
 	           		{else}
 	           			 <a href="{php echo app_url('order/orderconfirm',array('id' => $goods['id'],'tuan_id' => $tuan_id,'groupnum'=>$tuaninfo['neednum']));} " class="external">
 	           		{/if}
-	           <button style="fllow:left;width: 100%;">我要参团</button> 
+	           <button style="fllow:left;width: 100%;">eu quero participar</button> 
 	            </a>
 	            </span>
 	            <span style="display:block;float:right;width: 15%;">
@@ -187,11 +187,11 @@
 	            <span style="display:block;float:left;width: 80%;margin-left: 5px;">
 	            	{if $goods['hasoption']!=1}
 	             <a href="{php echo app_url('order/orderconfirm',array('groupnum'=>$tuaninfo['neednum'],'id'=>$goods['id'],'newtuan'=>'newtuan'));}" class="external">
-	            <button style="fllow:left;width: 100%;">团购已结束,点击新开一团</button> 
+	            <button style="fllow:left;width: 100%;">grupo concluído,clique monte novo grupo</button> 
 	           	</a>
 	           	{else}
 	           	<a href="">
-	            <button style="fllow:left;width: 100%;">团购已结束</button> 
+	            <button style="fllow:left;width: 100%;">grupo concluído</button> 
 	           	</a>
 	           	{/if}
 	            </span>
@@ -223,7 +223,7 @@ $(document).ready(function(){
             hh=parseInt((lefttime/3600));
             mm=parseInt((lefttime/60)%60);
             ss=parseInt(lefttime%60);
-            $(".pp_time").html('剩余<span id="ti_time_hour">'+hh+'</span>:<span id="ti_time_min">'+mm+'</span>:<span id="ti_time_sec">'+ss+'</span>结束');
+            $(".pp_time").html('disponivel<span id="ti_time_hour">'+hh+'</span>:<span id="ti_time_min">'+mm+'</span>:<span id="ti_time_sec">'+ss+'</span>finalizado');
             $('#progressbar').css("width",bar_width);
         }else{
             
