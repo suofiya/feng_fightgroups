@@ -10,7 +10,7 @@ wl_load()->model('goods');
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 
 if($op =='display'){
-	$pagetitle = !empty($config['tginfo']['sname']) ? '首页 - '.$config['tginfo']['sname'] : '首页';
+	$pagetitle = !empty($config['tginfo']['sname']) ? 'menu - '.$config['tginfo']['sname'] : 'menu';
 	$cid = intval($_GPC['gid']);
 	
 	$advs = pdo_fetchall("select * from " . tablename('tg_adv') . " where enabled = 1 and uniacid = '{$_W['uniacid']}'");
