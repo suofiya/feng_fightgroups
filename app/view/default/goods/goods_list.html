@@ -36,7 +36,7 @@
 					</div>
 					<div class="m-list-catlog" style="display: none;">
 						<ul class="m-list-catlog-list">
-							<li class="selected"><a href="{php echo $this->createMobileUrl('allgoods');}"><i class="ico ico-type ico-type-0"></i>全部商品</a></li>
+							<li class="selected"><a href="{php echo $this->createMobileUrl('allgoods');}"><i class="ico ico-type ico-type-0"></i>Todos</a></li>
 							{loop $category $item}
 							<li onclick="chooseParent('{$item['name']}',this);"><a><i class="{$item['thumb']}" style="font-size: 16px;"></i>&nbsp;{$item['name']}</a></li>
 							{/loop}
@@ -115,26 +115,7 @@
 	        <div class="error">erro，tentar novamente</div>
 	        <div class="noData">Carga completa</div>
 	    </div>
-	    <div class="mask"></div>
-	    <div class="dialog">
-	        <h5>可配送地区</h5>
-	        <div class="zone">
-	            <i></i>
-	            <p>全国发货</p>
-	            <div>全国大部分区域</div>
-	        </div>
-	        <p class="advance" style="display: block;">华东区，华南区，华中区，<br>西北区，西南区，东北区，<br>更多地区玩命开通中</p>
 	    </div>
-		<div class="bg_layer" style="height: 6672px; opacity: 0; display: none;"></div>
-		<div class="dialog_box" style="top: 308px; opacity: 0; display: none;">
-			<div class="zoneList"><h4>选择地区</h4><div class="zoneOuter">
-				<ul>
-					<li class="noBorder " data-actid="3"><div><h5>华北地区</h5><p>北京 天津 河北 山东 山西</p></div></li>
-					<li class="noBorder selected" data-actid="15"><div><h5>全国发货</h5><p>全国大部分区域</p></div></li>
-				</ul>
-			</div></div>
-		</div>
-		</div>
 		
 		{php include wl_template('common/footerbar');}
 	</div>
@@ -157,7 +138,7 @@
 		</ul>
 		{{# } }}
 		</div>
-		<div class="txt"><h5>{{ d.list[i].gname }}</h5><p>{{ d.list[i].gdesc }}</p></div><div class="fnWrap"><div class="fnZone"><i></i><span><b class="price">R$ {{ d.list[i].gprice }}</b><b class="people">{{ d.list[i].groupnum }}人团</b></span><span class="btn">去开团 &gt;</span></div>
+		<div class="txt"><h5>{{ d.list[i].gname }}</h5></div><div class="fnWrap"><div class="fnZone"><i></i><span><b class="price">R$ {{ d.list[i].gprice }}</b><b class="people">{{ d.list[i].groupnum }}人团</b></span><span class="btn">去开团 &gt;</span></div>
 		</div>
 	</a>
 </li>
