@@ -56,7 +56,7 @@
                         <p class="td_name">{$goods['gname']}</p>
                         <p class="td_mprice"><span class="tuanTotal">{$tuaninfo['neednum']}</span>pessoa por grupo：<i>￥</i><b>{if !empty($tuaninfo['price'])}{$tuaninfo['price']}{else}{$goods['gprice']}{/if}</b><i> /件</i></p>
                         <p class="td_attr" style="display: none;">Caracteristicas：<span></span></p>
-                        <p><a class="goItemPage td_lk external" href="{php echo app_url('goods/detail', array('id' => $goods['id'],'tuan_id'=>$tuan_id))}">查看详情</a></p>
+                        <p><a class="goItemPage td_lk external" href="{php echo app_url('goods/detail', array('id' => $goods['id'],'tuan_id'=>$tuan_id))}">ver detalhes</a></p>
                         <p class="td_num"></p>
                     </div>
                 </div>
@@ -80,7 +80,7 @@
             	{if $tuaninfo['groupstatus']==3}
                 <div class="pp_time"></div>
                 {elseif $tuaninfo['groupstatus']==2}
-                <div class="pp_state_txt">grupo concluido，nos enivaremos os produto mais rapido posivel我们将尽快发货</div>
+                <div class="pp_state_txt">grupo concluido，nos enivaremos os produto mais rapido posivel</div>
                 {else}
                 <div class="pp_state_txt">grupo cancelado，Que pena，tente novamente</div>
                 {/if}
@@ -90,7 +90,7 @@
                 	{php $onum=1;}
                 	{loop $orders $or}
                     <div class="pp_list_item">
-                        <img src="{$or['avatar']}" class="pp_list_avatar"><div class="pp_list_info"><span class="pp_list_name">{if $onum==1}团长{/if}<b>{$or['nickname']}</b>{if $onum==1}发话{else}驾哈雷赶到{/if}</span><span class="pp_list_time">{php echo date('m-d H:i', $tuaninfo['starttime'])}{if $onum==1}开团{else}参团{/if}</span></div><div class="pp_list_words">{if $onum==1}好货不容留，快来跟我一起抢。{else}立马参团，有钱就是任性。{/if}</div>     
+                        <img src="{$or['avatar']}" class="pp_list_avatar"><div class="pp_list_info"><span class="pp_list_name">{if $onum==1}adiministrador{/if}<b>{$or['nickname']}</b>{if $onum==1}发话{else}驾哈雷赶到{/if}</span><span class="pp_list_time">{php echo date('m-d H:i', $tuaninfo['starttime'])}{if $onum==1}开团{else}参团{/if}</span></div><div class="pp_list_words">{if $onum==1}好货不容留，快来跟我一起抢。{else}立马参团，有钱就是任性。{/if}</div>     
                     </div>
                     {if $onum==2}
                     {php break;}
@@ -103,7 +103,7 @@
                 <div class="pp_state_txt" onclick="$('.m-detail-record').toggle();" style="background-color: white;">mer mais</div>
             </div>
         <div class="m-detail-record" style="display: none;">
-            <div class="w-bar">historico de particapaçao em grupos<span class="w-bar-hint">(自{php echo date('m-d H:i', $tuaninfo['starttime'])}开团)</span></div>
+            <div class="w-bar">historico de particapaçao em grupos<span class="w-bar-hint">(de{php echo date('m-d H:i', $tuaninfo['starttime'])}monte grupo)</span></div>
                 <div class="m-detail-record-wrap">
 	                <div id="pro-view-4">
 	                <ul class="m-detail-record-list" data-pro="entry" id="morelist">
