@@ -3,15 +3,15 @@
     <div class="page page-current" id="page-coupon-list">
     	<header class="bar bar-nav">
 		    <a class="button button-link button-nav pull-left back" href="{php echo app_url('member/home')}">
-		      <span class="icon icon-left"></span>返回
+		      <span class="icon icon-left"></span>volte
 		    </a>
-		    <h1 class="title">我的优惠券</h1>
+		    <h1 class="title">meu cupom</h1>
 		</header>
 		<div class="content native-scroll">
 		    <div class="buttons-tab">
-		      <a href="#tab1" class="tab-link button active">未使用</a>
-		      <a href="#tab2" class="tab-link button">已使用</a>
-		      <a href="#tab3" class="tab-link button">已过期</a>
+		      <a href="#tab1" class="tab-link button active">disponivel</a>
+		      <a href="#tab2" class="tab-link button">usado</a>
+		      <a href="#tab3" class="tab-link button">vencido</a>
 		    </div>
 		    <div class="tabs">
 		      <div id="tab1" class="tab active">
@@ -47,8 +47,8 @@
     </div>
   </div>
   <div class="card-footer">
-    <span>截止时间：{{ d[i].end_time }}</span>
-    <span style="display: flex;"><a href="{php echo app_url('member/coupon/detail')}id={{ d[i].id }}" class="weui_btn weui_btn_mini weui_btn_default external">查看详情</a></span>
+    <span>tempo limite：{{ d[i].end_time }}</span>
+    <span style="display: flex;"><a href="{php echo app_url('member/coupon/detail')}id={{ d[i].id }}" class="weui_btn weui_btn_mini weui_btn_default external">ver detalhes</a></span>
   </div>
 </div>
 {{# } }}
@@ -58,7 +58,7 @@ $(function () {
   'use strict';
 	$(document).on("pageInit", "#page-coupon-list", function(e, id, page) {
 		var gettpl = document.getElementById('couponlist').innerHTML;
-		var emphtml = '<div class="m-cart" id="s"><div class="empty" id="pro-view-6">暂无优惠券，<a href="{php echo app_url('goods/index')}" class="external">马上去逛逛~</a></div></div>';
+		var emphtml = '<div class="m-cart" id="s"><div class="empty" id="pro-view-6">até momento cupom indisponivel，<a href="{php echo app_url('goods/index')}" class="external">continuar comprar~</a></div></div>';
 		laytpl(gettpl).render({php echo json_encode($coupon3)}, function(html){
 			if(html.length < 10){
 				$("#tab1").append(emphtml);
