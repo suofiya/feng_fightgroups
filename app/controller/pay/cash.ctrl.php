@@ -14,11 +14,11 @@
 		$order = order_get_by_params(" orderno = '{$_GPC['orderno']}' ");
 		$goods = goods_get_by_params(" id = {$order['g_id']} ");
 	}else{
-		$message = "参数错误，缺少订单号.";
+		$message = "erro，falta numero do pedido.";
 		die(json_encode(array('errno'=>1,'message'=>$message)));
 	}
 	if($order['pay_price'] <= 0) {
-		$message = "支付金额错误,支付金额需大于0元.";
+		$message = "pagamento nao provado,tem que acima do R$0.00.";
 		die(json_encode(array('errno'=>1,'message'=>$message)));
 	}
 	$params['tid'] = $_GPC['orderno'];
@@ -89,7 +89,7 @@ if ($_W['isajax']) {
 	}
 	$setting = uni_setting($_W['uniacid'], array('payment', 'creditbehaviors'));
 	if(!is_array($setting['payment'])) {
-		$message = "没有有效的支付方式, 请联系网站管理员.";
+		$message = "FORMA DE PAGAMENTO INVALIDO, CONTATE-NOS.";
 		die(json_encode(array('errno'=>1,'message'=>$message)));
 	}
 	if (empty($_W['member']['uid'])) {
@@ -104,7 +104,7 @@ if ($_W['isajax']) {
 	if($setting['payment']['card']['switch'] == 3 && $_W['member']['uid']) {}
 	/*tg卡券*/
 	if(empty($params) || !array_key_exists($params['module'], $moduels)) {
-		message('访问错误.');
+		message('erro ao acesso.');
 	}
 	$dos = array();
 	if(!empty($setting['payment']['credit']['switch'])) {
@@ -118,7 +118,7 @@ if ($_W['isajax']) {
 	}
 	$type = in_array($_GPC['paytype'], $dos) ? $_GPC['paytype'] : '';
 	if(empty($type)) {
-		$message = "支付方式错误,请联系商家";
+		$message = "FORMA DE PAGAMENTO INVALIDO, CONTATE-NOS";
 		die(json_encode(array('errno'=>1,'message'=>$message)));
 	}
 	if(!empty($type)) {
@@ -129,7 +129,7 @@ if ($_W['isajax']) {
 		$pars[':tid'] = $params['tid'];
 		$log = pdo_fetch($sql, $pars);
 		if(!empty($log) && $type != 'credit' && $log['status'] != '0') {
-			$message = "这个订单已经支付成功, 不需要重复支付.!";
+			$message = "esse pedido ja foi pago.!";
 			die(json_encode(array('errno'=>0,'message'=>$message)));
 		}
 		$moduleid = pdo_fetchcolumn("SELECT mid FROM ".tablename('modules')." WHERE name = :name", array(':name' => $params['module']));
@@ -160,15 +160,15 @@ if ($_W['isajax']) {
 					$id = date('YmdH');
 					pdo_update('core_paylog', array('plid' => $id), array('plid' => $log['plid']));
 					pdo_query("ALTER TABLE ".tablename('core_paylog')." auto_increment = ".($id+1).";");
-					message("抱歉，发起支付失败，系统已经修复此问题，请重新尝试支付。");
+					message("Desculpa，pagamento nao aprovado,foi erro do sistema,tente mais tarde。");
 				}
-				$message = "抱歉，发起支付失败，具体原因为：“{$wOpt['errno']}:{$wOpt['message']}”。请及时联系站点管理员。";
+				$message = "Desculpa，pagamento nao aprovado，motivo：“{$wOpt['errno']}:{$wOpt['message']}”。contate-nos。";
 				die(json_encode(array('errno'=>0,'message'=>$message)));
 			}
 		
 		}
 	}
-	$message = "支付成功!";
+	$message = "pagamento com sucesso!";
 	die(json_encode(array('errno'=>0,'message'=>$message,'data'=>$wOpt)));
 }
 ?>
