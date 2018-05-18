@@ -19,7 +19,7 @@ $_SESSION['tuan_id']='';
 $_SESSION['groupnum']='';
 $op = $_GPC['op'];
 $content = '';
-$pagetitle = !empty($config['tginfo']['sname']) ? '我的团 - '.$config['tginfo']['sname'] : '我的团';
+$pagetitle = !empty($config['tginfo']['sname']) ? 'meu grupos - '.$config['tginfo']['sname'] : 'meu grupos';
 
 if(!empty($op)){
 	$content .= " and groupstatus = '{$op}' ";
