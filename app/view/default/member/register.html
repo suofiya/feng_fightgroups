@@ -6,7 +6,7 @@
 
             <div class="buttons-tab" style="z-index: 100;">
               <a onclick="pddAppRedirect('member','login');" class="tab-link button">Entrar</a>
-              <a href="#" class="tab-link button active">Registar</a>
+              <a href="#" class="tab-link button active">cadastrar</a>
             </div>
 
             <div class="list-block">
@@ -17,7 +17,7 @@
                     <div class="item-inner">
                       <div class="item-title label">E-mail</div>
                       <div class="item-input">
-                        <input type="text" placeholder="Por favor insira o seu endereço de email" id="email" value="">
+                        <input type="text" placeholder="insira o seu email" id="email" value="">
                       </div>
                     </div>
                   </div>
@@ -25,9 +25,9 @@
                 <li>
                   <div class="item-content">
                     <div class="item-inner">
-                      <div class="item-title label">Palavra-Passe</div>
+                      <div class="item-title label">Senha</div>
                       <div class="item-input">
-                        <input type="password" placeholder="Por favor insira a sua palavra-pass" id="password" value="">
+                        <input type="password" placeholder="Insira a sua senha" id="password" value="">
                       </div>
                     </div>
                   </div>
@@ -72,22 +72,22 @@
                     $.toast("Por favor insira o seu endereço de email");
                     return false;
                 } else if(!emailRule.test(email)) {
-                    $.toast("Este email que inseriu é inválido. Por favor confira o seu email e tente de novo");
+                    $.toast("email inválido. favor confirmar email e tente novamente");
                     return false;
                 }
                 if(!password){
-                    $.toast("Por favor insira a sua palavra-pass");
+                    $.toast("insira a sua senha");
                     return false;
                 } else if(password.length < 7) {
                     $.toast("Dica: Sua senha deve ter pelo menos 7 caracteres. Por favor, inclua letras e números.");
                     return false;
                 }
                 if(!confirm_password){
-                    $.toast("Por favor, re-digite a nova password");
+                    $.toast("favor,confirmar a nova senha");
                     return false;
                 }
                 if(password != confirm_password){
-                    $.toast("As suas palavras-pass não coincidem, por favor tente de novo");
+                    $.toast("As suas senha não coincidem, por favor tente novamente");
                     return false;
                 }
                 $.post("{php echo app_url('member/register/post')}",{email:email,password:password,confirm_password:confirm_password},function(d){
