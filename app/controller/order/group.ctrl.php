@@ -20,7 +20,7 @@ if(!empty($tuan_id)){
     $data = order_get_list(array('is_tuan'=>'1,3','status'=>' 1,2,3,4,6,7','tuan_id'=>$tuan_id));
 	$orders = $data['list'];
     foreach($orders as$key =>$value){
-    	if($value['address']=='虚拟'){
+    	if($value['address']=='invalido'){
     		$orders[$key]['avatar'] = $value['openid'];
 			$orders[$key]['nickname'] =  $value['addname'];
     	}else{
@@ -45,7 +45,7 @@ if(!empty($tuan_id)){
   		$num_arr[$i] = $i; 
   	}
   	if (empty($order['g_id'])) {
-  		echo "<script>alert('组团信息不存在！');location.href='".app_url('home/index')."';</script>";
+  		echo "<script>alert('detalhe invalido！');location.href='".app_url('home/index')."';</script>";
   		exit;
   	}else{
   		$goods = goods_get_by_params(" id = {$order['g_id']} ");
@@ -55,8 +55,8 @@ if(!empty($tuan_id)){
 	    $lasttime = $goods['endtime'];
   	}
 	
-	$config['share']['share_title'] = "我参加了【".$goods['gname']."】拼团，快来加入吧！";
-	$config['share']['share_desc'] = "【差".$tuaninfo['lacknum']."人】好货不容留，快来跟我一起抢【".$goods['gname']."】".$config['share']['share_desc'];
+	$config['share']['share_title'] = "eu participei【".$goods['gname']."】do grupo，vamos junto！";
+	$config['share']['share_desc'] = "【falta".$tuaninfo['lacknum']."pessoa】，vamos participamos junto【".$goods['gname']."】".$config['share']['share_desc'];
 	$config['share']['share_url'] = app_url('order/group', array('tuan_id'=>$tuan_id));
 	$config['share']['share_image'] = $goods['gimg'];
 	$pagetitle = $goods['gname'];
@@ -71,5 +71,5 @@ if(!empty($tuan_id)){
 	
   	include wl_template('order/group');
 }else{
-	echo "<script>alert('参数错误');location.href='".app_url('home/index')."';</script>";
+	echo "<script>alert('erro');location.href='".app_url('home/index')."';</script>";
 }
