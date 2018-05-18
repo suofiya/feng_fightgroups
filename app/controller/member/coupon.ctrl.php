@@ -34,7 +34,7 @@ if($op =='display'){
 		':now1' => TIMESTAMP,
 		':now2' => TIMESTAMP
 	);
-	$pagetitle = !empty($config['tginfo']['sname']) ? '优惠券列表 - '.$config['tginfo']['sname'] : '优惠券列表';
+	$pagetitle = !empty($config['tginfo']['sname']) ? 'lista do cupom - '.$config['tginfo']['sname'] : 'lista do cupom';
 	$coupon1 = pdo_fetchall($where1, $params1);
 	if($coupon1){
 		foreach ($coupon1 as $key1 => $value1) {
@@ -62,7 +62,7 @@ if($op =='detail'){
 		$coupon = coupon($id);
 		$pagetitle = $coupon['name'];
 	}else{
-		message('优惠券不存在！');
+		message('cupom invalido！');
 	}
 	include wl_template('member/coupon_detail');
 }
@@ -73,7 +73,7 @@ if($op =='get'){
 		$coupon = coupon_template($id);
 		$pagetitle = $coupon['name'];
 	}else{
-		message('优惠券不存在！');
+		message('cupom invalido！');
 	}
 	
 	include wl_template('member/coupon_get');
@@ -89,6 +89,6 @@ if($op =='post'){
 			wl_json(0,$coupon['message']);
 		}
 	}else{
-		wl_json(0,'缺少优惠券id参数');
+		wl_json(0,'falta dados do cupom');
 	}
 }
