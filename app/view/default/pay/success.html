@@ -15,7 +15,7 @@
 					{if empty($errno)}单独购买成功{/if}
 				    {if $errno==2}抱歉,该团已满,稍后将全款退还{/if}
 			</div>
-			<div class="paysucces_price">{$order['price']}元</div>
+			<div class="paysucces_price">R$ {$order['price']}</div>
 			<div class="list-block">
 		      <ul>
 		      	{if !empty($order['discount_fee'])}
