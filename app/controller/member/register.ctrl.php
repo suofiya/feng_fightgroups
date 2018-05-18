@@ -25,7 +25,7 @@ if (pdd_isLoginedStatus() == true) {
 // 页面action处理
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 
-$pagetitle = !empty($config['tginfo']['sname']) ? '注册页 - '.$config['tginfo']['sname'] : '注册页';
+$pagetitle = !empty($config['tginfo']['sname']) ? 'pagina de cadastro - '.$config['tginfo']['sname'] : 'pagina de cadastro';
 
 if($op =='display'){
     include wl_template('member/register');
@@ -40,7 +40,7 @@ if ($op == 'post') {
     // 验证邮箱
     $member = member_get_by_params(" email = '{$email}' ");
     if (!empty($member)) {
-        wl_json(0, '邮箱已注册过!');
+        wl_json(0, 'email utilizado!');
     }
 
     // 密码验证
