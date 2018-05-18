@@ -76,7 +76,7 @@
 					        }
 					    );
 				 	}else if(m.errno==2){
-				 		$.confirm('该订单已被代付,去开团?',
+				 		$.confirm('Esse pedido foi pago,monte o novo grupo?',
 					        function () {
 					        	location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
 					        },
@@ -85,7 +85,7 @@
 					        }
 					    );
 				 	}else if(m.errno==3){
-				 		$.confirm('此订单正在被支付,请刷新重试.',
+				 		$.confirm('esse pedido esta pagando,atualiza e tente novamente.',
 					        function () {
 					        },
 					        function () {
@@ -144,7 +144,7 @@
                                 }
                         );
                     }else if(m.errno==2){
-                        $.confirm('该订单已被代付,去开团?',
+                        $.confirm('Esse pedido foi pago,monte o novo grupo?',
                                 function () {
                                     location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
                                 },
@@ -153,7 +153,7 @@
                                 }
                         );
                     }else if(m.errno==3){
-                        $.confirm('此订单正在被支付,请刷新重试.',
+                        $.confirm('esse pedido esta pagando,atualiza e tente novamente.',
                                 function () {
                                 },
                                 function () {
