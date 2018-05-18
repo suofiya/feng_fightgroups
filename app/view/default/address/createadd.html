@@ -98,7 +98,7 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">是否默认</div>
+		              <div class="item-title label">Se o padrão de</div>
 		              <div class="item-input">
 		                <label class="label-switch">
 		                  <input type="checkbox" id="status" {if $addres['status']==1}checked{/if}>
@@ -112,7 +112,7 @@
 		    </div>
 		    <div class="content-block">
 		      <div class="row">
-		        <!-- <div class="col-50"><a href="{php echo app_url('address/createadd/addwechat');}" class="weui_btn weui_btn_warn external">使用微信地址</a></div> -->
+		        <!-- <div class="col-50"><a href="{php echo app_url('address/createadd/addwechat');}" class="weui_btn weui_btn_warn external">uso endereço do whatsapp</a></div> -->
 		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary">Salvar</a></div>
 		      </div>
 		    </div>
@@ -127,8 +127,8 @@
 			var $content = $(page).find('.content');
 			$("#city-picker").cityPicker({
 			    toolbarTemplate: '<header class="bar bar-nav">\
-			    <button class="button button-link pull-right close-picker">确定</button>\
-			    <h1 class="title">选择收货地址</h1>\
+			    <button class="button button-link pull-right close-picker">confirmar</button>\
+			    <h1 class="title">selecione o endereço</h1>\
 			    </header>'
 			});
 			$content.on('click','#addrsub',function () {
@@ -145,19 +145,19 @@
 				 	return false;
 				}
 				if(!myphone){
-				 	$.toast("请输入你的电话");
+				 	$.toast("Por favor insira a telefone");
 				 	return false;
 				}
 				if(citys.length == 2){
-				 	$.toast("请选择您的地区");
+				 	$.toast("escolhe seu local");
 				 	return false;
 				}
 				if(!county){
-				 	$.toast("请输入城市");
+				 	$.toast("insira sua cidade");
 				 	return false;
 				}
 				if(!zipcode){
-				 	$.toast("请输入邮编");
+				 	$.toast("insira um cep");
 				 	return false;
 				}
 				if(!detailed){
@@ -166,7 +166,7 @@
 				}
 				$.post("{php echo app_url('address/createadd/post',array('id'=>$addres['id']))}",{myname:myname,myphone:myphone,citys:citys,county:county,zipcode:zipcode,detailed:detailed,type:type,status:status},function(d){
 					if(d.status == 1){
-						$.alert('地址编辑成功', function () {
+						$.alert('Atualizar o endereço com sucesso', function () {
 					        location.href = "{$bakurl}";
 					    });
 					}else{

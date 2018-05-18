@@ -2,19 +2,19 @@
 <div class="page-group">
     <div class="page page-current" id="page-order-list">
     	<div class="buttons-tab" style="z-index: 100;">
-	      <a href="#tab1" class="tab-link button {if $status==''}active{/if}" id="">全部</a>
-	      <a href="#tab2" class="tab-link button {if $status=='0'}active{/if}" id="0">待付款</a>
-	      <a href="#tab3" class="tab-link button {if $status=='2'}active{/if}" id="2">待发货</a>
-	      <a href="#tab4" class="tab-link button {if $status=='3'}active{/if}" id="3">待收货</a>
-	      <a href="#tab5" class="tab-link button {if $status=='4'}active{/if}" id="4">已收货</a>
+	      <a href="#tab1" class="tab-link button {if $status==''}active{/if}" id="">todas</a>
+	      <a href="#tab2" class="tab-link button {if $status=='0'}active{/if}" id="0">pagamento pendente</a>
+	      <a href="#tab3" class="tab-link button {if $status=='2'}active{/if}" id="2">envio pendente</a>
+	      <a href="#tab4" class="tab-link button {if $status=='3'}active{/if}" id="3">A caminho</a>
+	      <a href="#tab5" class="tab-link button {if $status=='4'}active{/if}" id="4">Entregues</a>
 	    </div>
 		<div class="content infinite-scroll native-scroll" data-distance="10">
 		    <div class="tabs" style="padding-top: 2.8rem;">
 		    </div>
 		     <div class="list" style="background-color: #efeff4;">
-		        <div class="loading_more" style="padding-top: 15px;display: none;"><span class="loading"><i class="icon_load"></i>加载中......</span></div>
-		        <div class="error">加载失败，点击重新加载</div>
-		        <div class="noData">全部数据加载完毕</div>
+		        <div class="loading_more" style="padding-top: 15px;display: none;"><span class="loading"><i class="icon_load"></i>carregando......</span></div>
+		        <div class="error">Paginas não carregam，tentar novamente</div>
+		        <div class="noData">são carregados todos</div>
 	   		</div>
 		</div>
 		{php include wl_template('common/footerbar');}
@@ -41,13 +41,13 @@
     <div class="field-console">
         <div class="field-console-btns">
         	{{# if(d.list[i].status == 0){ }}
-	        <div class="weui_btn weui_btn_mini weui_btn_tran cancel" oid="{{ d.list[i].orderno }}">取消订单</div>
-	        <div class="weui_btn weui_btn_mini weui_btn_yellow field-btn-gray topay" oid="{{ d.list[i].orderno }}">去支付</div>
+	        <div class="weui_btn weui_btn_mini weui_btn_tran cancel" oid="{{ d.list[i].orderno }}">cancelar pedido</div>
+	        <div class="weui_btn weui_btn_mini weui_btn_yellow field-btn-gray topay" oid="{{ d.list[i].orderno }}">vai no pagamento</div>
 	        {{# } else { }}
 	        {{# if(d.list[i].ta){ }}
-	        <a href="{{ d.list[i].ta }}" class="external weui_btn weui_btn_mini weui_btn_tran">团详情</a>
+	        <a href="{{ d.list[i].ta }}" class="external weui_btn weui_btn_mini weui_btn_tran">detalhe do grupo</a>
 	        {{# } }}
-	        <a href="{{ d.list[i].a }}" class="weui_btn weui_btn_mini weui_btn_yellow field-btn-gray external">订单详情</a>
+	        <a href="{{ d.list[i].a }}" class="weui_btn weui_btn_mini weui_btn_yellow field-btn-gray external">detalhe do pedido</a>
 	        {{# } }}
         </div>
     </div>
@@ -63,11 +63,11 @@
 	//取消订单
 	$(document).on('click','.cancel',function(){
 		var orderno = $(this).attr('oid');
-		$.confirm('确认取消订单？',
+		$.confirm('favor confirmar o cancelamento？',
 	        function () {
 	          	$.post("{php echo app_url('order/order/cancel')}",{orderno:orderno},function(d){
 					if(d.status == 1){
-					    $.toast('订单取消成功！');
+					    $.toast('pedido cancelado com sucesso！');
 					    setTimeout(function () {
 							location.href = "{php echo app_url('order/order/list')}";
 						}, 1000);
@@ -118,7 +118,7 @@
 								$(".loading_more").remove();
 								$('.noData').show();
 							} else {
-								var html = '<div class="m-cart" id="s"><div class="empty" id="pro-view-6">暂无订单数据，<a href="{php echo app_url('goods/index')}" class="external">马上去逛逛~</a></div></div>';
+								var html = '<div class="m-cart" id="s"><div class="empty" id="pro-view-6">até o momento não tem nenhum pedido，<a href="{php echo app_url('goods/index')}" class="external">Vamos Comprar~</a></div></div>';
 								$(".tabs").append(html);
 							}
 						},

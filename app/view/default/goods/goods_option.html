@@ -5,8 +5,8 @@
              <img id="chooser_img" src="{php echo tomedia($goods['gimg']);}">
          </div>
          <div class="right">
-               	<div class="price" id="option_opricee">￥<span id="option_oprice">请选规格</span></div>
-               	<div class="price" id="option_gpricee">￥<span id="option_gprice">请选规格</span></div>
+               	<div class="price" id="option_opricee">￥<span id="option_oprice">escolher especificações</span></div>
+               	<div class="price" id="option_gpricee">￥<span id="option_gprice">escolher especificações</span></div>
         		<span id='stockcontainer' class="stock" style="float:left;margin-left:5px;"></span>
          </div>
         <div class="close" onclick="closechoose()"><i class="fa fa-remove-o"></i></div>
@@ -24,7 +24,7 @@
     	{/loop}
     	{if $goods['one_limit']>1}
     	<span style="float:left;margin-left:8px; display: none;" class='spec_items options' id="in">
-            <span style="margin-left: 10px;"><font color="#000000" size="2">选择数量</font></span>
+            <span style="margin-left: 10px;"><font color="#000000" size="2">selecione a quantidade</font></span>
 			<div class="w-number" id="pro-view-7" style="float: right;">
 				<input class="w-number-input" type="tel" id="num" name="num" value="1">
 				<a class="w-number-btn w-number-btn-plus" id="up">
@@ -38,7 +38,7 @@
         {/if}
     </div>
     <div class="close" onclick="closechoose()"><i class="fa fa-times-circle-o"></i></div>
-    <div class="sub" onclick="buy()" id="nowbuy">确认</div>
+    <div class="sub" onclick="buy()" id="nowbuy">confirmar</div>
 </div>
 <script>
 	var options = {php echo json_encode($options)};
@@ -218,7 +218,7 @@
     function buy() {
         var ret = option_selected();
         if (ret.no != '') {
-            $.toast('请选择'+ret.no + "!");
+            $.toast('selecione'+ret.no + "!");
             return;
         }
         {if $goods['one_limit']>1}
@@ -237,26 +237,26 @@
         times = parseInt(times);
         {if $goods['one_limit']>1}
 	        if(isNaN(inputnum)){
-	        	$.toast('数量错误!');
+	        	$.toast('erro quantidade!');
 				return false;
 	        }else{
 	        	if(inputnum<0){
-	        		$.toast('数量错误!');
+	        		$.toast('erro quantidade!');
 					return false;
 	        	}
 	        	if(inputnum > num){
-	        		$.toast('库存不足!');
+	        		$.toast('estoque indisponivel!');
 					return false;
 	        	}
 	        	if(one_limit>=1){
 	        		if(inputnum > one_limit){
-		        		$.toast('单次购买上限为：'+one_limit);
+		        		$.toast('quantidade maxima por compra：'+one_limit);
 						return false;
 		        	}
 	        	}
 	        	if(many_limit>=1){
 	        		if(inputnum+times > many_limit){
-		        		$.toast('单人购买上限为：'+many_limit);
+		        		$.toast('quantidade maxima por pessoa：'+many_limit);
 						return false;
 		        	}
 	        	}

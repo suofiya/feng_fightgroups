@@ -17,11 +17,11 @@ Copyright 2016 Administrator. All rights reserved.
     <div class="subscribe">
         <div class="img"><img src="{php echo tomedia($config['tginfo']['slogo'])}"></div>
         <div class="text">
-            <p>欢迎进入<font>{$config['tginfo']['sname']}</font></p>
+            <p>bem vindo<font>{$config['tginfo']['sname']}</font></p>
             <p>关注公众号,享专属服务</p>
         </div>
         <div class="btn">
-            <a class="lizhuanz" href="javascript:$('#m_popUp').show();"><div class="buttonn">立即关注</div></a>
+            <a class="lizhuanz" href="javascript:$('#m_popUp').show();"><div class="buttonn">curti agora</div></a>
         </div>
     </div>
 {/if}
@@ -31,8 +31,8 @@ Copyright 2016 Administrator. All rights reserved.
 	<div style="float: right;color: #FAFAFA;margin-top: 20px;margin-right: 20px;" onclick="$('#m_popUp').hide()"><font color="#0000FF"> ×关闭</font></div>
     <div class="m_guide" style="height: 300px">
         <div class="m_how" style="margin-top: 0px;margin-left: 15%;">
-            <h4 style="margin-top: 30px;text-align: center;">长按关注</h4>
-            <h1 style="text-align: center;margin-left: 5%;">关注后,发货消息等将会通知您!</h4>
+            <h4 style="margin-top: 30px;text-align: center;">curtir</h4>
+            <h1 style="text-align: center;margin-left: 5%;">nos curta e receba notificações!</h4>
         </div>
         <div style="margin-left: auto;margin-right: auto;margin-top: 20px;width: 200px;height: 200px;background: #FAFAFA;">
         	<img src="{php echo tomedia($config['tginfo']['followed_image'])}" style="width: 200px;height: 200px;" />
@@ -54,8 +54,8 @@ Copyright 2016 Administrator. All rights reserved.
     function timelyFun(){
         $.post("{php echo app_url('order/order/tip')}",function(data){
             $(".orderlist").show();
-            $("#shuoming").html("最新订单来自"+data.city+"的"+data.nickname);
-            $("#sec").html(data.sec+"秒前"+"  ");
+            $("#shuoming").html("último pedido foi à"+data.city+"的"+data.nickname);
+            $("#sec").html(data.sec+"segundos atrás"+"  ");
             $("#headpic").attr("src",data.avatar);
             setTimeout("$('.orderlist').hide()",8000);
         },'JSON')
@@ -63,6 +63,6 @@ Copyright 2016 Administrator. All rights reserved.
     window.onload = funcTest;
 </script>           
 <div class="orderlist" style="font-size:14px;display:none;"><img id="headpic" src="http://m.vipgouyouhui.com/qweiqin/attachment/images/2/2016/03/xVLGPP8Spp1pAlEK1LmECLLV8LzsUu.png" width="25">
-    <span id="shuoming" style="margin-left:3%;line-height:25px;font-size:12px;">最新订单来自盐城的哈哈</span>
-    <span id="sec" style="font-size:12px;margin-right:12px;display: inline;padding-right: 3%;">5秒前</span>
+    <span id="shuoming" style="margin-left:3%;line-height:25px;font-size:12px;">último pedido foi à haha de xiancheng</span>
+    <span id="sec" style="font-size:12px;margin-right:12px;display: inline;padding-right: 3%;">5segundos atrás</span>
 </div>

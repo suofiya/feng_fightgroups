@@ -2,7 +2,7 @@
 <div class="page-group">
     <div class="page page-current" id="page-createadd">
     	<header class="bar bar-nav">
-			<a class="button button-link button-nav pull-left back" href="{php echo app_url('order/order')}"><span class="icon icon-left"></span>返回</a>
+			<a class="button button-link button-nav pull-left back" href="{php echo app_url('order/order')}"><span class="icon icon-left"></span>volta</a>
 			<h1 class="title">Pagar com boleto bancário</h1>
 		</header>
 		<div class="content native-scroll">
@@ -100,9 +100,9 @@
 		      </div>
 		    </div>
             <div class="weui_extra_area">
-                <a href="{php echo app_url('goods/list')}">返回首页</a>
+                <a href="{php echo app_url('goods/list')}">voltar para menu</a>
                 <a href="javascript:">&nbsp;&nbsp; ▏ </a>
-                <a href="{php echo app_url('order/order')}">订单列表</a>
+                <a href="{php echo app_url('order/order')}">lista de pedido</a>
             </div>
 		</div>
 	</div>
@@ -117,8 +117,8 @@
 			var $content = $(page).find('.content');
 			$("#city-picker").cityPicker({
 			    toolbarTemplate: '<header class="bar bar-nav">\
-			    <button class="button button-link pull-right close-picker">确定</button>\
-			    <h1 class="title">选择收货地址</h1>\
+			    <button class="button button-link pull-right close-picker">confirmar</button>\
+			    <h1 class="title">selecione endereço</h1>\
 			    </header>'
 			});
             var has_pos = false;
@@ -154,7 +154,7 @@
                 }
 				$.post("{php echo app_url('pay/ebanx')}&orderno="+orderno,data,function(d){
 					if(d.errno == 0){
-						$.alert('已经支付成功', function () {
+						$.alert('pagamento com sucesso', function () {
                             has_pos = false;
                             location.href = d.data.payment.boleto_url;
 					    });
