@@ -9,7 +9,7 @@ session_start();
 defined('IN_IA') or exit('Access Denied');
 require IA_ROOT.'/payment/ebanx/autoload.php';
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
-$pagetitle = '支付方式';
+$pagetitle = 'forma de pagamento';
 wl_load()->model("order");
 wl_load()->model("member");
 wl_load()->model("goods");
@@ -33,7 +33,7 @@ if(!empty($order['couponid']) && $order['is_usecard']==1){
 if($op =='display'){
 	$helppay = FALSE;
 	if($order['status']!=0 && $order['status']!=5){
-		message("该订单已支付了.");
+		message("Esse pedido ja foi pago.");
 	}
 	$goods = goods_get_by_params(" id={$order['g_id']} ");
 	if($setting['helpbuy']==1){
@@ -41,9 +41,9 @@ if($op =='display'){
 		if(!empty($helpbuy_message)){
 			$message=$helpbuy_message['name'];
 		}else{
-			$message='等待真爱路过...';
+			$message='Aguarde a seu compra!....';
 		} 
-		$config['share']['share_title'] = "我想对你说:";
+		$config['share']['share_title'] = "não perca seu desconto especial :";
 		$config['share']['share_desc'] = $message;
 		$config['share']['share_url'] = app_url('pay/paytype', array('orderno'=>$orderno));
 		$config['share']['share_image'] = $goods['gimg'];
@@ -68,16 +68,16 @@ if ($_W['isajax'] && $op =='ajax') {
 	$nowtuan = group_get_by_params(" groupnumber = '{$order['tuan_id']}'");
 	if(!empty($nowtuan)){
 		if ($nowtuan['groupstatus'] != 3) {
-			die(json_encode(array('errno'=>1,'message'=>"此团已结束.","group"=>$nowtuan)));
+			die(json_encode(array('errno'=>1,'message'=>"o grupo concluido.","group"=>$nowtuan)));
 		}
 	}
 	if(!empty($order['status'])){
-		die(json_encode(array('errno'=>2,'message'=>"此订单已被代付.","group"=>$nowtuan)));
+		die(json_encode(array('errno'=>2,'message'=>"Esse pedido ja foi pago.","group"=>$nowtuan)));
 	}
 /*	if($order['checkpay']=="9"){
 		die(json_encode(array('errno'=>3,'message'=>"此订单正在支付,请稍等.","group"=>$nowtuan)));
 	}*/
 	order_update_by_params(array('message'=>$_GPC['remark'],'othername'=>$_GPC['othername'],'checkpay'=>$checkpay), array('orderno'=>$orderno));
-	die(json_encode(array('errno'=>0,'message'=>"支付成功.")));
+	die(json_encode(array('errno'=>0,'message'=>"pagamento com sucesso.")));
 }
 
