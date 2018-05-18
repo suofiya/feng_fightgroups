@@ -10,7 +10,7 @@ wl_load()->model('merchant');
 wl_load()->model('order');
 $id = $_GPC['id'];
 puv($_W['openid'],$id);
-$pagetitle = !empty($config['tginfo']['sname']) ? '商品详情 - '.$config['tginfo']['sname'] : '商品详情';
+$pagetitle = !empty($config['tginfo']['sname']) ? 'detalhe do produto - '.$config['tginfo']['sname'] : 'detalhe do produto';
 session_start();
 if(!empty($_GPC['id'])){
 	$_SESSION['goodsid'] = $_GPC['id'];
@@ -20,10 +20,10 @@ if(!empty($id)){
 	//商品
 	$goods = goods_get_by_params("id = {$id}");
 	if($goods['isshow']==2){
-		message('该商品已下架');exit;
+		message('produto indisponivel');exit;
 	}
 	if(empty($goods['unit'])){
-		$goods['unit'] = '件';
+		$goods['unit'] = 'peça';
 	}
 	
 	//阶梯团
@@ -111,6 +111,6 @@ if(!empty($id)){
 	$config['share']['share_desc'] = !empty($goods['share_desc']) ? $goods['share_desc'] : $config['share']['share_desc'];
 	$config['share']['share_image'] = !empty($goods['share_image']) ? $goods['share_image'] : $goods['gimg'];
 }else{
-	message("商品信息出错！");exit;
+	message("Caracteristicas erro！");exit;
 }
 include wl_template('goods/goods_detail');
