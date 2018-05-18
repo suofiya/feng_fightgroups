@@ -50,7 +50,7 @@ function updateOrder($hash)
 
     try
     {
-        pdo_update('order', array('status' => 1), array('id' => $orderId));
+        pdo_update('tg_order', array('status' => 1), array('id' => $orderId));
     }
     catch (Exception $e)
     {
