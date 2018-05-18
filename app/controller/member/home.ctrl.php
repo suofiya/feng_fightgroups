@@ -12,7 +12,7 @@ if (pdd_isLoginedStatus() == false) {
 }
 
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
-$pagetitle = !empty($config['tginfo']['sname']) ? '个人中心 - '.$config['tginfo']['sname'] : '个人中心';
+$pagetitle = !empty($config['tginfo']['sname']) ? 'Meus dados - '.$config['tginfo']['sname'] : 'Meus dados';
 
 if($op =='display'){
 	$member = getMember($openid);
