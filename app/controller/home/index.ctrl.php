@@ -7,7 +7,7 @@
 defined('IN_IA') or exit('Access Denied');
 
 wl_load()->model('page');
-$_W['page']['title'] = '首页';
+$_W['page']['title'] = 'Home';
 
 $page = wl_page_home();
 if (empty($page)) {
