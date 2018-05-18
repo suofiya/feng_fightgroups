@@ -7,7 +7,7 @@ $.config = {
             return false;
         }
         if ($link.hasClass('external')) {
-            $.showIndicator();
+            //$.showIndicator();
         }
         if ($link.hasClass('disable-router')) {
             return false;
