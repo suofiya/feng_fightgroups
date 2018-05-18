@@ -533,7 +533,7 @@ to{-webkit-transform:rotate(360deg) translateZ(0)}}.error{display:none;text-alig
 .section_body{background:#ffffff;border-top:1px solid #D5D5D5;border-width:1px 0 1px 0;-webkit-border-image: url(../images/border.gif) 2 stretch;margin-bottom:10px;margin-top: 10px;}
 .info_detail .div_nav li{border: 1px solid #D5D5D5;border-width:0 1px 1px 0;-webkit-border-image: url(../images/border.gif) 2 stretch;}
 .info_detail .div_nav li:last-of-type{border-right:0;}
-.info_detail .div_nav a{display:block;width:100px;margin:auto;overflow:hidden;line-height:45px;font-size:13px;color:#4a4a4a;text-align:center;text-decoration: none;}
+.info_detail .div_nav a{display:block;margin:auto;overflow:hidden;line-height:45px;font-size:13px;color:#4a4a4a;text-align:center;text-decoration: none;}
 .info_detail .div_nav a.on{color:#ff5366;text-decoration: none;}
 .info_detail .div_sections>section{display:none;padding:10px 15px;}
 .info_detail .div_sections>section.section_comments{padding-left:0;}
