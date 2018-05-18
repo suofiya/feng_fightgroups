@@ -17,11 +17,11 @@
 		$order = order_get_by_params(" orderno = '{$_GPC['orderno']}' ");
 		$goods = goods_get_by_params(" id = {$order['g_id']} ");
 	}else{
-		$message = "参数错误，缺少订单号.";
+		$message = "erro，falta numero do pedido.";
 		die(json_encode(array('errno'=>1,'message'=>$message)));
 	}
 	if($order['pay_price'] <= 0) {
-		$message = "支付金额错误,支付金额需大于0元.";
+		$message = "pagamento nao aprovado,tem que pagar acima do R$0.00.";
 		die(json_encode(array('errno'=>1,'message'=>$message)));
 	}
 	$params['tid'] = $_GPC['orderno'];
@@ -43,7 +43,7 @@ if($op =='info'){
     }
     $helppay = FALSE;
     if($order['status']!=0 && $order['status']!=5){
-        message("该订单已支付了.");
+        message("Esse pedido ja foi pago.");
     }
     $goods = goods_get_by_params(" id={$order['g_id']} ");
     if($setting['helpbuy']==1){
@@ -51,9 +51,9 @@ if($op =='info'){
         if(!empty($helpbuy_message)){
             $message=$helpbuy_message['name'];
         }else{
-            $message='等待真爱路过...';
+            $message='Aguarde a seu compra!...';
         }
-        $config['share']['share_title'] = "我想对你说:";
+        $config['share']['share_title'] = "não perca seu desconto especial:";
         $config['share']['share_desc'] = $message;
         $config['share']['share_url'] = app_url('pay/paytype', array('orderno'=>$orderno));
         $config['share']['share_image'] = $goods['gimg'];
@@ -88,7 +88,7 @@ if ($_W['isajax']) {
 	}
 	$setting = uni_setting($_W['uniacid'], array('payment', 'creditbehaviors'));
 	if(!is_array($setting['payment'])) {
-		$message = "没有有效的支付方式, 请联系网站管理员.";
+		$message = "forma de pagamento invalido,contate-nos.";
 		die(json_encode(array('errno'=>1,'message'=>$message)));
 	}
 	if (empty($_W['member']['uid'])) {
@@ -177,7 +177,7 @@ if ($_W['isajax']) {
                 $id = date('YmdH');
                 pdo_update('core_paylog', array('plid' => $id), array('plid' => $log['plid']));
                 pdo_query("ALTER TABLE ".tablename('core_paylog')." auto_increment = ".($id+1).";");
-                $message = "抱歉，发起支付失败，系统已经修复此问题，请重新尝试支付。";
+                $message = "desculpa，pagamento nao aprovado，foi erro do sistema，tente novamente。";
                 die(json_encode(array('errno'=>1,'message'=>$message,'data'=>$response)));
             }else{
                 Ebanx\Ebanx::saveOrderData($order['id'],$json_decode_str['payment']['hash'],$pay_method,$json_decode_str['payment']['boleto_url']);
@@ -190,7 +190,7 @@ if ($_W['isajax']) {
             die(json_encode(array('errno'=>0,'message'=>$message,'data'=>$json_decode_str)));
         }
 	}
-	$message = "支付成功!";
+	$message = "pagamento com sucesso!";
 	die(json_encode(array('errno'=>0,'message'=>$message,'data'=>$wOpt)));
 }
 ?>
