@@ -551,15 +551,15 @@ to{-webkit-transform:rotate(360deg) translateZ(0)}}.error{display:none;text-alig
 .good_choose_layer {height: 100%; width: 100%; background: rgba(0,0,0,0.6); position: fixed; top: 0px; left: 0px; z-index: 9;display:none }
 .good_choose {height:auto;max-height:400px; width:100%; background:#fff; position:fixed; bottom:0px; left:0px; z-index:10;display:none}
 .good_choose .info {padding-left:15px;position:relative;  height:90px; width:100%; top:-20px;}
-.good_choose .info .left { width:80px;height:80px;  background:#fff;border-radius: 5px;}
-.good_choose .info .left img { width:80px;height:80px; padding:1px;border-radius: 5px;}
-.good_choose .info .right {position:absolute; left:110px; top:30px;}
+.good_choose .info .left { width:100px;height:100px;  background:#fff;border-radius: 4px;}
+.good_choose .info .left img { width:100px;height:100px; padding:1px;border-radius: 4px;border: 1px solid rgba(0,0,0,.1);overflow: hidden;background-color: #fff;}
+.good_choose .info .right {position:absolute; left:130px; top:30px;}
 .good_choose .info .right .price {color:#ff4c4c; font-size:20px; line-height:30px; ;height:30px;overflow:hidden}
 .good_choose .info .right .stock {color:#999;font-size:12px; line-height:20px; ;height:20px; }
 .good_choose .info .right .option {color:#999;font-size:12px; line-height:20px; ;height:20px;overflow: hidden; }
 .good_choose .other { position:relative; height:auto; max-height:270px;margin-bottom:150px;padding-left:10px;width:99%;overflow-y:scroll; overflow-x:hidden; margin-top:-15px;  font-size:14px; color:#999;}
-.good_choose .other .spec { width:100%;padding:10px 0 5px 0;float:left}
-.good_choose .other .spec_items {width:94%;padding:5px 0 5px 0;height:auto;border-bottom:1px solid #e4e4e4;float:left}
+.good_choose .other .spec { width:100%;padding:10px 0 10px 0;float:left}
+.good_choose .other .spec_items {width:96%;padding:10px 0 10px 0;height:auto;border-bottom:1px solid #e4e4e4;float:left}
 .good_choose .other .option { float:left; padding:5px; background:#fff; border:1px solid #e4e4e4; border-radius:3px; margin-right:5px;margin-bottom:5px; font-size:14px; color:#999;}
 .good_choose .other .current {background: #ff4c4c; color: #fff; border: 1px solid #ff4c4c; text-shadow: none;}
 .good_choose .other .number { float:left; width:100%;padding-top:10px;height:36px}
