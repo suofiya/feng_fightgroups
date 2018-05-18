@@ -13,24 +13,24 @@
 					</div>
 					<div class="text-center promote-limit js-is-at-least">
 						{if !empty($coupon['at_least']) && $coupon['at_least'] != 0.00}
-						订单满 <span class="js-at-least">  {$coupon['at_least']} </span>元 (不含运费)
+						compra cima de <span class="js-at-least">  {$coupon['at_least']} </span>R$ (não incluir valor do frete)
 						{else}
-							不限制
+							Permanente
 						{/if}
 					</div>
 					<div class="text-center promote-time">
-						有效日期：<span class="js-start-time"> {php echo date('Y-m-d H:i:s', $coupon['start_time']);} </span> - <span class="js-end-time"> {php echo date('Y-m-d H:i:s', $coupon['end_time']);} </span>
+						data do vencimento：<span class="js-start-time"> {php echo date('Y-m-d H:i:s', $coupon['start_time']);} </span> - <span class="js-end-time"> {php echo date('Y-m-d H:i:s', $coupon['end_time']);} </span>
 					</div>
 					<div class="dot"></div>
 				</div>
 				<div class="promote-desc">
-					<div class="promote-desc-title">使用说明</div>
+					<div class="promote-desc-title">manual/instruções de uso</div>
 					<div class="desc-detail js-description">
 						{$coupon['description']} 										
 					</div>
 				</div>
 				<div class="weui_btn_area">
-		        	<a class="weui_btn weui_btn_primary" href="{php echo app_url('goods/index')}">使用优惠券</a>
+		        	<a class="weui_btn weui_btn_primary" href="{php echo app_url('goods/index')}">uso de cupom</a>
 		    	</div>
 			</div>
 		</div>
