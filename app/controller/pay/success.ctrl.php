@@ -7,7 +7,7 @@
 defined('IN_IA') or exit('Access Denied');
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 
-$pagetitle = '支付结果';
+$pagetitle = 'Resultados de pagamento';
 wl_load()->model("order");
 if($op =='display'){
 	$orderno = $_GPC['orderno'];
