@@ -32,7 +32,7 @@ function updateOrder($hash)
     error_reporting(E_ALL);
     $log_file = '/var/www/vhosts/m.melitotal.com.br/httpdocs/log/ebank-'.date('Y-m-d').'.log';
     $response = \Ebanx\Ebanx::doQuery(array('hash' => $hash));
-    file_put_contents($log_file, print_r(json_decode(json_encode($response),true)), FILE_APPEND);
+    file_put_contents($log_file, json_encode($response), FILE_APPEND);
     if ($response->status == 'ERROR')
     {
         return false;
