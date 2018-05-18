@@ -23,7 +23,7 @@ if (pdd_isLoginedStatus() == true) {
 // 页面action处理
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'display';
 
-$pagetitle = !empty($config['tginfo']['sname']) ? '登录页 - '.$config['tginfo']['sname'] : '登录页';
+$pagetitle = !empty($config['tginfo']['sname']) ? 'pagina de entrada- '.$config['tginfo']['sname'] : 'pagina de entrada';
 
 if($op =='display'){
     // Facebook登录
@@ -44,12 +44,12 @@ if ($op == 'post') {
     $email = $_GPC['email'];
     $member = member_get_by_params(" email = '{$email}' ");
     if (empty($member)) {
-        wl_json(0, '邮箱尚未注册过!');
+        wl_json(0, 'email disponivel!');
     }
 
     // 密码验证
     if (!pdd_validatePassword($_GPC['password'], $member['password'])) {
-        wl_json(0, '邮箱或是密码错误!');
+        wl_json(0, 'erro email ou senha!');
     }
     
     // 保持登录状态
