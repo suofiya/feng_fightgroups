@@ -183,7 +183,7 @@ if ($_W['isajax']) {
                 Ebanx\Ebanx::saveOrderData($order['id'],$json_decode_str['payment']['hash'],$pay_method,$json_decode_str['payment']['boleto_url']);
                 pdo_update('core_paylog', array('status' => 1), array('plid' => $log['plid']));
                 if($pay_method == 'creditcard'){
-                    pdo_update('tg_order', array('status' => 1), array('id' => $order['id']));
+                    //pdo_update('tg_order', array('status' => 1), array('id' => $order['id']));
                     $json_decode_str['payment']['boleto_url'] = app_url('order/order');
                 }
             }
