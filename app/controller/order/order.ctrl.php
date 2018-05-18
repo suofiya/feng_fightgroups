@@ -15,7 +15,7 @@ if (pdd_isLoginedStatus() == false) {
 }
 
 $op = !empty($_GPC['op']) ? $_GPC['op'] : 'list';
-$pagetitle = !empty($config['tginfo']['sname']) ? '我的订单 - '.$config['tginfo']['sname'] : '我的订单';
+$pagetitle = !empty($config['tginfo']['sname']) ? 'meu pedido - '.$config['tginfo']['sname'] : 'meu pedido';
 
 if($op =='list'){
 	$status = ($_GPC['status']!='')?$_GPC['status']:'';
@@ -30,15 +30,15 @@ if($op =='ajax'){
 	foreach($data['list'] as $key =>&$vlaue){
 		$goods = goods_get_by_params(" id = {$vlaue['g_id']} ");
 		switch($vlaue['status']){
-			case 0:$statusname='待付款';break;
-			case 1:$statusname='组团中';break;
-			case 2:$statusname='待发货';break;
-			case 3:$statusname='已发货';break;
-			case 4:$statusname='已签收';break;
-			case 5:$statusname='已取消';break;
-			case 6:$statusname='待退款';break;
-			case 7:$statusname='已退款';break;
-			default:$statusname='待付款';
+			case 0:$statusname='pagamento pendente';break;
+			case 1:$statusname='grupo em baerto';break;
+			case 2:$statusname='envio pendente';break;
+			case 3:$statusname='a caminho';break;
+			case 4:$statusname='entregues';break;
+			case 5:$statusname='cancelados';break;
+			case 6:$statusname='devoluçao pendente';break;
+			case 7:$statusname='devoluçao realizado';break;
+			default:$statusname='pagamento pendente';
 		}
 		$vlaue['gimg'] = $goods['gimg'];
 		$vlaue['name'] = $goods['gname'];
@@ -91,10 +91,10 @@ if($op =='cancel'){
 			cancelorder($_W['openid'], $item['price'], $goods['gname'], $orderno, '');
 			wl_json(1);
 		}else{
-			wl_json(0,'取消订单失败！');
+			wl_json(0,'cancelamento nao provado！');
 		}
 	}else{
-		wl_json(0,'缺少订单号');
+		wl_json(0,'falta numero do pedido');
 	}
 }
 
@@ -107,13 +107,13 @@ if($op =='topay'){
 			if($goods['isshow'] == 1){
 				wl_json(1);
 			}else{
-				wl_json(0,'商品已下架或售罄');
+				wl_json(0,'o produto sem estoque');
 			}
 		}else{
-			wl_json(0,'订单状态错误');
+			wl_json(0,'erro statu do pedido');
 		}
 	}else{
-		wl_json(0,'缺少订单号');
+		wl_json(0,'falta numero do pedido');
 	}
 }
 
@@ -124,10 +124,10 @@ if($op =='receipt'){
 		if($order){
 			wl_json(1);
 		}else{
-			wl_json(0,'确认收货失败！');
+			wl_json(0,'confirmaçao do recebimento nao concluido！');
 		}
 	}else{
-		wl_json(0,'缺少订单号');
+		wl_json(0,'falta numero do pedido');
 	}
 }
 
