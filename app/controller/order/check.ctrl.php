@@ -42,7 +42,7 @@ if($_W['isajax']){
 	if(pdo_update('tg_order',array('status'=>4,'is_hexiao'=>2,'veropenid' => $_W['openid'],'sendtime'=>TIMESTAMP,'gettime'=>TIMESTAMP),array('orderno'=>$orderno))){
 		wl_json(1);
 	}else{
-		wl_json(0,'核销失败，请重试！');
+		wl_json(0,'erro，tente novamente！');
 	}
 }
 include wl_template('order/check');
