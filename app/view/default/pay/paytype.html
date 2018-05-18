@@ -18,20 +18,6 @@
 		</header>-->
 		<div class="content" style="background-color: #F9F9F9;">
 			{php include wl_template('common/followed');}
-			{if $helppay}
-			<div class="message-container center" style="background-color:#a0bf54;">
-			    <div class="avatar avatar-peerpay center">
-			        <img class="circular" src="{php echo tomedia($member['avatar'])}">
-			        <p class="js-counter-msg">
-			            <span class="txt-status" style="color:#ffffff;">
-			                {$message}                     
-			            </span>
-			        </p>
-			    </div>
-			    <div class="bottom-arrow"></div>
-			</div>
-			<div class="content-block-title" style="margin: .5rem .75rem .5rem;">来自小伙伴的代付订单</div>
-			 {/if}
 			<div class="list-block media-list" style="margin: 0;">
 		      <ul>
 		        <li class="item-content">
@@ -40,51 +26,19 @@
 		              	<div class="item-subtitle">{$goods['gname']}</div>
 		              	<div class="item-subtitle" style="color: #ccc;font-size: 12px;">{$order['addname']},{$order['mobile']}<br>{$order['address']}</div>
 		              	<div class="item-title-row">
-		                	<div class="item-title c-orange">￥{$order['pay_price']}</div>
+		                	<div class="item-title c-orange">R$ {$order['pay_price']}</div>
 		                	<div class="item-after"><a href="{$goods['a']}" class="weui_btn weui_btn_mini weui_btn_default">查看商品</a></div>
 		              	</div>
 		            </div>
 		        </li>
 		      </ul>
 		    </div>
-		    {if $helppay}
-		    <div class="content-block-title" style="margin: .5rem .75rem .5rem;">付款人信息</div>
-		    <div class="list-block">
-		      <ul>
-		        <li>
-		          <div class="item-content">
-		            <div class="item-inner">
-		              <div class="item-title label">我的姓名</div>
-		              <div class="item-input">
-		                <input type="text" id="othername" placeholder="请输入您的姓名">
-		              </div>
-		            </div>
-		          </div>
-		        </li>
-		        <li>
-		          <div class="item-content">
-		            <div class="item-inner">
-		              <div class="item-title label">给他留言</div>
-		              <div class="item-input">
-		              	<input type="text" id="remark" placeholder="说点什么吧？" value="已帮你付了，记得下次请我吃饭">
-		              </div>
-		            </div>
-		          </div>
-		        </li>
-		      </ul>
-		    </div>
-		   {/if}
 		    <div class="weui_btn_area">
 	        	<a href="javascript:" id="boleto" method="boleto"><img style="width:100%;" src="../addons/feng_fightgroups/app/resource/images/botao_boleto.png"></a>
                 <a href="javascript:" id="creditcard" method="creditcard"><img style="width:100%;padding-top: 10px;" src="../addons/feng_fightgroups/app/resource/images/botao_card.png"></a>
 	    	</div>
-            
-	    	{if $setting['helpbuy']==1}
-	    	<div class="weui_btn_area">
-	        	<div class="weui_btn weui_btn_default" href="javascript:" onclick="_system._guide(true)">找人代付</div>
-	    	</div>
-	    	{/if}
-	    	<div class="weui_extra_area" style="{if $helppay}position: relative;{/if}">
+			
+	    	<div class="weui_extra_area">
 		        <a href="{php echo app_url('goods/list')}">返回首页</a>
 		        <a href="javascript:">&nbsp;&nbsp; ▏ </a>
 		        <a href="{php echo app_url('order/order')}">订单列表</a>
