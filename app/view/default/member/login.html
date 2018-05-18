@@ -6,7 +6,7 @@
 
             <div class="buttons-tab" style="z-index: 100;">
               <a href="#" class="tab-link button active">Entrar</a>
-              <a onclick="pddAppRedirect('member', 'register');" class="tab-link button">Registar</a>
+              <a onclick="pddAppRedirect('member', 'register');" class="tab-link button">Cadastrar</a>
             </div>
 
             <div class="list-block">
@@ -17,7 +17,7 @@
                     <div class="item-inner">
                       <div class="item-title label">E-mail</div>
                       <div class="item-input">
-                        <input type="text" placeholder="Por favor insira o seu endereço de email" id="email" value="">
+                        <input type="text" placeholder="insira o seu email" id="email" value="">
                       </div>
                     </div>
                   </div>
@@ -25,9 +25,9 @@
                 <li>
                   <div class="item-content">
                     <div class="item-inner">
-                      <div class="item-title label">Palavra-Passe</div>
+                      <div class="item-title label">Senha</div>
                       <div class="item-input">
-                        <input type="password" placeholder="Por favor insira a sua palavra-pass" id="password" value="">
+                        <input type="password" placeholder="insira a sua senha" id="password" value="">
                       </div>
                     </div>
                   </div>
@@ -63,14 +63,14 @@
                 var password = $('#password').val();
                 var emailRule = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
                 if(!email){
-                    $.toast("Por favor insira o seu endereço de email");
+                    $.toast("insira o seu email");
                     return false;
                 } else if(!emailRule.test(email)) {
-                    $.toast("Este email que inseriu é inválido. Por favor confira o seu email e tente de novo");
+                    $.toast("Email inválido. Favor confirmar email e tente novamente");
                     return false;
                 }
                 if(!password){
-                    $.toast("Por favor insira a sua palavra-pass");
+                    $.toast("insira a sua senha");
                     return false;
                 }
                 $.post("{php echo app_url('member/login/post')}",{email:email,password:password},function(d){
