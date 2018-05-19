@@ -54,9 +54,9 @@
                     </div>
                     <div class="td_info">
                         <p class="td_name">{$goods['gname']}</p>
-                        <p class="td_mprice"><span class="tuanTotal">{$tuaninfo['neednum']}</span>pessoa por grupo：<i>￥</i><b>{if !empty($tuaninfo['price'])}{$tuaninfo['price']}{else}{$goods['gprice']}{/if}</b><i> /件</i></p>
+                        <p class="td_mprice"><span class="tuanTotal">{$tuaninfo['neednum']}</span>pessoa por grupo：<i>R$ </i><b>{if !empty($tuaninfo['price'])}{$tuaninfo['price']}{else}{$goods['gprice']}{/if}</b><i> /peça</i></p>
                         <p class="td_attr" style="display: none;">Caracteristicas：<span></span></p>
-                        <p><a class="goItemPage td_lk external" href="{php echo app_url('goods/detail', array('id' => $goods['id'],'tuan_id'=>$tuan_id))}">ver detalhes</a></p>
+                        <p><a class="goItemPage td_lk external" href="{php echo app_url('goods/detail', array('id' => $goods['id'],'tuan_id'=>$tuan_id))}">Ver detalhes</a></p>
                         <p class="td_num"></p>
                     </div>
                 </div>
@@ -90,7 +90,12 @@
                 	{php $onum=1;}
                 	{loop $orders $or}
                     <div class="pp_list_item">
-                        <img src="{$or['avatar']}" class="pp_list_avatar"><div class="pp_list_info"><span class="pp_list_name">{if $onum==1}adiministrador{/if}<b>{$or['nickname']}</b>{if $onum==1}发话{else}驾哈雷赶到{/if}</span><span class="pp_list_time">{php echo date('m-d H:i', $tuaninfo['starttime'])}{if $onum==1}开团{else}参团{/if}</span></div><div class="pp_list_words">{if $onum==1}好货不容留，快来跟我一起抢。{else}立马参团，有钱就是任性。{/if}</div>     
+                        <img src="{$or['avatar']}" class="pp_list_avatar">
+			    <div class="pp_list_info">
+				    <span class="pp_list_name">{if $onum==1}Criador:{/if}<b>{$or['nickname']}</b>{if $onum==1}Que diz{else}Vem praqui de velocidade do  trem bala{/if}</span>
+				    <span class="pp_list_time">{php echo date('m-d H:i', $tuaninfo['starttime'])}{if $onum==1}Monte grupo{else}Particiapa grupo{/if}</span>
+			    </div>
+			    <div class="pp_list_words">{if $onum==1}Bom, barato e acaba  rápido!{else}Participa agora。{/if}</div>     
                     </div>
                     {if $onum==2}
                     {php break;}
@@ -111,7 +116,7 @@
 	                	<li id="pro-view-5">
 	                		<div class="f-clear">
 	                			<div class="avatar"><a href="#"><img width="35" height="35" src="{$or['avatar']}"></a></div>
-	                			<div class="text"><p class="f-breakword"><a href="#">{$or['nickname']}   </a>{if !empty($lists['ip'])}<span class="address">( IP:{$lists['ip']}  {$lists['ipaddress']})</span>{/if}</p><p><span class="num">参团时间：     {php echo date('Y-m-d H:i:s',$or['createtime'])} {if $or['ordertype']==1}<font color="#4CA052">代付</font>{/if}</p></div>
+	                			<div class="text"><p class="f-breakword"><a href="#">{$or['nickname']}   </a>{if !empty($lists['ip'])}<span class="address">( IP:{$lists['ip']}  {$lists['ipaddress']})</span>{/if}</p><p><span class="num">Horário do monte grupo：{php echo date('Y-m-d H:i:s',$or['createtime'])} </p></div>
 	                		</div> 
 	                	</li>
 	                	{/loop}
@@ -122,7 +127,7 @@
    		</div>
         
         <section class="stepGuild">
-	        <div class="step_tit"><i></i>forma de compra com grupo<span><a href="{php echo app_url('home/rule');}">ver detalhes&gt;</a></span></div>
+	        <div class="step_tit"><i></i>forma de compra com grupo<span><a href="{php echo app_url('home/rule');}">Ver detalhes &gt;</a></span></div>
 	        <div class="step_flow">
 	            <div class="step_item step_item_on"><span class="step_num">1</span><span>selecione<br>produto favorecido</span></div>
 	            <div class="step_item"><span class="step_num">2</span><span class="steps">pague e monte grupo<br>ou participa grupo de outro participante</span></div>
@@ -163,7 +168,7 @@
 	           	{/if}
 	            </span>
                 <span style="display:block;float:right;width: 15%;">
-                 <button style="width: 90%;" ><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home"></i>
+                 <button style="width: 90%;" ><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home"></i>Home
                 </a></button>
                 </span>
                 {/if}
@@ -223,7 +228,7 @@ $(document).ready(function(){
             hh=parseInt((lefttime/3600));
             mm=parseInt((lefttime/60)%60);
             ss=parseInt(lefttime%60);
-            $(".pp_time").html('disponivel<span id="ti_time_hour">'+hh+'</span>:<span id="ti_time_min">'+mm+'</span>:<span id="ti_time_sec">'+ss+'</span>finalizado');
+            $(".pp_time").html('Corra antes que acabe:<span id="ti_time_hour">'+hh+'</span>:<span id="ti_time_min">'+mm+'</span>:<span id="ti_time_sec">'+ss+'</span>');
             $('#progressbar').css("width",bar_width);
         }else{
             
