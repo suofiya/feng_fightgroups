@@ -2,11 +2,11 @@
 <div class="page-group">
     <div class="page page-current" id="page-order-list">
     	<div class="buttons-tab" style="z-index: 100;">
-	      <a href="#tab1" class="tab-link button {if $status==''}active{/if}" id="">todas</a>
-	      <a href="#tab2" class="tab-link button {if $status=='0'}active{/if}" id="0">pagamento pendente</a>
-	      <a href="#tab3" class="tab-link button {if $status=='2'}active{/if}" id="2">envio pendente</a>
+	      <a href="#tab1" class="tab-link button {if $status==''}active{/if}" id="">Todas</a>
+	      <a href="#tab2" class="tab-link button {if $status=='0'}active{/if}" id="0">Pendente</a>
+	      <a href="#tab3" class="tab-link button {if $status=='2'}active{/if}" id="2">Pendente</a>
 	      <a href="#tab4" class="tab-link button {if $status=='3'}active{/if}" id="3">A caminho</a>
-	      <a href="#tab5" class="tab-link button {if $status=='4'}active{/if}" id="4">Entregues</a>
+	     <!-- <a href="#tab5" class="tab-link button {if $status=='4'}active{/if}" id="4">Entregues</a> -->
 	    </div>
 		<div class="content infinite-scroll native-scroll" data-distance="10">
 		    <div class="tabs" style="padding-top: 2.8rem;">
@@ -34,7 +34,7 @@
         <div class="contentt">
 	        <p class="delivery_tip">{{ d.list[i].name }}</p>
 	        <p class="order-time">{{ d.list[i].date }}</p>
-        	<p class="price">￥{{ d.list[i].pay_price }}</p>
+        	<p class="price">R$ {{ d.list[i].pay_price }}</p>
         </div>
         <i class="field-arrow icon-arrow-right"></i>
     </a>
