@@ -11,7 +11,7 @@
 <div class="page-group">
     <div class="page page-current" id="page-createadd">
     	<header class="bar bar-nav">
-			<a class="button button-link button-nav pull-left back" href="{php echo app_url('address/addmanage')}"><span class="icon icon-left"></span>volte para menu</a>
+			<a class="button button-link button-nav pull-left back" href="{php echo app_url('address/addmanage')}"><span class="icon icon-left"></span>volta</a>
 			<h1 class="title">Atualizar endereço</h1>
 		</header>
 		<div class="content native-scroll">
@@ -31,7 +31,7 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">Telefone celular * </div>
+		              <div class="item-title label">Telefone * </div>
 		              <div class="item-input">
 		                <input type="tel" placeholder="" id="myphone" value="{$addres['tel']}">
 		              </div>
@@ -85,11 +85,11 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">Identifique este endereço para futura referência</div>
+		              <div class="item-title label">Referência</div>
 		              <div class="item-input">
 		                <select id="type">
-		                  <option value="2" {if $addres['type']==2}selected="selected"{/if}>Família</option>
-		                  <option value="1" {if $addres['type']==1}selected="selected"{/if}>Company</option>
+		                  <option value="2" {if $addres['type']==2}selected="selected"{/if}>Residencial</option>
+		                  <option value="1" {if $addres['type']==1}selected="selected"{/if}>Comercial</option>
 		                </select>
 		              </div>
 		            </div>
@@ -98,7 +98,7 @@
 		        <li>
 		          <div class="item-content">
 		            <div class="item-inner">
-		              <div class="item-title label">Se o padrão de</div>
+		              <div class="item-title label">o padrão</div>
 		              <div class="item-input">
 		                <label class="label-switch">
 		                  <input type="checkbox" id="status" {if $addres['status']==1}checked{/if}>
