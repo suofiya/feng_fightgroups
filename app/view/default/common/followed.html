@@ -12,8 +12,9 @@
     function timelyFun(){
         $.post("{php echo app_url('order/order/tip')}",function(data){
             $(".orderlist").show();
-            $("#shuoming").html("último pedido foi à"+data.city+"的"+data.nickname);
-            $("#sec").html(data.sec+"segundos atrás"+"  ");
+            //último pedido foi á 购买人 do 城市 em 10 segunda atrás
+            $("#shuoming").html("último pedido foi à "+data.nickname+" do "+data.city );
+            $("#sec").html(" em " +data.sec+"segundos atrás"+"  ");
             $("#headpic").attr("src",data.avatar);
             setTimeout("$('.orderlist').hide()",8000);
         },'JSON')
@@ -21,6 +22,6 @@
     window.onload = funcTest;
 </script>           
 <div class="orderlist" style="font-size:14px;display:none;"><img id="headpic" src="#" width="25">
-    <span id="shuoming" style="margin-left:3%;line-height:25px;font-size:12px;">último pedido foi à haha de xiancheng</span>
-    <span id="sec" style="font-size:12px;margin-right:12px;display: inline;padding-right: 3%;">5segundos atrás</span>
+    <span id="shuoming" style="margin-left:3%;line-height:25px;font-size:12px;">último pedido foi à Marcos do São Paulo </span>
+    <span id="sec" style="font-size:12px;margin-right:12px;display: inline;padding-right: 3%;">em 5 segundos atrás</span>
 </div>
