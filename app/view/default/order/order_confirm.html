@@ -48,12 +48,12 @@
 			            			{if $goods['optionname']}<span>tamanho：{$goods['optionname']}</span>{/if}
 			            			<span>quantidade：{$num}</span>
 			            		</div>
-			            		<div class="price">¥{$price} x {$num}</div>
+			            		<div class="price">R$ {$price} x {$num}</div>
 			            	</dd>
 			            </dl>
 			            <div class="item"><span class="attname">frete：</span><span class="attval" id="freight">{if $freight}R$ {$freight}{else}frete gratis{/if}</span></div>
 			            {if $firstdiscount && $tuan_first==1}
-			            <div class="item"><span class="attname">desconto para adiministrador：</span><span class="attval">{$firstdiscount}元</span></div>
+			            <div class="item"><span class="attname">desconto para adiministrador：</span><span class="attval">R$ {$firstdiscount}</span></div>
 			           	{/if}
 			            <div>
 			                <input type="text" placeholder="mandar messagen para vendedor" value="" class="dt_ord_input" maxlength="200" name="remark">
@@ -81,7 +81,7 @@
 	        <div class="address_down">{$goods['endtime']}horas dentro os participante chegar o numero maxima do grupo e pode comprar, depois de pagamento pode compartilhar para os amigos~</div>
 	        <div class="order_mes">
 	        <span>valor final：</span>
-	        	<span class="order_price" id="dt_ord_t2">¥{$pay_price}</span>
+	        	<span class="order_price" id="dt_ord_t2">R$ {$pay_price}</span>
 	        	<button class="btn_gopay" id="dt_goPay">envia pedido</button>
 	        </div>
 	    </div>
@@ -118,7 +118,7 @@
   </div>
   <div class="card-footer">
     <span>：Data do vencimento{{ d[i].end_time }}</span>
-    <span style="display: flex;"><div class="weui_btn weui_btn_mini weui_btn_default external" onclick="usecoupon({{ d[i].id }},{{ d[i].cash }})">使用优惠券</div></span>
+    <span style="display: flex;"><div class="weui_btn weui_btn_mini weui_btn_default external" onclick="usecoupon({{ d[i].id }},{{ d[i].cash }})">Use o cupom</div></span>
   </div>
 </div>
 {{# } }}
@@ -199,13 +199,13 @@
 				couponid = 0;
 				$('#freight').html(freight);
 				$('#dt_ord_yhjmes').html('selecione ou receber seu cupom');
-				$('#dt_ord_t2').html('￥'+pay_price);
+				$('#dt_ord_t2').html('R$ '+pay_price);
 			});
 			$('#bdelete').on('click', function () {
 				couponid = 0;
 				$('#freight').html('0.00');
 				$('#dt_ord_yhjmes').html('selecione ou receber seu cupom');
-				$('#dt_ord_t2').html('￥' + (pay_price - freight).toFixed(2));
+				$('#dt_ord_t2').html('R$' + (pay_price - freight).toFixed(2));
 			});
 		});
 		$.init();
