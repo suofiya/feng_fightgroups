@@ -30,15 +30,15 @@ if($op =='ajax'){
 	foreach($data['list'] as $key =>&$vlaue){
 		$goods = goods_get_by_params(" id = {$vlaue['g_id']} ");
 		switch($vlaue['status']){
-			case 0:$statusname='pagamento pendente';break;
-			case 1:$statusname='grupo em baerto';break;
-			case 2:$statusname='envio pendente';break;
-			case 3:$statusname='a caminho';break;
-			case 4:$statusname='entregues';break;
-			case 5:$statusname='cancelados';break;
+			case 0:$statusname='Pendente';break;
+			case 1:$statusname='Em baerto';break;
+			case 2:$statusname='Pendente';break;
+			case 3:$statusname='A caminho';break;
+			case 4:$statusname='Entregues';break;
+			case 5:$statusname='Cancelados';break;
 			case 6:$statusname='devoluçao pendente';break;
 			case 7:$statusname='devoluçao realizado';break;
-			default:$statusname='pagamento pendente';
+			default:$statusname='Pendente';
 		}
 		$vlaue['gimg'] = $goods['gimg'];
 		$vlaue['name'] = $goods['gname'];
