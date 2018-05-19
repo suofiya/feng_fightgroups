@@ -125,7 +125,7 @@
 {{# for(var i = 0, len = d.list.length; i < len; i++){ }}
 <li class="gli">
 	<a href="{{ d.list[i].a }}" class="external">
-		<div class="img"><img src="{{ d.list[i].gimg }}" alt="" style="opacity: 1;"><div class="icon_position"><div class="discount"><span>{{ Math.round((1-d.list[i].gprice/d.list[i].mprice)*10) }}%<br/>Desc.</span></div>
+		<div class="img"><img src="{{ d.list[i].gimg }}" alt="" style="opacity: 1;"><div class="icon_position"><div class="discount"><span>{{ Math.round((1-d.list[i].gprice/d.list[i].mprice)*100) }}%</span><br/><span>Desc.</span></div>
 		{{# if(d.list[i].goodstab != null && typeof(d.list[i].goodstab.length) != "undefined" && d.list[i].goodstab){ }}
 		<div class="pricedown">{{ d.list[i].goodstab }}</div>
 		{{# } }}
