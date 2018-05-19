@@ -52,12 +52,12 @@
 			        <div class="ico_countdown"></div>
 			        {/if}
 			        <div class="tuan_btn" id="buyNow"><span>participe agora</span><span><i class="rowline"></i><em>8.9R$</em>/{$goods['unit']}</span></div>
-			        <div class="goIndexBtn">volte para menu</div>
+			        <div class="goIndexBtn">Volta</div>
 			        <p class="activityTip"></p>
 			    </section>
 			    <div class="space" style="display: none;"></div>
 			    
-			    <!--商家-->
+			    <!--商家
 				{if $merchant}
 				<a href="{php echo $this->createMobileUrl('merchant',array('id'=>$merchant['id']));}">
 	            <div class="mall_goods">
@@ -73,7 +73,7 @@
 	            </div>
 	            </a>
 	            {/if}
-	            
+	            -->
 		       	
 		       	<!--分享团-->
 		       	{if !empty($thistuan)}
@@ -167,10 +167,10 @@
 		<footer class="footer" style="z-index: 1!important;height: 50px;">
 	        <nav>
 	            <ul>
-	                <li style="width: 20%;"><a href="{php echo app_url('goods/list')}" class="nav-controller external"><i class="fa fa-home"></i>menu</a></li>
+	                <li style="width: 20%;"><a href="{php echo app_url('goods/list')}" class="nav-controller external"><i class="fa fa-home"></i>Home</a></li>
 	                {if $goods['isshow']==1}
 					{if $goods['group_level_status']==2}
-						<li class="alone"><a href="{php echo app_url('order/orderconfirm',array('groupnum'=>1));}" class="nav-controller external"><i >￥{$goods['oprice']}</i>compra individual</a></li>
+						<li class="alone"><a href="{php echo app_url('order/orderconfirm',array('groupnum'=>1));}" class="nav-controller external"><i >R$ {$goods['oprice']}</i>compra individual</a></li>
 	                	<li class="group"><a onclick='choose()' class="nav-controller"><i >R$ {$goods['gprice']}</i>compra com grupo</a></li>
 					{elseif $goods['hasoption']==1}
 						<li class="alone"><a onclick='choose(1)' class="nav-controller"><i >R$ {$goods['oprice']}</i>compra individual</a></li>
