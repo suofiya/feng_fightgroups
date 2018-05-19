@@ -7,6 +7,23 @@
 	.city-picker .col-district {
     	width: 0;
 	}
+    .item-content .item-inner{
+        display:block;overflow: inherit;
+    }
+    .item-content .item-inner .item-title{
+        width: 100%;
+    }
+    .item-content .item-inner .item-input{
+        padding-top: 10px;
+    }
+    .item-content .item-inner .item-input input{
+        border: 1px solid #ededed;
+        width: 100%;
+    }
+    .item-content .item-inner .item-input select{
+        border: 1px solid #ededed;
+        width: 100%;
+    }
 </style>
 <div class="page-group">
     <div class="page page-current" id="page-createadd">
@@ -15,7 +32,7 @@
 			<h1 class="title">Modificar endereço</h1>
 		</header>
 		<div class="content native-scroll">
-			<div class="list-block">
+			<div class="list-block" style="margin: 0;">
 		      <ul>
 		        <!-- Text inputs -->
 		        <li>
@@ -97,8 +114,8 @@
 		        </li>
 		        <li>
 		          <div class="item-content">
-		            <div class="item-inner">
-		              <div class="item-title label">o padrão</div>
+		            <div class="item-inner" style="display: inherit;">
+		              <div class="item-title label" style="width: 80%">o padrão</div>
 		              <div class="item-input">
 		                <label class="label-switch">
 		                  <input type="checkbox" id="status" {if $addres['status']==1}checked{/if}>

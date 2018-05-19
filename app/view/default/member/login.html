@@ -1,7 +1,10 @@
 {php include wl_template('common/header');}
 <div class="page-group">
     <div class="page page-current" id="page-login">
-
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left back" href="{php echo app_url('goods/list')}"><span class="icon icon-left"></span>volta</a>
+            <h1 class="title">Autenticação</h1>
+        </header>
         <div class="content native-scroll">
 
             <div class="buttons-tab" style="z-index: 100;">
@@ -45,6 +48,9 @@
               <div class="row">
                 <div class="col-100"><a href="https://www.facebook.com/dialog/oauth?scope=email+public_profile&response_type=code&client_id={$facebook_client_id}&state={$facebook_state_code}&display=popup&redirect_uri={$facebook_oauth_callback}" id="fbLoginBtn" class="weui_btn weui_btn_default">Login com Facebook</a></div>
               </div>
+            </div>
+            <div class="weui_extra_area">
+                <a href="{php echo app_url('goods/list')}">voltar para menu</a>
             </div>
         </div>
     </div>
