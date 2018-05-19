@@ -12,7 +12,7 @@
     <div class="page page-current" id="page-createadd">
     	<header class="bar bar-nav">
 			<a class="button button-link button-nav pull-left back" href="{php echo app_url('address/addmanage')}"><span class="icon icon-left"></span>volta</a>
-			<h1 class="title">Atualizar endereço</h1>
+			<h1 class="title">Modificar endereço</h1>
 		</header>
 		<div class="content native-scroll">
 			<div class="list-block">
@@ -166,7 +166,7 @@
 				}
 				$.post("{php echo app_url('address/createadd/post',array('id'=>$addres['id']))}",{myname:myname,myphone:myphone,citys:citys,county:county,zipcode:zipcode,detailed:detailed,type:type,status:status},function(d){
 					if(d.status == 1){
-						$.alert('Atualizar o endereço com sucesso', function () {
+						$.alert('Modificar o endereço com sucesso', function () {
 					        location.href = "{$bakurl}";
 					    });
 					}else{
