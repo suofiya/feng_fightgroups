@@ -54,10 +54,12 @@
 			            <div class="item"><span class="attname">frete：</span><span class="attval" id="freight">{if $freight}R$ {$freight}{else}frete gratis{/if}</span></div>
 			            {if $firstdiscount && $tuan_first==1}
 			            <div class="item"><span class="attname">desconto para adiministrador：</span><span class="attval">R$ {$firstdiscount}</span></div>
-			           	{/if}
+			           {/if}
+				   <!--
 			            <div>
 			                <input type="text" placeholder="mandar messagen para vendedor" value="" class="dt_ord_input" maxlength="200" name="remark">
 			            </div>
+   				   -->
 			        </div>
 			        
 			        <div class="item_yhq" id="dt_ord_youhui">
@@ -89,7 +91,7 @@
 </div>
 <div class="popup popup-youhui">
 	<header class="bar bar-nav">
-    	<a class="button button-link button-nav pull-right close-popup">fechado</a>
+    	<a class="button button-link button-nav pull-right close-popup">fechar</a>
     	<h1 class="title">lista do cupom</h1>
   	</header>
   	<div class="content" id="youhuic">
