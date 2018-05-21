@@ -3,7 +3,7 @@
     <div class="page page-current" id="page-register">
         <header class="bar bar-nav">
             <a class="button button-link button-nav pull-left back" href="{php echo app_url('goods/list')}"><span class="icon icon-left"></span>volta</a>
-            <h1 class="title">Autenticação</h1>
+            <h1 class="title">Autentificação</h1>
         </header>
         <div class="content native-scroll">
 
@@ -40,7 +40,7 @@
                     <div class="item-inner">
                       <div class="item-title label">Confirmar a Senha</div>
                       <div class="item-input">
-                        <input type="password" placeholder="Por favor, re-digite a nova password" id="confirm_password" value="">
+                        <input type="password" placeholder="insira a senha novamente," id="confirm_password" value="">
                       </div>
                     </div>
                   </div>
@@ -74,7 +74,7 @@
                 var confirm_password = $('#confirm_password').val();
                 var emailRule = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
                 if(!email){
-                    $.toast("Por favor insira o seu endereço de email");
+                    $.toast("insira o seu email");
                     return false;
                 } else if(!emailRule.test(email)) {
                     $.toast("email inválido. favor confirmar email e tente novamente");
@@ -92,7 +92,7 @@
                     return false;
                 }
                 if(password != confirm_password){
-                    $.toast("As suas senha não coincidem, por favor tente novamente");
+                    $.toast("A senha invalido, por favor tente novamente");
                     return false;
                 }
                 $.post("{php echo app_url('member/register/post')}",{email:email,password:password,confirm_password:confirm_password},function(d){
