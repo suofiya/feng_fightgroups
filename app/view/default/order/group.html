@@ -2,7 +2,7 @@
 
   <!-- twitter share-->
   <meta name="title" content="{$config['share']['share_title']}">
-  <meta name="twitter:site" content="lecuntao.com">
+  <meta name="twitter:site" content="m.melitotal.com.br">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:url" class="share_url" content="{$config['share']['share_url']}">
   <meta name="twitter:title" class="share_title" content="{$config['share']['share_title']}">
@@ -11,10 +11,10 @@
   <!-- FaceBook  share-->
   <!-- google+ share -->
   <meta property="og:url" class="share_url" content="{$config['share']['share_url']}" />
-  <meta property="og:type"  content="article" />
+  <meta property="og:type"  content="website" />
   <meta property="og:title" class="share_title"  content="{$config['share']['share_title']}" />
   <meta property="og:description" content="{$config['share']['share_desc']}" />
-  <meta property="og:image"  content="{$config['share']['share_image']}" />
+  <meta property="og:image" itemprop="image" content="{$config['share']['share_image']}" />
   <meta property="fb:app_id" content="2112900268947111" />
 
 <div class="page-group">
@@ -136,78 +136,63 @@
 	        </div>
 	    </section>
     </div>
-    <div style="width: 100%; position: fixed; bottom: 70px; padding: 10px 0;">
-      <div class="xq-loginshare">
-          <a href="javascript:fbShare('{$tuan_id}');" class="xq-facebook">facebook</a>
-          <a href="javascript:googleShare('{$tuan_id}');" class="xq-google">google</a>
-          <a href="javascript:twitterShare('{$tuan_id}');" class="xq-twtter">twtter</a> 
-          <a href="javascript:whatsApp('{$tuan_id}');" class="xq-whatsapp">whatsApp</a> 
-        </div>
-    </div>
     <div class="H5_con fixopt" id="fixopt" style="display: block;">
         <div class="address_new">
             {if !empty($myorder)}
-                {if $tuaninfo['groupstatus']==3}
+              {if $tuaninfo['groupstatus']==3}
                 <span style="display:block;float:left;width: 80%;margin-left: 5px;">
-                <button style="fllow:left;width: 100%;" onclick="_system._guide(true)">convite os amigos</button> 
+                <button style="fllow:left;width: 100%;" onclick="_system._share(true, '{$tuan_id}')">convite os amigos</button> 
                 </span>
                 <span style="display:block;float:right;width: 15%;">
-                 <button style="width: 90%;"><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home" style="color: white;"></i>
-                </a></button>
+                 <button style="width: 90%;"><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home" style="color: white;"></i></a></button>
                 </span>
-                {else}
+              {else}
                 <span style="display:block;float:left;width: 80%;margin-left: 5px;">
 	            	{if $goods['hasoption']!=1}
-	             <a href="{php echo app_url('order/orderconfirm',array('groupnum'=>$tuaninfo['neednum'],'id'=>$goods['id'],'newtuan'=>'newtuan'));}" class="external">
-	            <button style="fllow:left;width: 100%;">grupo concluído,clique monte novo grupo</button> 
-	           	</a>
-	           	{else}
-	           	<a href="">
-	            <button style="fllow:left;width: 100%;">grupo concluído</button> 
-	           	</a>
-	           	{/if}
-	            </span>
+  	             <a href="{php echo app_url('order/orderconfirm',array('groupnum'=>$tuaninfo['neednum'],'id'=>$goods['id'],'newtuan'=>'newtuan'));}" class="external">
+  	            <button style="fllow:left;width: 100%;">grupo concluído,clique monte novo grupo</button> 
+  	           	</a>
+  	           	{else}
+  	           	<a href=""><button style="fllow:left;width: 100%;">grupo concluído</button> </a>
+  	           	{/if}
+	              </span>
                 <span style="display:block;float:right;width: 15%;">
-                 <button style="width: 90%;" ><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home"></i>Home
-                </a></button>
+                 <button style="width: 90%;" ><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home"></i>Home</a></button>
                 </span>
-                {/if}
+              {/if}
             {else}
 	            {if $tuaninfo['groupstatus']==3}
-	            <span style="display:block;float:left;width: 80%;margin-left: 5px;">
+	              <span style="display:block;float:left;width: 80%;margin-left: 5px;">
 	            	{if $goods['hasoption']==1}
-	           			 <a href="{php echo app_url('goods/detail',array('id' => $goods['id'],'tuan_id' => $tuan_id,'groupnum'=>$tuaninfo['neednum']));} ">
+	           			<a href="{php echo app_url('goods/detail',array('id' => $goods['id'],'tuan_id' => $tuan_id,'groupnum'=>$tuaninfo['neednum']));} ">
 	           		{else}
-	           			 <a href="{php echo app_url('order/orderconfirm',array('id' => $goods['id'],'tuan_id' => $tuan_id,'groupnum'=>$tuaninfo['neednum']));} " class="external">
+	           			<a href="{php echo app_url('order/orderconfirm',array('id' => $goods['id'],'tuan_id' => $tuan_id,'groupnum'=>$tuaninfo['neednum']));} " class="external">
 	           		{/if}
-	           <button style="fllow:left;width: 100%;">eu quero participar</button> 
-	            </a>
-	            </span>
-	            <span style="display:block;float:right;width: 15%;">
-	             <button style="width: 90%;"><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home"></i>
-	            </a></button>
-	            </span>
+                    <button style="fllow:left;width: 100%;">eu quero participar</button> 
+                  </a>
+                </span>
+                <span style="display:block;float:right;width: 15%;">
+                  <button style="width: 90%;"><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home"></i></a></button>
+	               </span>
 	            {else}
-	            
-	            <span style="display:block;float:left;width: 80%;margin-left: 5px;">
+                <span style="display:block;float:left;width: 80%;margin-left: 5px;">
 	            	{if $goods['hasoption']!=1}
-	             <a href="{php echo app_url('order/orderconfirm',array('groupnum'=>$tuaninfo['neednum'],'id'=>$goods['id'],'newtuan'=>'newtuan'));}" class="external">
-	            <button style="fllow:left;width: 100%;">grupo concluído,clique monte novo grupo</button> 
-	           	</a>
-	           	{else}
-	           	<a href="">
-	            <button style="fllow:left;width: 100%;">grupo concluído</button> 
-	           	</a>
-	           	{/if}
-	            </span>
-	            <span style="display:block;float:right;width: 15%;">
-	             <button style="width: 90%;"><a href="{php echo app_url('home/index')}" class="nav-controller external"><i class="fa fa-home"></i>
-	            </a></button>
-	            </span>
+                <a href="{php echo app_url('order/orderconfirm',array('groupnum'=>$tuaninfo['neednum'],'id'=>$goods['id'],'newtuan'=>'newtuan'));}" class="external">
+                  <button style="fllow:left;width: 100%;">grupo concluído,clique monte novo grupo</button>
+                </a>
+	           	  {else}
+                <a href="">
+                  <button style="fllow:left;width: 100%;">grupo concluído</button> 
+                </a>
+                {/if}
+                </span>
+                <span style="display:block;float:right;width: 15%;">
+                  <button style="width: 90%;"><a href="{php echo app_url('home/index')}" class="nav-controller external"><i class="fa fa-home"></i></a></button>
+                </span>
 	            {/if}
             {/if}
         </div>
-        </div>
+    </div>
 		<div id="cover"></div>
 		<div id="guide"><img src="{TG_URL_ARES}images/guide1.png"></div>
  	</div>
@@ -272,13 +257,54 @@ var _system={
         };
       }
     },
+    _share:function(click, tuan_id){
+      var buttons1 = [
+        {
+          text: '分享到社区平台',
+          bg: 'warning',
+          label: true
+        },
+        {
+          text: 'Share to Facebook',
+          onClick: function() {
+            facebookShare(tuan_id);
+          }
+        },
+        {
+          text: 'Share to WhatsApp',
+          onClick: function() {
+            whatsAppShare(tuan_id);
+          }
+        },
+        {
+          text: 'Share to Google',
+          onClick: function() {
+            googleShare(tuan_id);
+          }
+        },
+        {
+          text: 'Share to Twitter',
+          onClick: function() {
+            twitterShare(tuan_id);
+          }
+        }
+      ];
+      var buttons2 = [
+        {
+          text: '取消',
+          color: 'gray'
+        }
+      ];
+      var btnGroups = [buttons1, buttons2];
+      $.actions(btnGroups);
+    },
     _zero:function(n){
       return n<0?0:n;
    }
 }
 //1 facebook 2 pinterest  3  email 4 twitter 5 tumblr
 //6 relop 7 reddit 8 stumbleupon 9 google 10 linkedin 11 gettile 复制网址',12 whatsapp
-function fbShare(a){
+function facebookShare(a){
     u=document.getElementsByClassName("share_url")[0].content;
     t=document.getElementsByClassName("share_title")[0].content;
     if(a=="-1"){
@@ -305,14 +331,14 @@ function twitterShare(a){
   shareRecord(a,4);
   window.open("https://twitter.com/home?status="+encodeURIComponent(u)+" "+encodeURIComponent(t),"sharer","toolbar=0,status=0,width=626,height=436");
 }
-function whatsAppShare(contentId){
+function whatsAppShare(a){
   u = document.getElementsByClassName("share_url")[0].content;
   t = document.getElementsByClassName("share_title")[0].content;
-  if (contentId == "-1") {
-    contentId = $("#sharedContendId").html();
+  if (a == "-1") {
+    a = $("#sharedContendId").html();
   }
   shareRecord(a,12);
-  window.location.href="whatsapp://send?text="+ encodeURIComponent(t) + encodeURIComponent("\n\n"+u)+"&via=brpdd.com";
+  window.location.href="whatsapp://send?text="+ encodeURIComponent(t) + encodeURIComponent("\n\n"+u)+"&via=m.melitotal.com.br";
 }
 function shareRecord(b,a){
   //$.post("/content/share",{content_id:b,share_type:a});

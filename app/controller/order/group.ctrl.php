@@ -11,7 +11,7 @@ wl_load()->model('order');
 
 // 判断用户是否已注册
 if (pdd_isLoginedStatus() == false) {
-    header("Location: ".app_url('member/login'));exit;  
+    //header("Location: ".app_url('member/login'));exit;  
 }
 
 $tuan_id = intval($_GPC['tuan_id']);
@@ -55,19 +55,20 @@ if(!empty($tuan_id)){
 	    $lasttime = $goods['endtime'];
   	}
 	
+    // 分享链接
 	$config['share']['share_title'] = "eu participei【".$goods['gname']."】do grupo，vamos junto！";
 	$config['share']['share_desc'] = "【falta".$tuaninfo['lacknum']."pessoa】，vamos participamos junto【".$goods['gname']."】".$config['share']['share_desc'];
 	$config['share']['share_url'] = app_url('order/group', array('tuan_id'=>$tuan_id));
 	$config['share']['share_image'] = $goods['gimg'];
 	$pagetitle = $goods['gname'];
 	
+    // session记录
 	session_start();
 	if($tuaninfo['groupstatus']==3){
 		$_SESSION['goodsid'] = $goods['id'];
 		$_SESSION['tuan_id'] = $tuan_id;
 		$_SESSION['groupnum'] = $tuaninfo['neednum'];
 	}
-	
 	
   	include wl_template('order/group');
 }else{
