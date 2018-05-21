@@ -12,7 +12,7 @@
     function timelyFun(){
         $.post("{php echo app_url('order/order/tip')}",function(data){
             $(".orderlist").show();
-            //último pedido foi á 购买人 do 城市 em 10 segunda atrás
+            //último pedido foi de 购买人 do 城市 em 10 segunda atrás
             $("#shuoming").html("último pedido foi à "+data.nickname+" do "+data.city );
             $("#sec").html(" em " +data.sec+"segundos atrás"+"  ");
             $("#headpic").attr("src",data.avatar);
