@@ -392,7 +392,7 @@ iframe{width: 0;height: 0;line-height: 0;overflow: hidden}
 @-webkit-keyframes ico_loading{from{-webkit-transform:rotate(0deg) translateZ(0)}
 to{-webkit-transform:rotate(360deg) translateZ(0)}}.error{display:none;text-align:center}
 .noData{display:none;padding-top:10px;text-align:center}
-.fnZone{display:inline-block;margin:12px 10px;font-size:14px;background:#5d2f18;border-radius:18px;height:36px;line-height:36px;color:#fff}
+.fnZone{display:inline-block;margin:12px 10px;font-size:14px;height:36px;line-height:36px;}
 .fnZone i{float:left;margin:-5px 0 0 -15px;width:46px;height:46px;display:inline-block;background:url(../images/list/pin.png) no-repeat;background-size:46px}
 .fnZone .btn{background:#fed943}
 .fnZone .price{font-size:16px;display:inline-block}
