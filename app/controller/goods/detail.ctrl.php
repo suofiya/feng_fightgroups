@@ -45,7 +45,7 @@ if(!empty($id)){
 	}
 	
 	/*判断购买次数*/
-	$data = order_get_list(array('openid'=>$_W['openid'],'status'=>'1,2,3,4,5'));
+    $data = pdo_fetchcolumn('SELECT COUNT(*) as total FROM '.tablename('tg_order')." AS o,".tablename('tg_group') ." AS op where op.groupnumber=o.id and o.openid='".$_W['openid']."' and op.goodsid=".intval($id)." AND o.status in(1,2,3,4,5)");
 	$times = $data['total'];
 	
 	//商家
