@@ -270,6 +270,9 @@ if ($op == 'display') {
 			$oplogdata = serialize($data);
 			oplog('admin', "更新商品", web_url('goods/goods/post'), $oplogdata);
 		}
+        if(!file_exists(ATTACHMENT_ROOT.str_replace('images/','images/300x200/',$data['gimg']))){
+            file_image_thumb_white(ATTACHMENT_ROOT.$data['gimg'],ATTACHMENT_ROOT.str_replace('images/','images/300x200/',$data['gimg']),300,200);
+        }
 		//处理自定义参数
 		$param_ids = $_POST['param_id'];
 		$param_titles = $_POST['param_title'];
