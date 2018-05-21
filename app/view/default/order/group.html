@@ -1,22 +1,5 @@
 {php include wl_template('common/header');}
 
-  <!-- twitter share-->
-  <meta name="title" content="{$config['share']['share_title']}">
-  <meta name="twitter:site" content="m.melitotal.com.br">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" class="share_url" content="{$config['share']['share_url']}">
-  <meta name="twitter:title" class="share_title" content="{$config['share']['share_title']}">
-  <meta name="twitter:description" content="{$config['share']['share_desc']}">
-  <meta name="twitter:image" content="{$config['share']['share_image']}"> 
-  <!-- FaceBook  share-->
-  <!-- google+ share -->
-  <meta property="og:url" class="share_url" content="{$config['share']['share_url']}" />
-  <meta property="og:type"  content="website" />
-  <meta property="og:title" class="share_title"  content="{$config['share']['share_title']}" />
-  <meta property="og:description" content="{$config['share']['share_desc']}" />
-  <meta property="og:image" itemprop="image" content="{$config['share']['share_image']}" />
-  <meta property="fb:app_id" content="2112900268947111" />
-
 <div class="page-group">
     <div class="page page-current" id="page-order-list">
     <div class="content" style="padding-bottom: 60px;">
@@ -338,7 +321,7 @@ function whatsAppShare(a){
     a = $("#sharedContendId").html();
   }
   shareRecord(a,12);
-  window.location.href="whatsapp://send?text="+ encodeURIComponent(t) + encodeURIComponent("\n\n"+u)+"&via=m.melitotal.com.br";
+  window.open("whatsapp://send?text="+ encodeURIComponent(t) + encodeURIComponent("\n\n"+u) +"&via=m.melitotal.com.br");
 }
 function shareRecord(b,a){
   //$.post("/content/share",{content_id:b,share_type:a});

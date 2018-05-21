@@ -8,6 +8,7 @@ defined('IN_IA') or exit('Access Denied');
 wl_load()->model('goods');
 wl_load()->model('merchant');
 wl_load()->model('order');
+load()->func('file');
 
 // 判断用户是否已注册
 if (pdd_isLoginedStatus() == false) {
@@ -55,13 +56,22 @@ if(!empty($tuan_id)){
 	    $lasttime = $goods['endtime'];
   	}
 	
-    // 分享链接
+    // 动态商品缩略图，不存在则重新生成300*200
+    $thumb_gimg = str_replace('images', 'images/300x200', $goods['gimg_db']);
+    if (!file_exists(ATTACHMENT_ROOT.'/'.$thumb_gimg)) {
+        $thumb_gimg = file_image_thumb_white(ATTACHMENT_ROOT.'/'.$goods['gimg_db'], ATTACHMENT_ROOT.'/'.str_replace('images', 'images/300x200', $goods['gimg_db']), 300, 200);
+    }
+    // 社区分享相关
 	$config['share']['share_title'] = "eu participei【".$goods['gname']."】do grupo，vamos junto！";
 	$config['share']['share_desc'] = "【falta".$tuaninfo['lacknum']."pessoa】，vamos participamos junto【".$goods['gname']."】".$config['share']['share_desc'];
 	$config['share']['share_url'] = app_url('order/group', array('tuan_id'=>$tuan_id));
-	$config['share']['share_image'] = $goods['gimg'];
-	$pagetitle = $goods['gname'];
+	$config['share']['share_big_image'] = $goods['gimg'];
+    // 分享缩略图
+    $config['share']['share_image'] = tomedia($thumb_gimg);
 	
+    // 页头title
+    $pagetitle = $goods['gname'];
+
     // session记录
 	session_start();
 	if($tuaninfo['groupstatus']==3){

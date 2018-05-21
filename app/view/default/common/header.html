@@ -7,6 +7,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="icon" type="image/png" href="{TG_URL_ARES}images/list/pin.png">
     <link rel="stylesheet" href="{TG_URL_ARES}components/light/light7.min.css">
     <link rel="stylesheet" href="{TG_URL_ARES}components/weui/weui.css">
     <link rel="stylesheet" href="{TG_URL_ARES}components/icon/iconfont.css">
@@ -20,5 +21,25 @@
 	<script type='text/javascript' src='{TG_URL_ARES}components/swiper/swiper.min.js' charset='utf-8'></script>
 	<!-- <script type='text/javascript' src='{TG_URL_ARES}components/light/light7-city-picker.js' charset='utf-8'></script> -->
     <script type='text/javascript' src='{TG_URL_ARES}components/light/light7-brazil-city-picker.js' charset='utf-8'></script>
+{if $config['share']['share_url']}
+    <!-- twitter share-->
+    <meta name="title" content="{$config['share']['share_title']}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="m.melitotal.com.br">
+    <meta name="twitter:url" class="share_url" content="{$config['share']['share_url']}">
+    <meta name="twitter:title" class="share_title" content="{$config['share']['share_title']}">
+    <meta name="twitter:description" content="{$config['share']['share_desc']}">
+    <meta name="twitter:image" content="{$config['share']['share_image']}"> 
+    <!-- FaceBook  share-->
+    <!-- google+ share -->
+    <meta property="og:url" class="share_url" content="{$config['share']['share_url']}" />
+    <meta property="og:type"  content="website" />
+    <meta property="og:title" class="share_title"  content="{$config['share']['share_title']}" />
+    <meta property="og:description" content="{$config['share']['share_desc']}" />
+    <meta property="og:image" itemprop="image" content="{$config['share']['share_image']}" />
+    <meta property="og:updated_time" content="{php echo time();}" />
+    <link itemprop="thumbnailUrl" href="{$config['share']['share_thumbnail_image']}">
+    <meta property="fb:app_id" content="2112900268947111" />
+{/if}
 </head>
 <body>

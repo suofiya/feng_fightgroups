@@ -88,6 +88,7 @@ function goods_get_by_params($params = '') {
 		}
 		$sql = "SELECT * FROM " . tablename('tg_goods') . $params;
 		$goods = pdo_fetch($sql);
+		$goods['gimg_db'] = $goods['gimg'];
 		$goods['gimg'] = tomedia($goods['gimg']);
 		$goods['a'] = app_url('goods/detail/display',array('id'=>$goods['id']));
 		return $goods;
