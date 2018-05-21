@@ -85,19 +85,15 @@
 			
 			<div id="order-detail" style="display: none">
 			    <div class="orderregion">
-			        <a class="status-hotelname" href="#">
-			            <i class="icon1-detail status-hotelname-icon"></i>
-			            <label class="status-hotelname-name">{$order['merchant_name']}</label>
-			            <i class="icon-arrow-right-thin status-hotelname-back"></i>
-			        </a>
+			            <label class="status-hotelname-name">$order['orderno']</label>
 			    </div>
 			    
 			    <div class="orderregion orderregion-top">
 			        <ul class="orderregion-entries">
 			            <li class="orderregion-entry">
 			                <span class="name text-overflow-ellipsis-2">{$goods['gname']}</span>
-			                <span class="price">￥{php echo $order['goodsprice']*$order['gnum']}</span>
-			                <span class="num">×{$order['gnum']}</span>
+			                <span class="price">R${php echo $order['goodsprice']*$order['gnum']}</span>
+			                <span class="num">&nbsp;×{$order['gnum']}</span>
 			            </li>
 			        </ul>
 			    </div>
@@ -106,51 +102,15 @@
 			        <ul class="orderregion-entries">
 			            <li class="orderregion-entry order-other-price">
 			                <span class="name text-overflow-ellipsis-2">frete</span>
-			                <span class="price">￥&nbsp;{$order['freight']}</span>
+			                <span class="price">R$&nbsp;{$order['freight']}</span>
 			            </li>
 			            <li class="orderregion-entry order-total-price">
 			                <span class="name text-overflow-ellipsis-2">total</span>
-			                <span class="price">￥&nbsp;{$order['pay_price']}</span>
+			                <span class="price">R$&nbsp;{$order['pay_price']}</span>
 			            </li>
 			        </ul>
 			    </div>
 
-			    <!--门店-->
-	            {if $order['is_hexiao'] != 0}
-	            <div class="orderregion">
-			        <h1 class="orderregion-title">
-			            <i class="icon1-detail status-detail-icon"></i>
-			            <label class="status-name">核销信息</label>
-			        </h1>
-			        <ul class="orderregion-entries-compact">
-			            <li class="orderregion-entry-compact">
-			                <span class="label">destinatário：</span>{$order['addname']}&nbsp; {$order['mobile']}
-			            </li>
-			            <!--<li class="orderregion-entry-compact">
-			                <span class="label">核销时间：</span>{php echo date('Y-m-d H:i:s', $order['bdeltime']);}
-			            </li>-->
-			        </ul>
-			    </div>
-				<div class="good_speci" onclick="showStores(this)" show="1">Informações comerciais aplicáveis<i class="fa fa-angle-down" style="float:right; line-height:44px; font-size:26px;"></i></div>
-	  			<div>
-		  			{loop $stores $stores}
-			        <div class="store">
-			            <div class="info">
-			            <div class="ico"><i class="fa fa-university"></i></div>
-			            <div class="info1">
-			                <div class="inner">
-			                     <div class="user">{$stores['storename']}</div>
-			                     <div class="addresss">endereço: {$stores['address']}</div>
-			                     <div class="tel">telefone: {$stores['tel']}</div>
-			                 </div>
-			             </div>
-			             <a href="http://api.map.baidu.com/marker?location={$stores['lat']},{$stores['lng']}&amp;title={$stores['storename']}&amp;name={$stores['storename']}&amp;content={$stores['address']}&amp;output=html" class="external"><div class="ico2"><i class="fa fa-map-marker"></i></div></a>
-			             <a href="tel:{$stores['tel']}" class="disable-router"><div class="ico3"><i class="fa fa-phone"></i></div></a>
-			        	</div>
-			        </div>
-					{/loop}
-		       	</div>
-		       	{else}
 		       	<div class="orderregion">
 			        <h1 class="orderregion-title">
 			            <i class="icon1-detail status-detail-icon"></i>
@@ -165,7 +125,7 @@
 			            </li>
 			        </ul>
 			    </div>
-		       	{/if}
+
 		       	
 			    <div class="orderregion">
 			        <h1 class="orderregion-title">
@@ -179,9 +139,10 @@
 			            <li class="orderregion-entry-compact">
 			                <span class="label">data da compra：</span>{php echo date('Y-m-d H:i:s', $order['createtime']);}
 			            </li>
+					<!--
 			            <li class="orderregion-entry-compact">
-			                <span class="label">forma de pagamento：</span>微信支付
-			            </li>
+			                <span class="label">forma de pagamento：</span>
+			            </li>-->
 			            {if $order['remark']}
 			            <li class="orderregion-entry-compact">
 			                <span class="label">obs：</span>{$order['remark']}
@@ -195,38 +156,6 @@
 			</div>
 		</div>
 	</div>
-</div>
-<div class="popup popup-qrcode">
-  	<div class="content" style="background: #eee;">
-    	<div class="list-block cards-list">
-	      <ul>
-	        <li class="card" style="border-radius: .2rem;">
-	          <div class="card-header"><h3 class="font-size-14">核销订单提货凭证</h3></div>
-	          <div class="card-content">
-	            <div class="card-content-inner">
-			        <div class="voucher-code">
-			            <p>提货码：{$order['hexiaoma']}</p>
-			            <p>
-			                <img src="{TG_URL}data/qrcode/{$_W['uniacid']}/{$order['orderno']}.png" onerror="javascript:this.src='{$_W['siteroot']}attachment/feng_fightgroups/qrcode/{$_W['uniacid']}/{$order['orderno']}.png';">
-			            </p>
-			        </div>
-			        <div class="voucher-address font-size-14">
-			            <!--<p>提货地址：{$order['address']}</p>-->
-			            <p>到店时间：尽快到店提货</p>
-			        </div>
-			        <div class="voucher-goods-info font-size-14">
-			            <p>商品信息：{$goods['gname']} </p>
-				        <p>实付金额：{$order['pay_price']}元</p>
-				        </div>
-				    </div>
-	          </div>
-	        </li>
-	      </ul>
-	    </div>
-	    <div class="weui_btn_area">
-        	<a class="weui_btn weui_btn_warn close-popup">fechar</a>
-    	</div>
-  	</div>
 </div>
 <script>
 	$(document).on('click','#btn-received',function(){
