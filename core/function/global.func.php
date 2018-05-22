@@ -31,7 +31,7 @@ function app_url($segment, $params = array()) {
 	list($do, $ac, $op) = explode('/', $segment);
 	//静态化地址
 	$enable_seo_url = (stripos($segment, 'ajax') > 0 || stripos($segment, 'post') > 0) ? false : true;
-$enable_seo_url = false;
+//$enable_seo_url = false;
 	if ($enable_seo_url) {
 		$url = $_W['siteroot'] . 'pdd/';
 		$url .= str_replace('/', '-', $segment);

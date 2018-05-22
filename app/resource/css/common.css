@@ -839,9 +839,9 @@ a.fixopt_share{border-radius: 3px;left: 62px;top: 0px;width: 42px;height: 42px;d
 :last-child.pp_users_item{margin-right: 0px;}
 .pp_users_item img{border-radius: 49px;width: 45px;height: 45px;overflow: hidden;display: block;box-shadow: 0px 0px 0px 2px #fff;background-clip: padding-box;-webkit-border-radius: 49px;}
 .pp_users_normal:nth-child(1){position:relative}
-.pp_users_normal:nth-child(1):after{content:'criador';position:absolute;right:0px;top:0px;width:40px;height:20px;line-height:20px;text-align:center;background-color:#F0373D;color:#fff;font-size:8px;border:2px solid #fff;-webkit-border-radius:21px;border-radius:21px;background-clip:padding-box}
+.pp_users_normal:nth-child(1):after{content:'criador';position:absolute;right:0px;top:0px;width:40px;height:10px;line-height:10px;text-align:center;background-color:#F0373D;color:#fff;font-size:8px;border:2px solid #fff;-webkit-border-radius:21px;border-radius:21px;background-clip:padding-box}
 .pp_users_normal:nth-child(2){position:relative}
-.pp_users_normal:nth-child(2):before{content:'Primeiro';position:absolute;right:0px;top:0px;width:50px;height:20px;line-height:20px;text-align:center;background-color:#FF9910;color:#fff;font-size:8px;border:2px solid #fff;-webkit-border-radius:21px;border-radius:21px;background-clip:padding-box}
+.pp_users_normal:nth-child(2):before{content:'Primeiro';position:absolute;right:0px;top:0px;width:50px;height:10px;line-height:10px;text-align:center;background-color:#FF9910;color:#fff;font-size:8px;border:2px solid #fff;-webkit-border-radius:21px;border-radius:21px;background-clip:padding-box}
 .pp_users_dot{background-position: -324px -80px;display: inline-block;}
 .pp_users2{margin: 0px -10px;}
 .pp_users2 .pp_users_item{width: 34px;height: 34px;margin-right: 2px;}
