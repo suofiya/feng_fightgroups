@@ -97,7 +97,7 @@
                 }
                 $.post("{php echo app_url('member/register/post')}",{email:email,password:password,confirm_password:confirm_password},function(d){
                     if(d.status == 1){
-                        $.alert('Register Success!', function(){
+                        $.alert('Criar a minha conta de SUCESSO!', function(){
                             location.href = "{$bakurl}";
                         });
                     }else{

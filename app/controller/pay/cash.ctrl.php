@@ -104,7 +104,7 @@ if ($_W['isajax']) {
 	if($setting['payment']['card']['switch'] == 3 && $_W['member']['uid']) {}
 	/*tg卡券*/
 	if(empty($params) || !array_key_exists($params['module'], $moduels)) {
-		message('erro ao acesso.');
+		wl_message('erro ao acesso.');
 	}
 	$dos = array();
 	if(!empty($setting['payment']['credit']['switch'])) {
@@ -160,7 +160,7 @@ if ($_W['isajax']) {
 					$id = date('YmdH');
 					pdo_update('core_paylog', array('plid' => $id), array('plid' => $log['plid']));
 					pdo_query("ALTER TABLE ".tablename('core_paylog')." auto_increment = ".($id+1).";");
-					message("Desculpa，pagamento nao aprovado,foi erro do sistema,tente mais tarde。");
+					wl_message("Desculpa，pagamento nao aprovado,foi erro do sistema,tente mais tarde。");
 				}
 				$message = "Desculpa，pagamento nao aprovado，motivo：“{$wOpt['errno']}:{$wOpt['message']}”。contate-nos。";
 				die(json_encode(array('errno'=>0,'message'=>$message)));

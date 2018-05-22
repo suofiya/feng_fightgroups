@@ -65,11 +65,11 @@
 			$('#wechatpay').on('click', function () {
 				var remark = $('#remark').val()?$('#remark').val():'';
 				var othername = $('#othername').val()?$('#othername').val():'';
-				$.post("{php echo app_url('pay/paytype')}",{orderno:orderno,remark:remark,othername:othername,op:"ajax",checkpay:"9"},function(m){
+				$.post("{php echo app_url('pay/paytype/ajax')}",{orderno:orderno,remark:remark,othername:othername,checkpay:"9"},function(m){
 				 	if(m.errno==1){
 				 		$.confirm('o grupo concluído,quer monte novo grupo？',
 					        function () {
-					        	location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
+					        	location.href = "{php echo app_url('order/orderconfirm', array('narrow'=>1))}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
 					        },
 					        function () {
 					        	location.href = "{php echo app_url('goods/list')}";
@@ -78,7 +78,7 @@
 				 	}else if(m.errno==2){
 				 		$.confirm('Esse pedido foi pago,monte o novo grupo?',
 					        function () {
-					        	location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
+					        	location.href = "{php echo app_url('order/orderconfirm', array('narrow'=>1))}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
 					        },
 					        function () {
 					        	location.href = "{php echo app_url('goods/list')}";
@@ -113,9 +113,9 @@
 	                                'paySign': m.data.paySign,
 								}, function(res) {
 									if(res.err_msg == 'get_brand_wcpay_request:ok') {
-										location.href = "{php echo app_url('pay/cash')}&orderno="+orderno+"&paytype="+paytype+"&done=1";
+										location.href = "{php echo app_url('pay/cash', array('narrow'=>1))}&orderno="+orderno+"&paytype="+paytype+"&done=1";
 									} else {
-										$.post("{php echo app_url('pay/paytype')}",{orderno:orderno,remark:remark,othername:othername,op:"ajax",checkpay:"8"},function(m){
+										$.post("{php echo app_url('pay/paytype/ajax')}",{orderno:orderno,remark:remark,othername:othername,checkpay:"8"},function(m){
 										 	$.toast("pagamento cancelado");
 										},"json");
 									}
@@ -133,11 +133,11 @@
                 var method = $(this).attr('method');
                 var remark = $('#remark').val()?$('#remark').val():'';
                 var othername = $('#othername').val()?$('#othername').val():'';
-                $.post("{php echo app_url('pay/paytype')}",{orderno:orderno,remark:remark,othername:othername,op:"ajax",checkpay:"9"},function(m){
+                $.post("{php echo app_url('pay/paytype/ajax')}",{orderno:orderno,remark:remark,othername:othername,checkpay:"9"},function(m){
                     if(m.errno==1){
                         $.confirm('o grupo concluído,clique monte novo grupo？',
                                 function () {
-                                    location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
+                                    location.href = "{php echo app_url('order/orderconfirm', array('narrow'=>1))}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
                                 },
                                 function () {
                                     location.href = "{php echo app_url('goods/list')}";
@@ -146,7 +146,7 @@
                     }else if(m.errno==2){
                         $.confirm('Esse pedido foi pago,monte o novo grupo?',
                                 function () {
-                                    location.href = "{php echo app_url('order/orderconfirm')}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
+                                    location.href = "{php echo app_url('order/orderconfirm', array('narrow'=>1))}&groupnum="+m.group.neednum+"&id="+m.group.goodsid+"&newtuan=newtuan";
                                 },
                                 function () {
                                     location.href = "{php echo app_url('goods/list')}";
@@ -167,7 +167,7 @@
                                 }
                         );
                     }else{
-                        location.href = "{php echo app_url('pay/ebanx')}&op=info&orderno="+orderno+"&method="+method;
+                        location.href = "{php echo app_url('pay/ebanx/info', array('narrow'=>1))}&orderno="+orderno+"&method="+method;
                     }
                 },"json");
             });

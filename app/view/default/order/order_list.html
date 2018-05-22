@@ -58,7 +58,7 @@
 	$('.buttons-tab').find('a').click(function(){
 		var status = $(this).attr('id');
 		$(this).addClass('active').siblings().removeClass('active');
-		location.href = "{php echo app_url('order/order/list')}&status="+status;
+		location.href = "{php echo app_url('order/order/list', array('narrow'=>1))}&status="+status;
 	});
 	//取消订单
 	$(document).on('click','.cancel',function(){
@@ -83,7 +83,7 @@
 		var orderno = $(this).attr('oid');
       	$.post("{php echo app_url('order/order/topay')}",{orderno:orderno},function(d){
 			if(d.status == 1){
-				location.href = "{php echo app_url('pay/paytype')}"+'orderno='+orderno+'&paytype=wechat';
+				location.href = "{php echo app_url('pay/paytype', array('narrow'=>1))}"+'&orderno='+orderno+'&paytype=wechat';
 			}else{
 				$.toast(d.result);
 			}
@@ -99,7 +99,7 @@
 		    var thispage = 1;
 		    function addItems(thispage, thispagesize) {
 		    	var status = "{$status}";
-		    	var ajaxurl = "{php echo app_url('order/order/ajax')}"+"&page="+thispage+"&pagesize="+thispagesize+"&status="+status;
+		    	var ajaxurl = "{php echo app_url('order/order/ajax', array('narrow'=>1))}"+"&page="+thispage+"&pagesize="+thispagesize+"&status="+status;
 		    	$.ajax({
 						type: "POST",
 						url: ajaxurl,
@@ -118,7 +118,7 @@
 								$(".loading_more").remove();
 								$('.noData').show();
 							} else {
-								var html = '<div class="m-cart" id="s"><div class="empty" id="pro-view-6">até o momento não tem nenhum pedido，<a href="{php echo app_url('goods/index')}" class="external">Vamos Comprar~</a></div></div>';
+								var html = '<div class="m-cart" id="s"><div class="empty" id="pro-view-6">até o momento não tem nenhum pedido，<a href="{php echo app_url('goods/list')}" class="external">Vamos Comprar~</a></div></div>';
 								$(".tabs").append(html);
 							}
 						},

@@ -81,7 +81,8 @@
                 }
                 $.post("{php echo app_url('member/login/post')}",{email:email,password:password},function(d){
                     if(d.status == 1){
-                        $.alert('Login Success！', function(){
+                        //location.href = "{$bakurl}";
+                        $.alert('Entrar com SUCESSO', function(){
                             location.href = "{$bakurl}";
                         });
                     }else{

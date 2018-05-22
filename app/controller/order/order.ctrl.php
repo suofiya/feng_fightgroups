@@ -45,7 +45,7 @@ if($op =='ajax'){
 		$vlaue['ga'] = $goods['a'];
 		$vlaue['statusname'] = $statusname;
 		if($vlaue['status'] != 5 && $vlaue['status'] != 0 && $vlaue['is_tuan'] == 1){
-			$vlaue['ta'] = app_url('order/group')."&tuan_id=".$vlaue['tuan_id'];
+			$vlaue['ta'] = app_url('order/group', array('tuan_id'=>$vlaue['tuan_id']));
 		}
 		if($vlaue['merchantid']){
 			$merchant = merchant_get_by_id($vlaue['merchantid']);

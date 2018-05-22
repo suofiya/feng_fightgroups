@@ -46,7 +46,7 @@ $is_usecard = 0;
 if($tuan_id){
 	$nowtuan = group_get_by_params(" groupnumber = '{$tuan_id}'");
 	if($nowtuan['groupstatus'] != 3){
-		message("o grupo concluido!");exit;
+		wl_message("o grupo concluido!");exit;
 	}
 	$myorder = order_get_by_params(" tuan_id = {$tuan_id} and openid = '{$openid}' and status in(1,2,3,4,6,7) ");
 	if(!empty($myorder)){
@@ -108,7 +108,7 @@ if(!empty($groupnum)){
 		$firstdiscount=0;
 	}
 } else {
-	message('erro，tente novamente！');
+	wl_message('erro，tente novamente！');
 }
 
 //	$data = order_get_list(array('openid' => $openid,'status' => '1,2,3,4,5'));

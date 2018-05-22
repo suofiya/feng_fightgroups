@@ -48,7 +48,7 @@
         <div class="pp">
             <div class="pp_users">
             	{loop $orders $or}
-            	<a href="#" class="pp_users_item pp_users_normal"><img src="{$or['avatar']}"></a>
+            	<a href="#" class="pp_users_item pp_users_normal"><img src="{if !empty($or['avatar'])}{$or['avatar']}{else}{TG_URL_ARES}images/avatar.png{/if}"></a>
             	{/loop}
             	{loop $num_arr $item}
                 <a href="#" class="pp_users_item pp_users_normal"><img src="{TG_URL_ARES}images/avatar.png"></a>
@@ -73,7 +73,7 @@
                 	{php $onum=1;}
                 	{loop $orders $or}
                     <div class="pp_list_item">
-                        <img src="{$or['avatar']}" class="pp_list_avatar">
+                        <img src="{if !empty($or['avatar'])}{$or['avatar']}{else}{TG_URL_ARES}images/avatar.png{/if}" class="pp_list_avatar">
 			    <div class="pp_list_info">
 				    <span class="pp_list_name">{if $onum==1}Criador:{/if}<b>{$or['nickname']}</b>{if $onum==1}Que diz{else}Vem praqui de velocidade do  trem bala{/if}</span>
 				    <span class="pp_list_time">{php echo date('m-d H:i', $tuaninfo['starttime'])}{if $onum==1}Monte grupo{else}Particiapa grupo{/if}</span>
@@ -127,7 +127,7 @@
                 <button style="fllow:left;width: 100%;" onclick="_system._share(true, '{$tuan_id}')">convite os amigos</button> 
                 </span>
                 <span style="display:block;float:right;width: 15%;">
-                 <button style="width: 90%;"><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home" style="color: white;"></i></a></button>
+                 <button style="width: 90%;"><a href="{php echo app_url('home/index')}" class="nav-controller external"><i class="fa fa-home" style="color: white;"></i></a></button>
                 </span>
               {else}
                 <span style="display:block;float:left;width: 80%;margin-left: 5px;">
@@ -140,7 +140,7 @@
   	           	{/if}
 	              </span>
                 <span style="display:block;float:right;width: 15%;">
-                 <button style="width: 90%;" ><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home"></i>Home</a></button>
+                 <button style="width: 90%;" ><a href="{php echo app_url('home/index')}" class="nav-controller external"><i class="fa fa-home"></i>Home</a></button>
                 </span>
               {/if}
             {else}
@@ -155,7 +155,7 @@
                   </a>
                 </span>
                 <span style="display:block;float:right;width: 15%;">
-                  <button style="width: 90%;"><a href="{php echo app_url('index')}" class="nav-controller external"><i class="fa fa-home"></i></a></button>
+                  <button style="width: 90%;"><a href="{php echo app_url('home/index')}" class="nav-controller external"><i class="fa fa-home"></i></a></button>
 	               </span>
 	            {else}
                 <span style="display:block;float:left;width: 80%;margin-left: 5px;">

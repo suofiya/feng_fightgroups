@@ -10,7 +10,7 @@
 			<div style="height: 5px;"></div>
 		  	<div class="con">
 		  		{if empty($orders)}
-		  		<div class="m-cart" id="s"><div class="empty" id="pro-view-6">sem dados，<a href="{php echo app_url('goods/index')}" class="external">continua comprar~</a></div></div>
+		  		<div class="m-cart" id="s"><div class="empty" id="pro-view-6">sem dados，<a href="{php echo app_url('goods/list')}" class="external">continua comprar~</a></div></div>
 		    	{/if}
 		    	{loop $orders $order}
 			        <div class="mt_order" id="groups">
@@ -34,7 +34,7 @@
 $('.buttons-tab').find('a').click(function(){
 	var status = $(this).attr('id');
 	$(this).addClass('active').siblings().removeClass('active');
-	location.href = "{php echo app_url('order/mygroup')}&op="+status;
+	location.href = "{php echo app_url('order/mygroup', array('narrow'=>1))}&op="+status;
 });
 </script>
 {php include wl_template('common/footer');}

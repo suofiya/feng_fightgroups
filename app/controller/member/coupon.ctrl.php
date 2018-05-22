@@ -62,7 +62,7 @@ if($op =='detail'){
 		$coupon = coupon($id);
 		$pagetitle = $coupon['name'];
 	}else{
-		message('cupom invalido！');
+		wl_message('cupom invalido！');
 	}
 	include wl_template('member/coupon_detail');
 }
@@ -73,7 +73,7 @@ if($op =='get'){
 		$coupon = coupon_template($id);
 		$pagetitle = $coupon['name'];
 	}else{
-		message('cupom invalido！');
+		wl_message('cupom invalido！');
 	}
 	
 	include wl_template('member/coupon_get');

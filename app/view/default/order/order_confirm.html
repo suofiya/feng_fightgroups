@@ -183,7 +183,7 @@
 				}
 				$.post("{php echo app_url('order/orderconfirm')}",{typeid:typeid,name:name,mobile:mobile,gettime:gettime,remark:remark,addrid:addrid,couponid:couponid},function(d){
 					if(d.status == 1){
-					    location.href = "{php echo app_url('pay/paytype')}"+'orderno='+d.result.orderno;
+					    location.href = "{php echo app_url('pay/paytype', array('narrow'=>1))}"+'&orderno='+d.result.orderno;
 					}else{
 						$.toast(d.result);
 					}

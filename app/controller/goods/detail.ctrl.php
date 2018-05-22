@@ -8,6 +8,7 @@ defined('IN_IA') or exit('Access Denied');
 wl_load()->model('goods');
 wl_load()->model('merchant');
 wl_load()->model('order');
+load()->func('file');
 $id = $_GPC['id'];
 puv($_W['openid'],$id);
 $pagetitle = !empty($config['tginfo']['sname']) ? 'detalhe do produto - '.$config['tginfo']['sname'] : 'detalhe do produto';
@@ -20,7 +21,7 @@ if(!empty($id)){
 	//商品
 	$goods = goods_get_by_params("id = {$id}");
 	if($goods['isshow']==2){
-		message('produto indisponivel');exit;
+		wl_message('produto indisponivel');exit;
 	}
 	if(empty($goods['unit'])){
 		$goods['unit'] = 'peça';
@@ -106,11 +107,34 @@ if(!empty($id)){
 			}
 		}
 	}
-	
-	$config['share']['share_title'] = !empty($goods['share_title']) ? $goods['share_title'] : $goods['gname'];
-	$config['share']['share_desc'] = !empty($goods['share_desc']) ? $goods['share_desc'] : $config['share']['share_desc'];
-	$config['share']['share_image'] = !empty($goods['share_image']) ? $goods['share_image'] : $goods['gimg'];
+
+    // 社区分享相关
+    // Note: 后台配置分享数据优先使用，否则根据规则拼接
+    if (!empty($goods['share_title'])) {
+    	$config['share']['share_title'] = $goods['share_title'];
+    } else {
+    	$config['share']['share_title'] = "R$ ".$goods['gprice'].", eu participei【".$goods['gname']."】do grupo，vamos junto！";
+	}
+	if (!empty($goods['share_desc'])) {
+		$config['share']['share_desc'] = $goods['share_desc'];
+	} else {
+		$config['share']['share_desc'] = "vamos participamos junto【".$goods['gname']."】";
+	}
+	if (!empty($goods['share_image'])) {
+		$config['share']['share_image'] = $goods['share_image'];
+	} else {
+		// 动态商品缩略图，不存在则重新生成300*200
+	    $thumb_gimg = str_replace('images', 'images/300x200', $goods['gimg_db']);
+	    if (!file_exists(ATTACHMENT_ROOT.'/'.$thumb_gimg)) {
+	        $thumb_gimg = file_image_thumb_white(ATTACHMENT_ROOT.'/'.$goods['gimg_db'], ATTACHMENT_ROOT.'/'.str_replace('images', 'images/300x200', $goods['gimg_db']), 300, 200);
+	    }
+    	// 分享缩略图
+    	$config['share']['share_image'] = tomedia($thumb_gimg);
+	}
+	$config['share']['share_big_image'] = $goods['gimg'];
+    $config['share']['share_url'] = app_url('order/group', array('tuan_id'=>$tuan_id));
+
 }else{
-	message("Caracteristicas erro！");exit;
+	wl_message("Caracteristicas erro！");exit;
 }
 include wl_template('goods/goods_detail');

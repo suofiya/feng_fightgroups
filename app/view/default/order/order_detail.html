@@ -166,7 +166,7 @@
 					if(d.status == 1){
 					    $.toast('confirmaçao de recebimento！');
 					    setTimeout(function () {
-							location.href = "{php echo app_url('order/order/detail')}"+'id='+orderno;
+							location.href = "{php echo app_url('order/order/detail', array('narrow'=>1))}"+'&id='+orderno;
 						}, 1000);
 					}else{
 						$.toast(d.result);

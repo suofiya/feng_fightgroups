@@ -152,7 +152,7 @@
                 }else{
                     var data = {method:pay_method,ebanx_document:ebanx_document,ebanx_birth_date:ebanx_birth_date};
                 }
-				$.post("{php echo app_url('pay/ebanx')}&orderno="+orderno,data,function(d){
+				$.post("{php echo app_url('pay/ebanx', array('narrow'=>1))}&orderno="+orderno,data,function(d){
 					if(d.errno == 0){
 						$.alert('pagamento com sucesso', function () {
                             has_pos = false;

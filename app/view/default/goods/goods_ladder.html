@@ -134,6 +134,6 @@
 	        	}
 	        }
 	    {/if}
-        location.href = "{php echo app_url('order/orderconfirm')}" + "&groupnum=" + groupnum+"&num=" + inputnum;
+        location.href = "{php echo app_url('order/orderconfirm', array('narrow'=>1))}" + "&groupnum=" + groupnum+"&num=" + inputnum;
     }
 </script>

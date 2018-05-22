@@ -80,9 +80,9 @@ if (is_error($wOpt)) {
 		$id = date('YmdH');
 		pdo_update('core_paylog', array('plid' => $id), array('plid' => $log['plid']));
 		pdo_query("ALTER TABLE ".tablename('core_paylog')." auto_increment = ".($id+1).";");
-		message("desculpa，pagamento nao aprovado，foi erro do sistema，tente novamente。");
+		wl_message("desculpa，pagamento nao aprovado，foi erro do sistema，tente novamente。");
 	}
-	message("desculpa，pagamento nao aprovado，motivo：“{$wOpt['errno']}:{$wOpt['message']}”。contate-nos。");
+	wl_message("desculpa，pagamento nao aprovado，motivo：“{$wOpt['errno']}:{$wOpt['message']}”。contate-nos。");
 	exit;
 }
 ?>

@@ -29,19 +29,31 @@ function web_url($segment, $params = array()) {
 function app_url($segment, $params = array()) {
 	global $_W;
 	list($do, $ac, $op) = explode('/', $segment);
-	$url = $_W['siteroot'] . 'app/index.php?i='.$_W['uniacid'].'&c=entry&m=feng_fightgroups&';
-	if(!empty($do)) {
-		$url .= "do={$do}&";
-	}
-	if(!empty($ac)) {
-		$url .= "ac={$ac}&";
-	}
-	if(!empty($op)) {
-		$url .= "op={$op}&";
-	}
-	if(!empty($params)) {
-		$queryString = http_build_query($params, '', '&');
-		$url .= $queryString;
+	//静态化地址
+	$enable_seo_url = (stripos($segment, 'ajax') > 0 || stripos($segment, 'post') > 0) ? false : true;
+$enable_seo_url = false;
+	if ($enable_seo_url) {
+		$url = $_W['siteroot'] . 'pdd/';
+		$url .= str_replace('/', '-', $segment);
+		if(!empty($params)) {
+			$queryString = http_build_query($params, '', '&');
+			$url .= '?'.$queryString;
+		}
+	} else {
+		$url = $_W['siteroot'] . 'app/index.php?i='.$_W['uniacid'].'&c=entry&m=feng_fightgroups&';
+		if(!empty($do)) {
+			$url .= "do={$do}&";
+		}
+		if(!empty($ac)) {
+			$url .= "ac={$ac}&";
+		}
+		if(!empty($op)) {
+			$url .= "op={$op}&";
+		}
+		if(!empty($params)) {
+			$queryString = http_build_query($params, '', '&');
+			$url .= $queryString;
+		}
 	}
 	return $url;
 }

@@ -33,7 +33,7 @@ if(!empty($order['couponid']) && $order['is_usecard']==1){
 if($op =='display'){
 	$helppay = FALSE;
 	if($order['status']!=0 && $order['status']!=5){
-		message("Esse pedido ja foi pago.");
+		wl_message("Esse pedido ja foi pago.");
 	}
 	$goods = goods_get_by_params(" id={$order['g_id']} ");
 	if($setting['helpbuy']==1){
