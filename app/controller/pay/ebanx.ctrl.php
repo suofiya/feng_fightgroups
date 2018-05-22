@@ -150,7 +150,7 @@ if ($_W['isajax']) {
                 , 'city'          => $address_info['city']
                 , 'country'       => 'br'
                 , 'phone_number'  => $order['mobile']
-                , 'notification_url' => 'http://m.melitotal.com.br/app/index.php?i=1&c=entry&m=feng_fightgroups&do=pay&ac=ebanxnotify'
+                , 'notification_url' => 'http://desc.melitotal.com.br/app/index.php?i=1&c=entry&m=feng_fightgroups&do=pay&ac=ebanxnotify'
                 )
             );
             if ($pay_method == 'creditcard')
