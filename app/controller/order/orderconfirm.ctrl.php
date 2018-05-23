@@ -12,11 +12,6 @@ wl_load()->model('account');
 wl_load()->model('activity');
 load()->func('communication');
 
-// 判断用户是否已注册
-if (pdd_isLoginedStatus() == false) {
-	header("Location: ".app_url('member/login'));exit;	
-}
-
 $ops = array('display', 'post');
 $op = in_array($op, $ops) ? $op : 'display';
 
@@ -30,7 +25,6 @@ $optionid = $_SESSION['optionid'] = isset($_GPC['optionid']) ? intval($_GPC['opt
 if($_GPC['newtuan']=='newtuan'){
 	$tuan_id=0;
 }
-//wl_debug($_SESSION);
 if(empty($_GPC['num'])){
 	if($_SESSION['num']){
 		$_GPC['num'] = $_SESSION['num'];
@@ -41,6 +35,14 @@ if(empty($_GPC['num'])){
 $_SESSION['num'] = $num = isset($_GPC['num']) ? intval($_GPC['num']) : $_SESSION['num'];
 $addrid = isset($_GPC['addrid']) ? intval($_GPC['addrid']) : 0;
 $is_usecard = 0;
+
+//wl_debug($_SESSION);
+
+// 判断用户是否已注册
+// 放在此处保证session中存储的购买信息登录后可用
+if (pdd_isLoginedStatus() == false) {
+	header("Location: ".app_url('member/login'));exit;	
+}
 
 //查询这个团是否支付成功参加
 if($tuan_id){

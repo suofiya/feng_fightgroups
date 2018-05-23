@@ -6,7 +6,7 @@
 defined('IN_IA') or exit('Access Denied');
 require IA_ROOT.'/payment/ebanx/autoload.php';
 $hashes = explode(',', $_GPC['hash_codes']);
-$log_file = '/var/www/vhosts/m.melitotal.com.br/httpdocs/log/ebank-'.date('Y-m-d').'.log';
+$log_file = '/var/www/vhosts/desc.melitotal.com.br/httpdocs/log/ebank-'.date('Y-m-d').'.log';
 file_put_contents($log_file, 'notify:', FILE_APPEND);
 file_put_contents($log_file, print_r($_GPC, true), FILE_APPEND);
 error_reporting(E_ALL);

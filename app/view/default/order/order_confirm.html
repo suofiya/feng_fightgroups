@@ -51,7 +51,7 @@
 			            		<div class="price">R$ {$price} x {$num}</div>
 			            	</dd>
 			            </dl>
-			            <div class="item"><span class="attname">frete：</span><span class="attval" id="freight">{if $freight}R$ {$freight}{else}frete gratis{/if}</span></div>
+			            <div class="item"><span class="attname">Expresso entre 15 á 30 dias</span><span class="attval" id="freight">{if $freight}frete: R$ {$freight}{else}frete gratis{/if}</span></div>
 			            {if $firstdiscount && $tuan_first==1}
 			            <div class="item"><span class="attname">desconto para adiministrador：</span><span class="attval">R$ {$firstdiscount}</span></div>
 			           {/if}

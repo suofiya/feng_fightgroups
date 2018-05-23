@@ -79,11 +79,14 @@ if(!empty($id)){
 	$advs = pdo_fetchall("select * from " . tablename('tg_goods_atlas') . " where g_id='{$id}'");
     foreach ($advs as &$adv) {
     	if (substr($adv['link'], 0, 5) != 'http:') {
+    		if ($adv['thumb'] == 'undefined') { // JS错误处理
+    			$adv['thumb'] = '';
+    		}
             $adv['link'] = "http://" . $adv['link'];
         }
     }
     unset($adv);
-	
+
 	$params = pdo_fetchall("SELECT * FROM" . tablename('tg_goods_param') .  "WHERE goodsid = '{$id}' ");
 	//门店信息
 	$storesids = explode(",", $goods['hexiao_id']);

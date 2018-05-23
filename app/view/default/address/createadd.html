@@ -24,6 +24,9 @@
         border: 1px solid #ededed;
         width: 100%;
     }
+    .label-switch input[type=checkbox]:checked+.checkbox {
+    	background: #fed943;
+	}
 </style>
 <div class="page-group">
     <div class="page page-current" id="page-createadd">
@@ -130,7 +133,7 @@
 		    <div class="content-block">
 		      <div class="row">
 		        <!-- <div class="col-50"><a href="{php echo app_url('address/createadd/addwechat');}" class="weui_btn weui_btn_warn external">uso endereço do whatsapp</a></div> -->
-		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_primary">Salvar</a></div>
+		        <div class="col-100"><a href="javascript:;" id="addrsub" class="weui_btn weui_btn_yellow">Salvar</a></div>
 		      </div>
 		    </div>
 		</div>

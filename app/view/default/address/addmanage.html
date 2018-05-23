@@ -1,10 +1,16 @@
 {php include wl_template('common/header');}
+<style type="text/css">
+.weui_icon_success:before {
+    font-size: 23px;
+    color: #fed943;
+}
+</style>
 <div class="page-group">
     <div class="page page-current" id="page-address">
     	<header class="bar bar-nav">
 			<a class="button button-link button-nav pull-left" href="{$bakurl}"><span class="icon icon-left"></span>Volta</a>
 			<h1 class="title">Meus endereços</h1>
-			<a class="button button-link button-nav pull-right" href="{php echo app_url('address/createadd/display');}">Adicione</a>
+			<a class="button pull-right" style="color: #EE5509;border-color: #EE5509;" href="{php echo app_url('address/createadd/display');}">Adicione</a>
 		</header>
 		<div class="content">
 			<div class="list-block media-list">
@@ -17,7 +23,7 @@
 		            <div class="item-inner">
 		              <div class="item-title-row">
 		                <div class="item-title">{$addres['cname']} - {$addres['tel']}</div>
-		                <div class="item-after"><a href="javascript:;" class="weui_btn weui_btn_mini weui_btn_default">{if $addres['type'] == 2}Residencial{else}Comercial{/if}</a></div>
+		                <div class="item-after"><span class="weui_badge">{if $addres['type'] == 2}Residencial{else}Comercial{/if}</span></div>
 		              </div>
 		              <div class="item-subtitle" style="padding: 0.1rem 0;">{$addres['detailed_address']}</div>
 		              <div class="item-subtitle" style="padding: 0.1rem 0;">{$addres['county']}, {$addres['city']}, {$addres['province']}</div>
@@ -26,7 +32,7 @@
 		              <div class="item-title-row">
 		                <div class="item-title addset" id="{$addres['id']}">{if $addres['status'] == 1}endereço cadastrado{else}<a href="{php echo app_url('address/addmanage/select',array('id'=>$addres['id']));}" class="external">Definir endereço padrão</a>{/if}</div>
 		                <div class="item-after">
-		                	<p class="buttons-row"><a href="{php echo app_url('address/createadd/display',array('id'=>$addres['id']));}" class="button external">Modificar</a><a href="#" class="button adddel" addid='{$addres['id']}'>Excluir</a></p>
+		                	<p class="buttons-row"><a href="{php echo app_url('address/createadd/display',array('id'=>$addres['id']));}" class="button external" style="color: #EE5509;border-color: #EE5509;">Modificar</a><a href="#" class="button adddel" style="color: #EE5509;border-color: #EE5509;" addid='{$addres['id']}'>Excluir</a></p>
 		                </div>
 		              </div>
 		              {/if}

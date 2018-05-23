@@ -43,7 +43,7 @@ if (!file_exists($file)) {
 	header("Location: index.php?i={$_W['uniacid']}&c=entry&do=goods&ac=list&m=feng_fightgroups");
 	exit;
 }
-if ($action != 'group' && $action != 'detail' && $action != 'orderconfirm' && $action != 'addmanage' && $action != 'createadd' && $action != 'cash') {
+if ($action != 'group' && $action != 'detail' && $action != 'orderconfirm' && $action != 'addmanage' && $action != 'createadd' && $action != 'cash' && $action != 'paytype' && $action != 'login' && $action != 'register' && $action != 'fblogin') {
 	session_start();
 	unset($_SESSION['goodsid']);
 	unset($_SESSION['tuan_id']);
@@ -53,4 +53,3 @@ if ($action != 'group' && $action != 'detail' && $action != 'orderconfirm' && $a
 }
 
 require $file;
-
