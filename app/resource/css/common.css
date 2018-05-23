@@ -256,7 +256,7 @@ iframe{width: 0;height: 0;line-height: 0;overflow: hidden}
 .u_address .address .address_txt{width:100%;display:block;font-size:15px;color:#595959;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .u_address .arrow{width:10px;height:17px;position:absolute;right:20px;top:30px;background:url(../images/detailorder/right_icon.png);background-size:10px auto;opacity:0;-webkit-transition:opacity .5s cubic-bezier(0,0,.25,1)}
 .u_address .arrow_show{opacity:1}
-.u_address .address_flag{display:inline-block;width:50px;height:20px;line-height:20px;vertical-align:middle;text-align:center;background-color:#fff;border:1px solid #df3037;border-radius:9px;font-size:13px;color:#dc1d25;position:absolute;top:28px;right:35px}
+.u_address .address_flag{display:inline-block;width:80px;height:20px;line-height:20px;vertical-align:middle;text-align:center;background-color:#EE5509;border-radius:9px;font-size:13px;color:#fff;position:absolute;top:28px;right:35px}
 .dt_commodity_info{background-color:#fff;margin-top:10px;padding:10px 10px 0;margin-top:10px}
 .dt_commodity_info .commodity_info{border-bottom:1px solid #f1f1f1;padding-bottom:10px;overflow:hidden}
 .dt_commodity_info .commodity_info dt{width:85px;height:85px;float:left;margin-right:10px;background:url(../images/detailorder/img_120_80.png);background-position:-17px 0}

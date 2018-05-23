@@ -263,6 +263,6 @@
 	        }
         {/if}
         var groupnum = $("#buytype").val();
-        location.href = "{php echo app_url('order/orderconfirm', array('narrow'=>1))}" + "&optionid=" + $("#optionid").val() + "&groupnum=" + groupnum+"&num=" + inputnum;
+        location.href = "{php echo app_url('order/orderconfirm', array('id'=>$id))}" + "&optionid=" + $("#optionid").val() + "&groupnum=" + groupnum+"&num=" + inputnum;
     }
 </script>

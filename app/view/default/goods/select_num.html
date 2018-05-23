@@ -123,6 +123,6 @@
 	        }
 	    {/if}
 	    var groupnum = "{$goods['groupnum']}";
-        location.href = "{php echo app_url('order/orderconfirm', array('narrow'=>1))}" + "&groupnum=" + groupnum+"&num=" + inputnum;
+        location.href = "{php echo app_url('order/orderconfirm', array('id'=>$id))}" + "&groupnum=" + groupnum+"&num=" + inputnum;
     }
 </script>

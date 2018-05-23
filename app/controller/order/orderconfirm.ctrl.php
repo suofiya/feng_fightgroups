@@ -77,7 +77,11 @@ if($goods['group_level_status']==2){
 	}		
 }elseif($goods['hasoption']==1){
 	if (!empty($optionid)) {
-		$option = pdo_fetch("select title,productprice,marketprice from" . tablename("tg_goods_option") . " where id=:id limit 1", array(":id" => $optionid));
+		$option = pdo_fetch("select id,goodsid,title,productprice,marketprice from" . tablename("tg_goods_option") . " where id=:id limit 1", array(":id" => $optionid));
+		// 属性与商品ID不一致
+		if ($id != intval($option['goodsid'])) {
+			header("Location: ".app_url('goods/list'));exit;
+		}
 	} else {
 		wl_message('erro，tente novamente！');
 	}
