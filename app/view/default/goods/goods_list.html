@@ -54,6 +54,7 @@
 	        <i class="pos"></i><span class="zone">envia país todo</span><span class="zoneTip">（selecione outro local）</span><i class="arrow"></i>
 	    </div>-->
 	    {php include wl_template('common/followed');}
+	    {if $advs}
 	    <div class="banner" id="banner" style="visibility: visible;">
 	        <ul class="imgs">
 	        	{loop $advs $adv}
@@ -80,10 +81,11 @@
 		        });
 		    });
 		</script>
+		{/if}
 	    {if $category}
 		<div class="j-rmd-types rmd-types">
 			{loop $category $itme}
-            <a href="{php echo app_url('goods/list/display', array('gid' => $itme['id']));}" class="external">
+            <a href="{php echo app_url('goods/list/display', array('gid' => $itme['id']));}" class="external {if $cid==$itme['id']}active{/if}">
                 <img src="{php echo tomedia($itme['thumb']);}" alt="">
                 <span>{$itme['name']}</span>
             </a>
