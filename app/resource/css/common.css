@@ -172,7 +172,7 @@ iframe{width: 0;height: 0;line-height: 0;overflow: hidden}
 .productInfo{padding: 0 10px;background-color: #fff}
 .productInfo h2{color: #27272f;font-size: 16px;line-height: 24px;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden}
 .productInfo .editor{color: #9d9d9d;font-size: 12px;line-height: 20px}
-.salesVolume{background-color: #fff;padding: 0 10px;height: 23px;line-height: 23px;vertical-align: middle;color: #9d9d9d;font-size: 13px;text-align: right;display: none;position: relative;overflow: hidden}
+.salesVolume{background-color: #fff;padding: 5px 10px;height: 30px;line-height: 30px;vertical-align: middle;color: #9d9d9d;font-size: 13px;text-align: right;display: none;position: relative;overflow: hidden}
 .playTips{padding: 10px 10px 0;background-color: #fff;color: #e52b2b;font-size: 12px;line-height: 20px}
 .goBuy{position: relative;padding: 5px 10px 15px;background-color: #fff;display: none}
 .goBuy .btns{height: 60px;display: none}
