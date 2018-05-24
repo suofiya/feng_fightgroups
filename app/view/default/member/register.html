@@ -72,7 +72,7 @@
                 var email = $('#email').val();
                 var password = $('#password').val();
                 var confirm_password = $('#confirm_password').val();
-                var emailRule = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+                var emailRule = /^([.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
                 if(!email){
                     $.toast("insira o seu email");
                     return false;
