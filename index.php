@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-date_default_timezone_set('Asia/Shanghai');
+//date_default_timezone_set('Asia/Shanghai');
 require_once './Classes/PHPExcel.php';
 $data=array(
 	0=>array(
