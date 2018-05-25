@@ -47,47 +47,39 @@ function updateOrder($hash)
         $errorMessage = 'No order found';
         return false;
     }
-
+    $sql = "SELECT * FROM " . tablename('tg_order') . " where id= ".intval($orderId);
+    $order = pdo_fetch($sql);
+    $sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `tid`=:tid';
+    $pars = array();
+    $pars[':tid'] = $order['orderno'];
+    $log = pdo_fetch($sql, $pars);
     try
     {
-        //支付成功后回调事务：修改订单状态，更新库存，更新销量，更新拼团信息等
-        if ($status == 2) {
-            //notify数据参数
-            $params['uniacid'] = $_W['uniacid'];
-            $params['tid'] = $response->payment->order_number;
-            $params['fee'] = $response->payment->amount_ext;
-            $params['uniontid'] = $response->payment->order_number;
-            $params['paytime'] = $response->payment->confirm_date;
-            $params['paytypecode'] = $response->payment->payment_type_code;
-
-            //支付结果回调事务
-            $site = WeUtility::createModuleSite('feng_fightgroups');
-            if(!is_error($site)) {
-                $method = 'payResult';
-                if (method_exists($site, $method)) {
-                    $ret = array();
-                    $ret['weid'] = $params['uniacid'];
-                    $ret['uniacid'] = $params['uniacid'];
-                    $ret['result'] = 'success';
-                    $ret['type'] = 'ebanx'; // paytype
-                    $ret['from'] = 'notify';
-                    $ret['tid'] = $params['tid'];
-                    $ret['uniontid'] = $params['uniontid'];
-                    $ret['user'] = '0';
-                    $ret['fee'] = $params['fee'];
-                    $ret['tag'] = '';
-                    $ret['is_usecard'] = '0';
-                    $ret['card_type'] = '';
-                    $ret['card_fee'] = '';
-                    $ret['card_id'] = '';
-                    $ret['paytime'] = $params['paytime'];
-                    exit($site->$method($ret));
-                }
-            } else {
-                throw new Exception("Error WeUtility::createModuleSite", 1);
+        $site = WeUtility::createModuleSite($log['module']);
+        if(!is_error($site)) {
+            $method = 'payResult';
+            if (method_exists($site, $method)) {
+                $ret = array();
+                $ret['weid'] = $log['uniacid'];
+                $ret['uniacid'] = $log['uniacid'];
+                $ret['result'] = 'success';
+                $ret['type'] = $log['type'];
+                $ret['from'] = 'notify';
+                $ret['tid'] = $log['tid'];
+                $ret['uniontid'] = $log['uniontid'];
+                $ret['user'] = $log['openid'];
+                $ret['fee'] = $log['fee'];
+                $ret['tag'] = '';
+                $ret['is_usecard'] = $log['is_usecard'];
+                $ret['card_type'] = $log['card_type'];
+                $ret['card_fee'] = $log['card_fee'];
+                $ret['card_id'] = $log['card_id'];
+                $site->$method($ret);
+                return true;
             }
-        } else  { //支付失败
-            pdo_update('tg_order', array('status' => $status), array('id' => $orderId));
+        }else{
+            file_put_contents($log_file, '支付回调错误:hash:'.$hash."\n", FILE_APPEND);
+            return false;
         }
     }
     catch (Exception $e)
@@ -96,7 +88,7 @@ function updateOrder($hash)
         return false;
     }
 
-    return true;
+    return false;
 }
 
 exit();

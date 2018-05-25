@@ -41,8 +41,7 @@ class Feng_fightgroupsModuleSite extends WeModuleSite {
 		load()->model('mc');
 		load() -> model('account');
 		/*写入文件*/
-		$pay_log = $params;
-		$pay_log['createtime']= date("Y-m-d H:i:s",TIMESTAMP);
+		$pay_log = $params;$pay_log['createtime']= date("Y-m-d H:i:s",TIMESTAMP);
 		file_put_contents(TG_DATA."payresult.log", var_export($pay_log, true).PHP_EOL, FILE_APPEND);
 		$success = FALSE;
 		$order_out = order_get_by_params(" orderno = '{$params['tid']}'");
@@ -57,7 +56,7 @@ class Feng_fightgroupsModuleSite extends WeModuleSite {
 			}else{
 				$fee = $params['fee'];
 			}
-			$paytype = array('credit' => 1, 'wechat' => 2, 'alipay' => 2, 'delivery' => 3, 'ebanx' => 10);
+			$paytype = array('credit' => 1, 'wechat' => 2, 'alipay' => 2, 'delivery' => 3,'ebanx'=>4);
 			$data['pay_type'] = $paytype[$params['type']];
 			if ($params['type'] == 'wechat') {
 				$data['transid'] = $params['tag']['transaction_id'];
@@ -76,20 +75,20 @@ class Feng_fightgroupsModuleSite extends WeModuleSite {
 				file_put_contents(TG_DATA."params.log", var_export($pay_log, true).PHP_EOL, FILE_APPEND);
 				/*处理优惠券*/
 				$is_usecard = $order_out['is_usecard'];
-				if($is_usecard==1){
+/*				if($is_usecard==1){
 					wl_load()->model('activity');
 					$coupon_id = $order_out['couponid'];
 					pdo_update('tg_coupon',array('use_time'=>$params['paytime']), array('coupon_template_id' => $coupon_id));
 					coupon_quantity_issue_increase($coupon_id, 1);
-				}
+				}*/
 				/*处理代付*/
-				if(!empty($params['user']) && $order_out['openid'] != $params['user']){
+/*				if($order_out['openid'] != $params['user']){
 					pdo_update('tg_order',array('ordertype'=>1,'helpbuy_opneid'=>$params['user']), array('orderno' => $params['tid']));
 					$time = date("Y-m-d H:i:s",$params['paytime']);
 					$url = app_url('order/order/detail', array('id' => $order_out['id']));
 					daipay_success($order_out['openid'], $fee, $order_out['othername'], $params['tid'], $goodsInfo['gname'], $time, $order_out['message'], $url);
 					daipay_success($params['user'], $fee, $order_out['othername'], $params['tid'], $goodsInfo['gname'], $time, $order_out['message'], $url);
-				}
+				}*/
 				if($order_out['couponid'] > 0){
 					pdo_update('tg_coupon',array('uid' => 2, 'use_time' => TIMESTAMP), array('id' => $order_out['couponid']));
 				}
