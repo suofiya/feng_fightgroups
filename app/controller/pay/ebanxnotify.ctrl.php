@@ -47,10 +47,40 @@ function updateOrder($hash)
         $errorMessage = 'No order found';
         return false;
     }
-
+    $sql = "SELECT * FROM " . tablename('tg_order') . " where id= ".intval($orderId);
+    $order = pdo_fetch($sql);
+    $sql = 'SELECT * FROM ' . tablename('core_paylog') . ' WHERE `tid`=:tid';
+    $pars = array();
+    $pars[':tid'] = $order['orderno'];
+    $log = pdo_fetch($sql, $pars);
     try
     {
-        pdo_update('tg_order', array('status' => $status), array('id' => $orderId));
+        $site = WeUtility::createModuleSite($log['module']);
+        if(!is_error($site)) {
+            $method = 'payResult';
+            if (method_exists($site, $method)) {
+                $ret = array();
+                $ret['weid'] = $log['uniacid'];
+                $ret['uniacid'] = $log['uniacid'];
+                $ret['result'] = 'success';
+                $ret['type'] = $log['type'];
+                $ret['from'] = 'notify';
+                $ret['tid'] = $log['tid'];
+                $ret['uniontid'] = $log['uniontid'];
+                $ret['user'] = $log['openid'];
+                $ret['fee'] = $log['fee'];
+                $ret['tag'] = '';
+                $ret['is_usecard'] = $log['is_usecard'];
+                $ret['card_type'] = $log['card_type'];
+                $ret['card_fee'] = $log['card_fee'];
+                $ret['card_id'] = $log['card_id'];
+                $site->$method($ret);
+                return true;
+            }
+        }else{
+            file_put_contents($log_file, '支付回调错误:hash:'.$hash."\n", FILE_APPEND);
+            return false;
+        }
     }
     catch (Exception $e)
     {
@@ -58,7 +88,7 @@ function updateOrder($hash)
         return false;
     }
 
-    return true;
+    return false;
 }
 
 exit();
