@@ -85,14 +85,14 @@
 			
 			<div id="order-detail" style="display: none">
 			    <div class="orderregion">
-			            <label class="status-hotelname-name">$order['orderno']</label>
+			            <label class="status-hotelname-name">{$order['orderno']}</label>
 			    </div>
 			    
 			    <div class="orderregion orderregion-top">
 			        <ul class="orderregion-entries">
 			            <li class="orderregion-entry">
 			                <span class="name text-overflow-ellipsis-2">{$goods['gname']}</span>
-			                <span class="price">R${php echo $order['goodsprice']*$order['gnum']}</span>
+			                <span class="price">R$&nbsp;{php echo $order['goodsprice']*$order['gnum']}</span>
 			                <span class="num">&nbsp;×{$order['gnum']}</span>
 			            </li>
 			        </ul>
