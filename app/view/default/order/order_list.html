@@ -1,11 +1,17 @@
 {php include wl_template('common/header');}
+<style type="text/css">
+	.buttons-tab .button {
+		font-size: 12px !important;
+	}
+</style>
 <div class="page-group">
     <div class="page page-current" id="page-order-list">
     	<div class="buttons-tab" style="z-index: 100;">
 	      <a href="#tab1" class="tab-link button {if $status==''}active{/if}" id="">Todas</a>
 	      <a href="#tab2" class="tab-link button {if $status=='0'}active{/if}" id="0">Pendente</a>
-	      <a href="#tab3" class="tab-link button {if $status=='2'}active{/if}" id="2">A caminho</a>
-	      <a href="#tab4" class="tab-link button {if $status=='3'}active{/if}" id="3">finalizado</a>
+	      <a href="#tab99" class="tab-link button" id="99">Em aberto</a>
+	      <a href="#tab4" class="tab-link button {if $status=='2'}active{/if}" id="2">A caminho</a>
+	      <a href="#tab5" class="tab-link button {if $status=='3'}active{/if}" id="3">finalizado</a>
 	     <!-- <a href="#tab5" class="tab-link button {if $status=='4'}active{/if}" id="4">Entregues</a> -->
 	    </div>
 		<div class="content infinite-scroll native-scroll" data-distance="10">
@@ -57,8 +63,12 @@
 <script type="text/javascript">
 	$('.buttons-tab').find('a').click(function(){
 		var status = $(this).attr('id');
-		$(this).addClass('active').siblings().removeClass('active');
-		location.href = "{php echo app_url('order/order/list', array('narrow'=>1))}&status="+status;
+		if (status == '99') {
+			location.href = "{php echo app_url('order/mygroup/3')}";
+		} else {
+			$(this).addClass('active').siblings().removeClass('active');
+			location.href = "{php echo app_url('order/order/list', array('narrow'=>1))}&status="+status;
+		}
 	});
 	//取消订单
 	$(document).on('click','.cancel',function(){

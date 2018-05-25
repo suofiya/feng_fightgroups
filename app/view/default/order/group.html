@@ -3,17 +3,17 @@
 <div class="page-group">
     <div class="page page-current" id="page-order-list">
     <div class="content" style="padding-bottom: 60px;">
-    	{php include wl_template('common/followed');}
-		  {if $tuaninfo['groupstatus']==3}
+      {php include wl_template('common/followed');}
+      {if $tuaninfo['groupstatus']==3}
       <div class="H5_con" id="H5_con1">
-  	    <div class="tips topStateWrap tips_succ tips_succ2" id="originTopWrap">
-    			<div class="tips_ico"></div>
-    			<div class="tips_tit">esta em aberto</div>
-    			<div class="tips_txt">convite mais participante！</div>
-		    </div>
-   		</div>
-   		{elseif $tuaninfo['groupstatus']==2}
-   		<div class="H5_con" id="H5_con1">
+        <div class="tips topStateWrap tips_err tips_succ2" id="originTopWrap">
+          <div style="vertical-align: 6px;line-height: 25px;display: inline-block"><img src="{TG_URL_ARES}images/icon_hourglass_red.png" width="32px"></div>
+          <div class="tips_tit">esta em aberto</div>
+          <div class="tips_txt">convite mais participante！</div>
+        </div>
+       </div>
+       {elseif $tuaninfo['groupstatus']==2}
+       <div class="H5_con" id="H5_con1">
         <div class="tips topStateWrap tips_succ tips_succ2" id="originTopWrap">
             <div class="tips_ico"></div>
             <div class="tips_tit">grupo concluido</div>
@@ -46,78 +46,83 @@
             </div>
         </div>
         <div class="pp">
-            <div class="pp_users">
-            	{loop $orders $or}
-            	<a href="#" class="pp_users_item pp_users_normal"><img src="{if !empty($or['avatar'])}{$or['avatar']}{else}{TG_URL_ARES}images/avatar.png{/if}"></a>
-            	{/loop}
-            	{loop $num_arr $item}
-                <a href="#" class="pp_users_item pp_users_normal"><img src="{TG_URL_ARES}images/avatar.png"></a>
-                {/loop}
-            	{if $tuaninfo['groupstatus']!=2}
-            	<div class="pp_tips" id="flag_0_a">falta<b>{$tuaninfo['lacknum']}</b>pessoa，convite!!</div>
-            	{/if}
+          <div class="pp_users" style="{if $tuaninfo['groupstatus']==3}text-align:left;{/if}">
+            {loop $orders $or}
+            <a href="#" class="pp_users_item pp_users_normal"><img src="{if !empty($or['avatar'])}{$or['avatar']}{else}{TG_URL_ARES}images/avatar_orange.png{/if}"></a>
+            {/loop}
+            {loop $num_arr $item}
+            <a href="#" class="pp_users_item pp_users_normal"><img src="{TG_URL_ARES}images/avatar.png"></a>
+            {/loop}
+            {if $tuaninfo['groupstatus']==3}
+            <span style="display:block;float:right;width:150px;margin-left: 5px;">
+              <button style="fllow:left;width: 100%;" onclick="_system._share(true, '{$tuan_id}')">convite os amigos</button> 
+            </span>
+            {/if}
+            {if $tuaninfo['groupstatus']!=2}
+            <div class="pp_tips" id="flag_0_a" style="{if $tuaninfo['groupstatus']==3}text-align:left;{/if}">falta<b>{$tuaninfo['lacknum']}</b>pessoa，convite!!</div>
+            {/if}
+          </div>
+          {if $tuaninfo['groupstatus']==2}<div class="pp_tips">agradecemos todos participantes!</div>{/if}
+          
+          <div class="pp_state">
+            {if $tuaninfo['groupstatus']==3}
+              <div class="pp_time"></div>
+            {elseif $tuaninfo['groupstatus']==2}
+              <div class="pp_state_txt">grupo concluido，nos enivaremos os produto mais rapido posivel</div>
+            {else}
+              <div class="pp_state_txt">grupo cancelado，Que pena，tente novamente</div>
+            {/if}
+          </div>
+          <div class="pp_list">
+              <div id="showYaoheList">
+                {php $onum=1;}
+                {loop $orders $or}
+                  <div class="pp_list_item">
+                      <img src="{if !empty($or['avatar'])}{$or['avatar']}{else}{TG_URL_ARES}images/avatar.png{/if}" class="pp_list_avatar">
+                      <div class="pp_list_info">
+                        <span class="pp_list_name">{if $onum==1}Criador:{/if}<b>{$or['nickname']}</b>{if $onum==1}Que diz{else}Vem praqui de velocidade do  trem bala{/if}</span>
+                        <span class="pp_list_time">{php echo date('m-d H:i', $tuaninfo['starttime'])}{if $onum==1}Monte grupo{else}Particiapa grupo{/if}</span>
+                      </div>
+                      <div class="pp_list_words">{if $onum==1}Bom, barato e acaba  rápido!{else}Participa agora。{/if}</div>     
+                  </div>
+                  {if $onum==2}
+                  {php break;}
+                  {/if}
+                  {php $onum++;}
+                  {/loop}
             </div>
-            {if $tuaninfo['groupstatus']==2}<div class="pp_tips">agradecemos todos participantes!</div>{/if}
-            
-            <div class="pp_state">
-            	{if $tuaninfo['groupstatus']==3}
-                <div class="pp_time"></div>
-              {elseif $tuaninfo['groupstatus']==2}
-                <div class="pp_state_txt">grupo concluido，nos enivaremos os produto mais rapido posivel</div>
-              {else}
-                <div class="pp_state_txt">grupo cancelado，Que pena，tente novamente</div>
-              {/if}
-            </div>
-            <div class="pp_list">
-                <div id="showYaoheList">
-                	{php $onum=1;}
-                	{loop $orders $or}
-                    <div class="pp_list_item">
-                        <img src="{if !empty($or['avatar'])}{$or['avatar']}{else}{TG_URL_ARES}images/avatar.png{/if}" class="pp_list_avatar">
-			    <div class="pp_list_info">
-				    <span class="pp_list_name">{if $onum==1}Criador:{/if}<b>{$or['nickname']}</b>{if $onum==1}Que diz{else}Vem praqui de velocidade do  trem bala{/if}</span>
-				    <span class="pp_list_time">{php echo date('m-d H:i', $tuaninfo['starttime'])}{if $onum==1}Monte grupo{else}Particiapa grupo{/if}</span>
-			    </div>
-			    <div class="pp_list_words">{if $onum==1}Bom, barato e acaba  rápido!{else}Participa agora。{/if}</div>     
-                    </div>
-                    {if $onum==2}
-                    {php break;}
-                    {/if}
-                    {php $onum++;}
-                    {/loop}
-            	</div>
-        	</div>
-        	<div class="pp_state">
-                <div class="pp_state_txt" onclick="$('.m-detail-record').toggle();" style="background-color: white;">ver mais</div>
-            </div>
+        </div>
+        <div class="pp_state">
+          <div class="pp_state_txt" onclick="$('.m-detail-record').toggle();" style="background-color: white;">ver mais</div>
+        </div>
         <div class="m-detail-record" style="display: none;">
             <div class="w-bar">historico de particapaçao em grupos<span class="w-bar-hint">(de{php echo date('m-d H:i', $tuaninfo['starttime'])}monte grupo)</span></div>
                 <div class="m-detail-record-wrap">
-	                <div id="pro-view-4">
-	                <ul class="m-detail-record-list" data-pro="entry" id="morelist">
-	                	{loop $orders $or}
-	                	<li id="pro-view-5">
-	                		<div class="f-clear">
-	                			<div class="avatar"><a href="#"><img width="35" height="35" src="{$or['avatar']}"></a></div>
-	                			<div class="text"><p class="f-breakword"><a href="#">{$or['nickname']}   </a>{if !empty($lists['ip'])}<span class="address">( IP:{$lists['ip']}  {$lists['ipaddress']})</span>{/if}</p><p><span class="num">Horário do monte grupo：{php echo date('Y-m-d H:i:s',$or['createtime'])} </p></div>
-	                		</div> 
-	                	</li>
-	                	{/loop}
-	                </ul>
-	               	</div>
+                  <div id="pro-view-4">
+                  <ul class="m-detail-record-list" data-pro="entry" id="morelist">
+                    {loop $orders $or}
+                    <li id="pro-view-5">
+                      <div class="f-clear">
+                        <div class="avatar"><a href="#"><img width="35" height="35" src="{$or['avatar']}"></a></div>
+                        <div class="text"><p class="f-breakword"><a href="#">{$or['nickname']}   </a>{if !empty($lists['ip'])}<span class="address">( IP:{$lists['ip']}  {$lists['ipaddress']})</span>{/if}</p><p><span class="num">Horário do monte grupo：{php echo date('Y-m-d H:i:s',$or['createtime'])} </p></div>
+                      </div> 
+                    </li>
+                    {/loop}
+                  </ul>
+                   </div>
                 </div>
             </div>
-   		</div>
+       </div>
         
         <section class="stepGuild">
-	        <div class="step_tit"><i></i>forma de compra com grupo<span><a href="{php echo app_url('home/rule');}">Ver detalhes &gt;</a></span></div>
-	        <div class="step_flow">
-	            <div class="step_item step_item_on"><span class="step_num">1</span><span>selecione<br>produto favorecido</span></div>
-	            <div class="step_item"><span class="step_num">2</span><span class="steps">pague e monte grupo<br>ou participa grupo de outro participante</span></div>
-	            <div class="step_item"><span class="step_num">3</span><span class="steps">convite os amigos<br>para participa</span></div>
-	            <div class="step_item"><span class="step_num">4</span><span class="steps">numero de participante concluído<br>compras do grupo com sucesso</span></div>
-	        </div>
-	    </section>
+          <div class="step_tit"><i></i>forma de compra com grupo<span><a href="{php echo app_url('home/rule');}">Ver detalhes &gt;</a></span></div>
+          <div class="step_flow">
+              <div class="step_item step_item_on"><span class="step_num">1</span><span>selecione<br>produto favorecido</span></div>
+              <div class="step_item"><span class="step_num">2</span><span class="steps">pague e monte grupo<br>ou participa grupo de outro participante</span></div>
+              <div class="step_item"><span class="step_num">3</span><span class="steps">convite os amigos<br>para participa</span></div>
+              <div class="step_item"><span class="step_num">4</span><span class="steps">numero de participante concluído<br>compras do grupo com sucesso</span></div>
+          </div>
+      </section>
     </div>
     <div class="H5_con fixopt" id="fixopt" style="display: block;">
         <div class="address_new">
@@ -131,39 +136,39 @@
                 </span>
               {else}
                 <span style="display:block;float:left;width: 80%;margin-left: 5px;">
-	            	{if $goods['hasoption']!=1}
-  	             <a href="{php echo app_url('order/orderconfirm',array('groupnum'=>$tuaninfo['neednum'],'id'=>$goods['id'],'newtuan'=>'newtuan'));}" class="external">
-  	            <button style="fllow:left;width: 100%;">grupo concluído,clique monte novo grupo</button> 
-  	           	</a>
-  	           	{else}
-  	           	<a href=""><button style="fllow:left;width: 100%;">grupo concluído</button> </a>
-  	           	{/if}
-	              </span>
+                {if $goods['hasoption']!=1}
+                 <a href="{php echo app_url('order/orderconfirm',array('groupnum'=>$tuaninfo['neednum'],'id'=>$goods['id'],'newtuan'=>'newtuan'));}" class="external">
+                <button style="fllow:left;width: 100%;">grupo concluído,clique monte novo grupo</button> 
+                 </a>
+                 {else}
+                 <a href=""><button style="fllow:left;width: 100%;">grupo concluído</button> </a>
+                 {/if}
+                </span>
                 <span style="display:block;float:right;width: 15%;">
                  <button style="width: 90%;" ><a href="{php echo app_url('home/index')}" class="nav-controller external"><i class="fa fa-home"></i>Home</a></button>
                 </span>
               {/if}
             {else}
-	            {if $tuaninfo['groupstatus']==3}
-	              <span style="display:block;float:left;width: 80%;margin-left: 5px;">
-	            	{if $goods['hasoption']==1}
-	           			<a href="{php echo app_url('goods/detail',array('id' => $goods['id'],'tuan_id' => $tuan_id,'groupnum'=>$tuaninfo['neednum']));} ">
-	           		{else}
-	           			<a href="{php echo app_url('order/orderconfirm',array('id' => $goods['id'],'tuan_id' => $tuan_id,'groupnum'=>$tuaninfo['neednum']));} " class="external">
-	           		{/if}
+              {if $tuaninfo['groupstatus']==3}
+                <span style="display:block;float:left;width: 80%;margin-left: 5px;">
+                {if $goods['hasoption']==1}
+                   <a href="{php echo app_url('goods/detail',array('id' => $goods['id'],'tuan_id' => $tuan_id,'groupnum'=>$tuaninfo['neednum']));} ">
+                 {else}
+                   <a href="{php echo app_url('order/orderconfirm',array('id' => $goods['id'],'tuan_id' => $tuan_id,'groupnum'=>$tuaninfo['neednum']));} " class="external">
+                 {/if}
                     <button style="fllow:left;width: 100%;">eu quero participar</button> 
                   </a>
                 </span>
                 <span style="display:block;float:right;width: 15%;">
                   <button style="width: 90%;"><a href="{php echo app_url('home/index')}" class="nav-controller external"><i class="fa fa-home"></i></a></button>
-	               </span>
-	            {else}
+                 </span>
+              {else}
                 <span style="display:block;float:left;width: 80%;margin-left: 5px;">
-	            	{if $goods['hasoption']!=1}
+                {if $goods['hasoption']!=1}
                 <a href="{php echo app_url('order/orderconfirm',array('groupnum'=>$tuaninfo['neednum'],'id'=>$goods['id'],'newtuan'=>'newtuan'));}" class="external">
                   <button style="fllow:left;width: 100%;">grupo concluído,clique monte novo grupo</button>
                 </a>
-	           	  {else}
+                 {else}
                 <a href="">
                   <button style="fllow:left;width: 100%;">grupo concluído</button> 
                 </a>
@@ -172,13 +177,13 @@
                 <span style="display:block;float:right;width: 15%;">
                   <button style="width: 90%;"><a href="{php echo app_url('home/index')}" class="nav-controller external"><i class="fa fa-home"></i></a></button>
                 </span>
-	            {/if}
+              {/if}
             {/if}
         </div>
     </div>
-		<div id="cover"></div>
-		<div id="guide"><img src="{TG_URL_ARES}images/guide1.png"></div>
- 	</div>
+    <div id="cover"></div>
+    <div id="guide"><img src="{TG_URL_ARES}images/guide1.png"></div>
+   </div>
 </div>
 {if $tuaninfo['groupstatus']==3}
 <script>

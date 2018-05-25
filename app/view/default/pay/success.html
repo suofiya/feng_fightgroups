@@ -50,10 +50,108 @@
 		    <div class="content-block">
 		      <div class="row">
 		        <div class="col-50"><a href="{php echo app_url('goods/list')}" class="weui_btn weui_btn_warn">volta para menu</a></div>
+		        {if $tuan_id}
+		        <div class="col-50">
+		        	<a href="#" class="weui_btn weui_btn_primary" onclick="_system._share(true, '{$tuan_id}')">convite os amigos</a>
+		        </div>
+		        {else}
 		        <div class="col-50"><a href="{php echo app_url('order/order')}" class="weui_btn weui_btn_primary">lista do pedido</a></div>
+		        {/if}
 		      </div>
 		    </div>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+var _system={
+    $:function(id){
+    	return document.getElementById(id);
+    },
+    _share:function(click, tuan_id){
+      var buttons1 = [
+        {
+          text: 'Compartilhe o Produto',
+          bg: 'warning',
+          label: true
+        },
+        {
+          text: 'Compartilhar no Facebook',
+          onClick: function() {
+            facebookShare(tuan_id);
+          }
+        },
+        {
+          text: 'Compartilhar no WhatsApp',
+          onClick: function() {
+            whatsAppShare(tuan_id);
+          }
+        },
+        {
+          text: 'Compartilhar no Google',
+          onClick: function() {
+            googleShare(tuan_id);
+          }
+        },
+        {
+          text: 'Compartilhar no Twitter',
+          onClick: function() {
+            twitterShare(tuan_id);
+          }
+        }
+      ];
+      var buttons2 = [
+        {
+          text: 'Cancelar',
+          color: 'gray'
+        }
+      ];
+      var btnGroups = [buttons1, buttons2];
+      $.actions(btnGroups);
+    },
+    _zero:function(n){
+      return n<0?0:n;
+   }
+}
+//1 facebook 2 pinterest  3  email 4 twitter 5 tumblr
+//6 relop 7 reddit 8 stumbleupon 9 google 10 linkedin 11 gettile 复制网址',12 whatsapp
+function facebookShare(a){
+    u=document.getElementsByClassName("share_url")[0].content;
+    t=document.getElementsByClassName("share_title")[0].content;
+    if(a=="-1"){
+      a=$("#sharedContendId").html();
+    }
+    shareRecord(a,1);
+    window.open("https://www.facebook.com/sharer.php?u="+encodeURIComponent(u)+"&t="+encodeURIComponent(t),"sharer","toolbar=0,status=0,width=626,height=436");
+}
+function googleShare(a){
+    u=document.getElementsByClassName("share_url")[0].content;
+    t=document.getElementsByClassName("share_title")[0].content;
+    if(a=="-1"){
+      a=$("#sharedContendId").html();
+    }
+    shareRecord(a,9);
+    window.open("https://plus.google.com/share?url="+encodeURIComponent(u),"sharer","toolbar=0,status=0");
+}
+function twitterShare(a){
+  u=document.getElementsByClassName("share_url")[0].content;
+  t=document.getElementsByClassName("share_title")[0].content;
+  if(a=="-1"){
+    a=$("#sharedContendId").html();
+  }
+  shareRecord(a,4);
+  window.open("https://twitter.com/home?status="+encodeURIComponent(u)+" "+encodeURIComponent(t),"sharer","toolbar=0,status=0,width=626,height=436");
+}
+function whatsAppShare(a){
+  u = document.getElementsByClassName("share_url")[0].content;
+  t = document.getElementsByClassName("share_title")[0].content;
+  if (a == "-1") {
+    a = $("#sharedContendId").html();
+  }
+  shareRecord(a,12);
+  window.open("whatsapp://send?text="+ encodeURIComponent(t) + encodeURIComponent("\n\n"+u) +"&via=m.melitotal.com.br");
+}
+function shareRecord(b,a){
+  //$.post("/content/share",{content_id:b,share_type:a});
+}
+</script>
 {php include wl_template('common/footer');}

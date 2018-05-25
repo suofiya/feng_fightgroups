@@ -15,12 +15,29 @@
 		    	{loop $orders $order}
 			        <div class="mt_order" id="groups">
 			        	<div class="mt_g">
-			        		<div class="mt_g_img"><a href="{php echo app_url('goods/goods_detail', array('id'=>$order['g_id']));}" class="external"><img src="{php echo tomedia($order['gimg']);}"></a> 
+			        		<div class="mt_g_img">
+			        			<a href="{php echo app_url('goods/goods_detail', array('id'=>$order['g_id']));}" class="external"><img src="{php echo tomedia($order['gimg']);}"></a> 
 			        		</div> 
-			        		<div class="mt_g_info"><p class="mt_g_name">{$order['gname']}</p> <p class="mt_g_price"> preço de grupo： <span> <b> ￥{$order['gprice']}</b>/peça </span><i></i> </p> </div> 
+			        		<div class="mt_g_info">
+			        			<p class="mt_g_name">{$order['gname']}</p>
+			        			<p class="mt_g_price" style="width:220px;">preço de grupo: <span> R$ {$order['gprice']}/peça</span><i></i> </p> 
+			        		</div> 
 			        	</div> 
-			        	<div class="mt_status" style="padding: 0px 10px;"><span class="mt_status_txt">{if $order['groupstatus'] == 3}grupo em aberto{elseif $order['groupstatus'] == 2}grupo concluído{else}grupo cancelado{/if} </span>
-			        		<a class="weui_btn weui_btn_mini weui_btn_yellow mt_status_lk external" href="{php echo app_url('order/group', array('tuan_id'=>$order['tuan_id']));}" {if $order['groupstatus'] == 1}style="margin-right: 5px;"{/if}> ver detalhe do grupo </a> 
+			        	<div class="mt_status" style="padding: 0px 10px;">
+			        		{if $order['groupstatus'] == 3}
+			        		<span class="mt_status_txt">falta <b style="color:#000; font-size:18px;">{$order['itemnum']}</b> pessoa，convite!!</span>
+			        		{elseif $order['groupstatus'] == 2}
+			        		<span class="mt_status_txt">grupo concluído</span>
+			        		{else}
+			        		<span class="mt_status_txt">grupo cancelado</span>
+			        		{/if}
+
+			        		{if $order['groupstatus'] == 3}
+			        		<a class="weui_btn weui_btn_mini weui_btn_yellow mt_status_lk external" href="{php echo app_url('order/group', array('tuan_id'=>$order['tuan_id']));}"> convite os amigos </a>
+			        		{else}
+			        		<a class="weui_btn weui_btn_mini weui_btn_yellow mt_status_lk external" href="{php echo app_url('order/group', array('tuan_id'=>$order['tuan_id']));}" {if $order['groupstatus'] == 1}style="margin-right: 5px;"{/if}> ver detalhe do grupo </a>
+			        		{/if}
+
 			        	</div>
 			        </div>
 			    {/loop}
