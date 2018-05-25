@@ -4,13 +4,13 @@
     <div class="page page-current" id="page-order-list">
     <div class="content" style="padding-bottom: 60px;">
     	{php include wl_template('common/followed');}
-		{if $tuaninfo['groupstatus']==3}
-        <div class="H5_con" id="H5_con1">
-	    <div class="tips topStateWrap tips_succ tips_succ2" id="originTopWrap">
-			<div class="tips_ico"></div>
-			<div class="tips_tit">esta em aberto</div>
-			<div class="tips_txt">convite mais participante！</div>
-		</div>
+		  {if $tuaninfo['groupstatus']==3}
+      <div class="H5_con" id="H5_con1">
+  	    <div class="tips topStateWrap tips_succ tips_succ2" id="originTopWrap">
+    			<div class="tips_ico"></div>
+    			<div class="tips_tit">esta em aberto</div>
+    			<div class="tips_txt">convite mais participante！</div>
+		    </div>
    		</div>
    		{elseif $tuaninfo['groupstatus']==2}
    		<div class="H5_con" id="H5_con1">
@@ -20,15 +20,15 @@
             <div class="tips_txt">aguarde seu produto será postado mais rápido possível</div>
         </div>
         </div>
-        {else}
-        <div class="H5_con" id="H5_con1">
+      {else}
+      <div class="H5_con" id="H5_con1">
         <div class="tips topStateWrap tips_err tips_succ2" id="originTopWrap">
             <div class="tips_ico"></div>
             <div class="tips_tit">grupo cancelado</div>
             <div class="tips_txt">grupo cancelado，tente novamente！</div>
         </div>
-        </div>
-        {/if}
+      </div>
+      {/if}
         <div class="H5_con">
             <div class="tm {if $tuaninfo['groupstatus']==2}tm_succ{elseif $tuaninfo['groupstatus']==1}tm_err{/if}">
                 <div class="td tuanDetailWrap">
@@ -62,11 +62,11 @@
             <div class="pp_state">
             	{if $tuaninfo['groupstatus']==3}
                 <div class="pp_time"></div>
-                {elseif $tuaninfo['groupstatus']==2}
+              {elseif $tuaninfo['groupstatus']==2}
                 <div class="pp_state_txt">grupo concluido，nos enivaremos os produto mais rapido posivel</div>
-                {else}
+              {else}
                 <div class="pp_state_txt">grupo cancelado，Que pena，tente novamente</div>
-                {/if}
+              {/if}
             </div>
             <div class="pp_list">
                 <div id="showYaoheList">
@@ -88,7 +88,7 @@
             	</div>
         	</div>
         	<div class="pp_state">
-                <div class="pp_state_txt" onclick="$('.m-detail-record').toggle();" style="background-color: white;">mer mais</div>
+                <div class="pp_state_txt" onclick="$('.m-detail-record').toggle();" style="background-color: white;">ver mais</div>
             </div>
         <div class="m-detail-record" style="display: none;">
             <div class="w-bar">historico de particapaçao em grupos<span class="w-bar-hint">(de{php echo date('m-d H:i', $tuaninfo['starttime'])}monte grupo)</span></div>
@@ -196,7 +196,7 @@ $(document).ready(function(){
             hh=parseInt((lefttime/3600));
             mm=parseInt((lefttime/60)%60);
             ss=parseInt(lefttime%60);
-            $(".pp_time").html('Corra antes que acabe:<span id="ti_time_hour">'+hh+'</span>:<span id="ti_time_min">'+mm+'</span>:<span id="ti_time_sec">'+ss+'</span>');
+            $(".pp_time").html('tempo limitado:<span id="ti_time_hour">'+hh+'</span>:<span id="ti_time_min">'+mm+'</span>:<span id="ti_time_sec">'+ss+'</span>');
             $('#progressbar').css("width",bar_width);
         }else{
             
