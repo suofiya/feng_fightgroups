@@ -41,7 +41,8 @@ class Feng_fightgroupsModuleSite extends WeModuleSite {
 		load()->model('mc');
 		load() -> model('account');
 		/*写入文件*/
-		$pay_log = $params;$pay_log['createtime']= date("Y-m-d H:i:s",TIMESTAMP);
+		$pay_log = $params;
+		$pay_log['createtime']= date("Y-m-d H:i:s",TIMESTAMP);
 		file_put_contents(TG_DATA."payresult.log", var_export($pay_log, true).PHP_EOL, FILE_APPEND);
 		$success = FALSE;
 		$order_out = order_get_by_params(" orderno = '{$params['tid']}'");
@@ -56,7 +57,7 @@ class Feng_fightgroupsModuleSite extends WeModuleSite {
 			}else{
 				$fee = $params['fee'];
 			}
-			$paytype = array('credit' => 1, 'wechat' => 2, 'alipay' => 2, 'delivery' => 3);
+			$paytype = array('credit' => 1, 'wechat' => 2, 'alipay' => 2, 'delivery' => 3, 'ebanx' => 10);
 			$data['pay_type'] = $paytype[$params['type']];
 			if ($params['type'] == 'wechat') {
 				$data['transid'] = $params['tag']['transaction_id'];
@@ -82,7 +83,7 @@ class Feng_fightgroupsModuleSite extends WeModuleSite {
 					coupon_quantity_issue_increase($coupon_id, 1);
 				}
 				/*处理代付*/
-				if($order_out['openid'] != $params['user']){
+				if(!empty($params['user']) && $order_out['openid'] != $params['user']){
 					pdo_update('tg_order',array('ordertype'=>1,'helpbuy_opneid'=>$params['user']), array('orderno' => $params['tid']));
 					$time = date("Y-m-d H:i:s",$params['paytime']);
 					$url = app_url('order/order/detail', array('id' => $order_out['id']));
